@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.vijayan.profile.model.Key" />
+	<import class="com.vijayan.profile.model.KeyValue" />
+	<class name="com.vijayan.profile.model.impl.KeyImpl" table="kalyan_key">
+		<cache usage="read-write" />
+		<id name="keyId" type="long">
+			<generator class="identity" />
+		</id>
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.vijayan.profile.model.impl.KeyValueImpl" table="kalyan_key_value">
+		<cache usage="read-write" />
+		<id name="valueId" type="long">
+			<generator class="identity" />
+		</id>
+		<property name="keyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>
