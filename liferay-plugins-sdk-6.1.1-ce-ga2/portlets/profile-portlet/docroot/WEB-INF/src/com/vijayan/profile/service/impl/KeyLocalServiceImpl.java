@@ -12,17 +12,17 @@
  * details.
  */
 
-package com.vijayan.profile.service.impl;
+package com.matrimony.profile.service.impl;
 
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.vijayan.profile.NoSuchKeyException;
-import com.vijayan.profile.constant.KeyValueConstants;
-import com.vijayan.profile.model.Key;
-import com.vijayan.profile.model.impl.KeyImpl;
-import com.vijayan.profile.service.KeyLocalServiceUtil;
-import com.vijayan.profile.service.base.KeyLocalServiceBaseImpl;
+import com.matrimony.profile.constant.KeyValueConstants;
+import com.matrimony.profile.model.impl.KeyImpl;
+import com.matrimony.profile.service.base.KeyLocalServiceBaseImpl;
+import com.matrimony.profile.NoSuchKeyException;
+import com.matrimony.profile.model.Key;
+import com.matrimony.profile.service.KeyLocalServiceUtil;
 
 /**
  * The implementation of the key local service.
@@ -30,7 +30,7 @@ import com.vijayan.profile.service.base.KeyLocalServiceBaseImpl;
  * <p>
  * All custom service methods should be put in this class. Whenever methods are
  * added, rerun ServiceBuilder to copy their definitions into the
- * {@link com.vijayan.profile.service.KeyLocalService} interface.
+ * {@link com.matrimony.profile.service.KeyLocalService} interface.
  * 
  * <p>
  * This is a local service. Methods of this service will not have security
@@ -39,8 +39,8 @@ import com.vijayan.profile.service.base.KeyLocalServiceBaseImpl;
  * </p>
  * 
  * @author ravi
- * @see com.vijayan.profile.service.base.KeyLocalServiceBaseImpl
- * @see com.vijayan.profile.service.KeyLocalServiceUtil
+ * @see com.matrimony.profile.service.base.KeyLocalServiceBaseImpl
+ * @see com.matrimony.profile.service.KeyLocalServiceUtil
  */
 public class KeyLocalServiceImpl extends KeyLocalServiceBaseImpl {
 	private static final Log LOGGER = LogFactoryUtil
@@ -50,7 +50,7 @@ public class KeyLocalServiceImpl extends KeyLocalServiceBaseImpl {
 	 * NOTE FOR DEVELOPERS:
 	 * 
 	 * Never reference this interface directly. Always use {@link
-	 * com.vijayan.profile.service.KeyLocalServiceUtil} to access the key local
+	 * com.matrimony.profile.service.KeyLocalServiceUtil} to access the key local
 	 * service.
 	 */
 	public Key keySearch(String name) throws SystemException {

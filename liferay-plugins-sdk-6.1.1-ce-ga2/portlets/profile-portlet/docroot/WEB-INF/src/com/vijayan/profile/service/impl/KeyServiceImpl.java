@@ -12,29 +12,28 @@
  * details.
  */
 
-package com.vijayan.profile.service.impl;
+package com.matrimony.profile.service.impl;
 
-import com.vijayan.profile.service.base.KeyServiceBaseImpl;
+import com.matrimony.profile.service.base.KeyServiceBaseImpl;
 
 /**
  * The implementation of the key remote service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.vijayan.profile.service.KeyService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.matrimony.profile.service.KeyService} interface.
  *
  * <p>
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
- * @author ravi
- * @see com.vijayan.profile.service.base.KeyServiceBaseImpl
- * @see com.vijayan.profile.service.KeyServiceUtil
+ * @author matrimony
+ * @see com.matrimony.profile.service.base.KeyServiceBaseImpl
+ * @see com.matrimony.profile.service.KeyServiceUtil
  */
 public class KeyServiceImpl extends KeyServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link com.vijayan.profile.service.KeyServiceUtil} to access the key remote service.
+	 * Never reference this interface directly. Always use {@link com.matrimony.profile.service.KeyServiceUtil} to access the key remote service.
 	 */
-	
 }
