@@ -1,1 +1,0 @@
-<%@include file="/html/profile/init.jsp" %>

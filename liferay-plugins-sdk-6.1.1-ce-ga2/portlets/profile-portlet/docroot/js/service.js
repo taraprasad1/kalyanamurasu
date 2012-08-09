@@ -1,1 +1,0 @@
-Liferay.Service.register("Liferay.Service.profile", "com.matrimony.profile.service", "profile-portlet");
