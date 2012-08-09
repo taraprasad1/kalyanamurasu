@@ -5,7 +5,7 @@
 	<portlet>
 		<portlet-name>profile</portlet-name>
 		<display-name>Profile</display-name>
-		<portlet-class>com.vijayan.profile.ProfilePortlet</portlet-class>
+		<portlet-class>com.matrimony.profile.ProfilePortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/html/profile/view_profile.jsp</value>
@@ -42,7 +42,7 @@
 	<portlet>
 		<portlet-name>key</portlet-name>
 		<display-name>Key</display-name>
-		<portlet-class>com.vijayan.profile.KeyPortlet</portlet-class>
+		<portlet-class>com.matrimony.profile.KeyPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/html/key/view_key.jsp</value>
@@ -74,7 +74,7 @@
 	<portlet>
 		<portlet-name>keyvalue</portlet-name>
 		<display-name>KeyValue</display-name>
-		<portlet-class>com.vijayan.profile.ValuePortlet</portlet-class>
+		<portlet-class>com.matrimony.profile.ValuePortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/html/keyvalue/view_value.jsp</value>
