@@ -25,7 +25,7 @@ import java.io.Serializable;
 /**
  * The cache model class for representing Key in entity cache.
  *
- * @author ravi
+ * @author vijayan
  * @see Key
  * @generated
  */

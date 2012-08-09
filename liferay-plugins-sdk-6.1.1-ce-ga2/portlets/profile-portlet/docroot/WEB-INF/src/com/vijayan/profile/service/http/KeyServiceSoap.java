@@ -51,7 +51,7 @@ package com.vijayan.profile.service.http;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author    ravi
+ * @author    vijayan
  * @see       KeyServiceHttp
  * @see       com.vijayan.profile.model.KeySoap
  * @see       com.vijayan.profile.service.KeyServiceUtil
