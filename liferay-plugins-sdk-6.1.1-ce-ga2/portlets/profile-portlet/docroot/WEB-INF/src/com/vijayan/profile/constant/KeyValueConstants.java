@@ -1,4 +1,4 @@
-package com.vijayan.profile.constant;
+package com.matrimony.profile.constant;
 
 public interface KeyValueConstants {
 	String KEY_ID = "keyId";
