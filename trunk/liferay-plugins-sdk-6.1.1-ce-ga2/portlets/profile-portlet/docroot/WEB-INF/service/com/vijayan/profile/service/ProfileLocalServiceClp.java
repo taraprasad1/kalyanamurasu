@@ -19,25 +19,29 @@ import com.liferay.portal.service.InvokableLocalService;
 /**
  * @author vijayan
  */
-public class KeyLocalServiceClp implements KeyLocalService {
-	public KeyLocalServiceClp(InvokableLocalService invokableLocalService) {
+public class ProfileLocalServiceClp implements ProfileLocalService {
+	public ProfileLocalServiceClp(InvokableLocalService invokableLocalService) {
 		_invokableLocalService = invokableLocalService;
 
-		_methodName0 = "addKey";
+		_methodName0 = "addProfile";
 
-		_methodParameterTypes0 = new String[] { "com.vijayan.profile.model.Key" };
+		_methodParameterTypes0 = new String[] {
+				"com.vijayan.profile.model.Profile"
+			};
 
-		_methodName1 = "createKey";
+		_methodName1 = "createProfile";
 
 		_methodParameterTypes1 = new String[] { "long" };
 
-		_methodName2 = "deleteKey";
+		_methodName2 = "deleteProfile";
 
 		_methodParameterTypes2 = new String[] { "long" };
 
-		_methodName3 = "deleteKey";
+		_methodName3 = "deleteProfile";
 
-		_methodParameterTypes3 = new String[] { "com.vijayan.profile.model.Key" };
+		_methodParameterTypes3 = new String[] {
+				"com.vijayan.profile.model.Profile"
+			};
 
 		_methodName4 = "dynamicQuery";
 
@@ -68,11 +72,11 @@ public class KeyLocalServiceClp implements KeyLocalService {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
 			};
 
-		_methodName9 = "fetchKey";
+		_methodName9 = "fetchProfile";
 
 		_methodParameterTypes9 = new String[] { "long" };
 
-		_methodName10 = "getKey";
+		_methodName10 = "getProfile";
 
 		_methodParameterTypes10 = new String[] { "long" };
 
@@ -80,22 +84,24 @@ public class KeyLocalServiceClp implements KeyLocalService {
 
 		_methodParameterTypes11 = new String[] { "java.io.Serializable" };
 
-		_methodName12 = "getKeies";
+		_methodName12 = "getProfiles";
 
 		_methodParameterTypes12 = new String[] { "int", "int" };
 
-		_methodName13 = "getKeiesCount";
+		_methodName13 = "getProfilesCount";
 
 		_methodParameterTypes13 = new String[] {  };
 
-		_methodName14 = "updateKey";
+		_methodName14 = "updateProfile";
 
-		_methodParameterTypes14 = new String[] { "com.vijayan.profile.model.Key" };
+		_methodParameterTypes14 = new String[] {
+				"com.vijayan.profile.model.Profile"
+			};
 
-		_methodName15 = "updateKey";
+		_methodName15 = "updateProfile";
 
 		_methodParameterTypes15 = new String[] {
-				"com.vijayan.profile.model.Key", "boolean"
+				"com.vijayan.profile.model.Profile", "boolean"
 			};
 
 		_methodName16 = "getBeanIdentifier";
@@ -105,25 +111,17 @@ public class KeyLocalServiceClp implements KeyLocalService {
 		_methodName17 = "setBeanIdentifier";
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
-
-		_methodName19 = "keySearch";
-
-		_methodParameterTypes19 = new String[] { "java.lang.String" };
-
-		_methodName20 = "keyAdd";
-
-		_methodParameterTypes20 = new String[] { "java.lang.String" };
 	}
 
-	public com.vijayan.profile.model.Key addKey(
-		com.vijayan.profile.model.Key key)
+	public com.vijayan.profile.model.Profile addProfile(
+		com.vijayan.profile.model.Profile profile)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName0,
 					_methodParameterTypes0,
-					new Object[] { ClpSerializer.translateInput(key) });
+					new Object[] { ClpSerializer.translateInput(profile) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -141,15 +139,15 @@ public class KeyLocalServiceClp implements KeyLocalService {
 			}
 		}
 
-		return (com.vijayan.profile.model.Key)ClpSerializer.translateOutput(returnObj);
+		return (com.vijayan.profile.model.Profile)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.vijayan.profile.model.Key createKey(long keyId) {
+	public com.vijayan.profile.model.Profile createProfile(long profileId) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { keyId });
+					_methodParameterTypes1, new Object[] { profileId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -163,17 +161,17 @@ public class KeyLocalServiceClp implements KeyLocalService {
 			}
 		}
 
-		return (com.vijayan.profile.model.Key)ClpSerializer.translateOutput(returnObj);
+		return (com.vijayan.profile.model.Profile)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.vijayan.profile.model.Key deleteKey(long keyId)
+	public com.vijayan.profile.model.Profile deleteProfile(long profileId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] { keyId });
+					_methodParameterTypes2, new Object[] { profileId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -195,18 +193,18 @@ public class KeyLocalServiceClp implements KeyLocalService {
 			}
 		}
 
-		return (com.vijayan.profile.model.Key)ClpSerializer.translateOutput(returnObj);
+		return (com.vijayan.profile.model.Profile)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.vijayan.profile.model.Key deleteKey(
-		com.vijayan.profile.model.Key key)
+	public com.vijayan.profile.model.Profile deleteProfile(
+		com.vijayan.profile.model.Profile profile)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName3,
 					_methodParameterTypes3,
-					new Object[] { ClpSerializer.translateInput(key) });
+					new Object[] { ClpSerializer.translateInput(profile) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -224,7 +222,7 @@ public class KeyLocalServiceClp implements KeyLocalService {
 			}
 		}
 
-		return (com.vijayan.profile.model.Key)ClpSerializer.translateOutput(returnObj);
+		return (com.vijayan.profile.model.Profile)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -384,13 +382,13 @@ public class KeyLocalServiceClp implements KeyLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
-	public com.vijayan.profile.model.Key fetchKey(long keyId)
+	public com.vijayan.profile.model.Profile fetchProfile(long profileId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName9,
-					_methodParameterTypes9, new Object[] { keyId });
+					_methodParameterTypes9, new Object[] { profileId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -408,17 +406,17 @@ public class KeyLocalServiceClp implements KeyLocalService {
 			}
 		}
 
-		return (com.vijayan.profile.model.Key)ClpSerializer.translateOutput(returnObj);
+		return (com.vijayan.profile.model.Profile)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.vijayan.profile.model.Key getKey(long keyId)
+	public com.vijayan.profile.model.Profile getProfile(long profileId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { keyId });
+					_methodParameterTypes10, new Object[] { profileId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -440,7 +438,7 @@ public class KeyLocalServiceClp implements KeyLocalService {
 			}
 		}
 
-		return (com.vijayan.profile.model.Key)ClpSerializer.translateOutput(returnObj);
+		return (com.vijayan.profile.model.Profile)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -477,8 +475,9 @@ public class KeyLocalServiceClp implements KeyLocalService {
 		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.vijayan.profile.model.Key> getKeies(int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+	public java.util.List<com.vijayan.profile.model.Profile> getProfiles(
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
@@ -501,10 +500,10 @@ public class KeyLocalServiceClp implements KeyLocalService {
 			}
 		}
 
-		return (java.util.List<com.vijayan.profile.model.Key>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<com.vijayan.profile.model.Profile>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getKeiesCount()
+	public int getProfilesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -531,15 +530,15 @@ public class KeyLocalServiceClp implements KeyLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public com.vijayan.profile.model.Key updateKey(
-		com.vijayan.profile.model.Key key)
+	public com.vijayan.profile.model.Profile updateProfile(
+		com.vijayan.profile.model.Profile profile)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName14,
 					_methodParameterTypes14,
-					new Object[] { ClpSerializer.translateInput(key) });
+					new Object[] { ClpSerializer.translateInput(profile) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -557,18 +556,18 @@ public class KeyLocalServiceClp implements KeyLocalService {
 			}
 		}
 
-		return (com.vijayan.profile.model.Key)ClpSerializer.translateOutput(returnObj);
+		return (com.vijayan.profile.model.Profile)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.vijayan.profile.model.Key updateKey(
-		com.vijayan.profile.model.Key key, boolean merge)
+	public com.vijayan.profile.model.Profile updateProfile(
+		com.vijayan.profile.model.Profile profile, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName15,
 					_methodParameterTypes15,
-					new Object[] { ClpSerializer.translateInput(key), merge });
+					new Object[] { ClpSerializer.translateInput(profile), merge });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -586,7 +585,7 @@ public class KeyLocalServiceClp implements KeyLocalService {
 			}
 		}
 
-		return (com.vijayan.profile.model.Key)ClpSerializer.translateOutput(returnObj);
+		return (com.vijayan.profile.model.Profile)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.lang.String getBeanIdentifier() {
@@ -636,57 +635,6 @@ public class KeyLocalServiceClp implements KeyLocalService {
 		throw new UnsupportedOperationException();
 	}
 
-	public com.vijayan.profile.model.Key keySearch(java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19,
-					new Object[] { ClpSerializer.translateInput(name) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.vijayan.profile.model.Key)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public com.vijayan.profile.model.Key keyAdd(java.lang.String name) {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20,
-					new Object[] { ClpSerializer.translateInput(name) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.vijayan.profile.model.Key)ClpSerializer.translateOutput(returnObj);
-	}
-
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -724,8 +672,4 @@ public class KeyLocalServiceClp implements KeyLocalService {
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
-	private String _methodName19;
-	private String[] _methodParameterTypes19;
-	private String _methodName20;
-	private String[] _methodParameterTypes20;
 }

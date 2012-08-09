@@ -30,7 +30,7 @@ import com.liferay.portal.service.PersistedModelLocalService;
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
- * @author ravi
+ * @author vijayan
  * @see KeyLocalServiceUtil
  * @see com.vijayan.profile.service.base.KeyLocalServiceBaseImpl
  * @see com.vijayan.profile.service.impl.KeyLocalServiceImpl

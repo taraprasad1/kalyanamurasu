@@ -19,7 +19,7 @@ import com.liferay.portal.model.PersistedModel;
 /**
  * The extended model interface for the Key service. Represents a row in the &quot;kalyan_key&quot; database table, with each column mapped to a property of this class.
  *
- * @author ravi
+ * @author vijayan
  * @see KeyModel
  * @see com.vijayan.profile.model.impl.KeyImpl
  * @see com.vijayan.profile.model.impl.KeyModelImpl

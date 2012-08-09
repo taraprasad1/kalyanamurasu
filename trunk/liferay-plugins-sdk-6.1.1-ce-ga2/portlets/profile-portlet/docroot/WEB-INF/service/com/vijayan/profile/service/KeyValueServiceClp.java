@@ -17,7 +17,7 @@ package com.vijayan.profile.service;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * @author ravi
+ * @author vijayan
  */
 public class KeyValueServiceClp implements KeyValueService {
 	public KeyValueServiceClp(InvokableService invokableService) {

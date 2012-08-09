@@ -27,6 +27,7 @@ import com.liferay.portal.model.BaseModel;
 
 import com.vijayan.profile.model.KeyClp;
 import com.vijayan.profile.model.KeyValueClp;
+import com.vijayan.profile.model.ProfileClp;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -111,6 +112,10 @@ public class ClpSerializer {
 			return translateInputKeyValue(oldModel);
 		}
 
+		if (oldModelClassName.equals(ProfileClp.class.getName())) {
+			return translateInputProfile(oldModel);
+		}
+
 		return oldModel;
 	}
 
@@ -146,6 +151,16 @@ public class ClpSerializer {
 		return newModel;
 	}
 
+	public static Object translateInputProfile(BaseModel<?> oldModel) {
+		ProfileClp oldClpModel = (ProfileClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getProfileRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
 	public static Object translateInput(Object obj) {
 		if (obj instanceof BaseModel<?>) {
 			return translateInput((BaseModel<?>)obj);
@@ -170,6 +185,11 @@ public class ClpSerializer {
 		if (oldModelClassName.equals(
 					"com.vijayan.profile.model.impl.KeyValueImpl")) {
 			return translateOutputKeyValue(oldModel);
+		}
+
+		if (oldModelClassName.equals(
+					"com.vijayan.profile.model.impl.ProfileImpl")) {
+			return translateOutputProfile(oldModel);
 		}
 
 		return oldModel;
@@ -260,6 +280,10 @@ public class ClpSerializer {
 			return new com.vijayan.profile.NoSuchKeyValueException();
 		}
 
+		if (className.equals("com.vijayan.profile.NoSuchProfileException")) {
+			return new com.vijayan.profile.NoSuchProfileException();
+		}
+
 		return throwable;
 	}
 
@@ -279,6 +303,16 @@ public class ClpSerializer {
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setKeyValueRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputProfile(BaseModel<?> oldModel) {
+		ProfileClp newModel = new ProfileClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setProfileRemoteModel(oldModel);
 
 		return newModel;
 	}

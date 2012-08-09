@@ -19,75 +19,75 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
- * The utility for the key value local service. This utility wraps {@link com.vijayan.profile.service.impl.KeyValueLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
+ * The utility for the profile local service. This utility wraps {@link com.vijayan.profile.service.impl.ProfileLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
  * @author vijayan
- * @see KeyValueLocalService
- * @see com.vijayan.profile.service.base.KeyValueLocalServiceBaseImpl
- * @see com.vijayan.profile.service.impl.KeyValueLocalServiceImpl
+ * @see ProfileLocalService
+ * @see com.vijayan.profile.service.base.ProfileLocalServiceBaseImpl
+ * @see com.vijayan.profile.service.impl.ProfileLocalServiceImpl
  * @generated
  */
-public class KeyValueLocalServiceUtil {
+public class ProfileLocalServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to {@link com.vijayan.profile.service.impl.KeyValueLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to {@link com.vijayan.profile.service.impl.ProfileLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 
 	/**
-	* Adds the key value to the database. Also notifies the appropriate model listeners.
+	* Adds the profile to the database. Also notifies the appropriate model listeners.
 	*
-	* @param keyValue the key value
-	* @return the key value that was added
+	* @param profile the profile
+	* @return the profile that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.vijayan.profile.model.KeyValue addKeyValue(
-		com.vijayan.profile.model.KeyValue keyValue)
+	public static com.vijayan.profile.model.Profile addProfile(
+		com.vijayan.profile.model.Profile profile)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().addKeyValue(keyValue);
+		return getService().addProfile(profile);
 	}
 
 	/**
-	* Creates a new key value with the primary key. Does not add the key value to the database.
+	* Creates a new profile with the primary key. Does not add the profile to the database.
 	*
-	* @param valueId the primary key for the new key value
-	* @return the new key value
+	* @param profileId the primary key for the new profile
+	* @return the new profile
 	*/
-	public static com.vijayan.profile.model.KeyValue createKeyValue(
-		long valueId) {
-		return getService().createKeyValue(valueId);
+	public static com.vijayan.profile.model.Profile createProfile(
+		long profileId) {
+		return getService().createProfile(profileId);
 	}
 
 	/**
-	* Deletes the key value with the primary key from the database. Also notifies the appropriate model listeners.
+	* Deletes the profile with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param valueId the primary key of the key value
-	* @return the key value that was removed
-	* @throws PortalException if a key value with the primary key could not be found
+	* @param profileId the primary key of the profile
+	* @return the profile that was removed
+	* @throws PortalException if a profile with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.vijayan.profile.model.KeyValue deleteKeyValue(
-		long valueId)
+	public static com.vijayan.profile.model.Profile deleteProfile(
+		long profileId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().deleteKeyValue(valueId);
+		return getService().deleteProfile(profileId);
 	}
 
 	/**
-	* Deletes the key value from the database. Also notifies the appropriate model listeners.
+	* Deletes the profile from the database. Also notifies the appropriate model listeners.
 	*
-	* @param keyValue the key value
-	* @return the key value that was removed
+	* @param profile the profile
+	* @return the profile that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.vijayan.profile.model.KeyValue deleteKeyValue(
-		com.vijayan.profile.model.KeyValue keyValue)
+	public static com.vijayan.profile.model.Profile deleteProfile(
+		com.vijayan.profile.model.Profile profile)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().deleteKeyValue(keyValue);
+		return getService().deleteProfile(profile);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -165,23 +165,23 @@ public class KeyValueLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
-	public static com.vijayan.profile.model.KeyValue fetchKeyValue(long valueId)
+	public static com.vijayan.profile.model.Profile fetchProfile(long profileId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchKeyValue(valueId);
+		return getService().fetchProfile(profileId);
 	}
 
 	/**
-	* Returns the key value with the primary key.
+	* Returns the profile with the primary key.
 	*
-	* @param valueId the primary key of the key value
-	* @return the key value
-	* @throws PortalException if a key value with the primary key could not be found
+	* @param profileId the primary key of the profile
+	* @return the profile
+	* @throws PortalException if a profile with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.vijayan.profile.model.KeyValue getKeyValue(long valueId)
+	public static com.vijayan.profile.model.Profile getProfile(long profileId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getKeyValue(valueId);
+		return getService().getProfile(profileId);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -192,59 +192,59 @@ public class KeyValueLocalServiceUtil {
 	}
 
 	/**
-	* Returns a range of all the key values.
+	* Returns a range of all the profiles.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of key values
-	* @param end the upper bound of the range of key values (not inclusive)
-	* @return the range of key values
+	* @param start the lower bound of the range of profiles
+	* @param end the upper bound of the range of profiles (not inclusive)
+	* @return the range of profiles
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.vijayan.profile.model.KeyValue> getKeyValues(
+	public static java.util.List<com.vijayan.profile.model.Profile> getProfiles(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getKeyValues(start, end);
+		return getService().getProfiles(start, end);
 	}
 
 	/**
-	* Returns the number of key values.
+	* Returns the number of profiles.
 	*
-	* @return the number of key values
+	* @return the number of profiles
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int getKeyValuesCount()
+	public static int getProfilesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getKeyValuesCount();
+		return getService().getProfilesCount();
 	}
 
 	/**
-	* Updates the key value in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Updates the profile in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
-	* @param keyValue the key value
-	* @return the key value that was updated
+	* @param profile the profile
+	* @return the profile that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.vijayan.profile.model.KeyValue updateKeyValue(
-		com.vijayan.profile.model.KeyValue keyValue)
+	public static com.vijayan.profile.model.Profile updateProfile(
+		com.vijayan.profile.model.Profile profile)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().updateKeyValue(keyValue);
+		return getService().updateProfile(profile);
 	}
 
 	/**
-	* Updates the key value in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Updates the profile in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
-	* @param keyValue the key value
-	* @param merge whether to merge the key value with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	* @return the key value that was updated
+	* @param profile the profile
+	* @param merge whether to merge the profile with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
+	* @return the profile that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.vijayan.profile.model.KeyValue updateKeyValue(
-		com.vijayan.profile.model.KeyValue keyValue, boolean merge)
+	public static com.vijayan.profile.model.Profile updateProfile(
+		com.vijayan.profile.model.Profile profile, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().updateKeyValue(keyValue, merge);
+		return getService().updateProfile(profile, merge);
 	}
 
 	/**
@@ -271,38 +271,23 @@ public class KeyValueLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static com.vijayan.profile.model.KeyValue valueNameSearch(
-		java.lang.String name, long keyId) {
-		return getService().valueNameSearch(name, keyId);
-	}
-
-	public static java.util.List<com.vijayan.profile.model.KeyValue> valueSearch(
-		long keyId) throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().valueSearch(keyId);
-	}
-
-	public static com.vijayan.profile.model.KeyValue addValue(
-		java.lang.String keyValue, long keyId) {
-		return getService().addValue(keyValue, keyId);
-	}
-
 	public static void clearService() {
 		_service = null;
 	}
 
-	public static KeyValueLocalService getService() {
+	public static ProfileLocalService getService() {
 		if (_service == null) {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					KeyValueLocalService.class.getName());
+					ProfileLocalService.class.getName());
 
-			if (invokableLocalService instanceof KeyValueLocalService) {
-				_service = (KeyValueLocalService)invokableLocalService;
+			if (invokableLocalService instanceof ProfileLocalService) {
+				_service = (ProfileLocalService)invokableLocalService;
 			}
 			else {
-				_service = new KeyValueLocalServiceClp(invokableLocalService);
+				_service = new ProfileLocalServiceClp(invokableLocalService);
 			}
 
-			ReferenceRegistry.registerReference(KeyValueLocalServiceUtil.class,
+			ReferenceRegistry.registerReference(ProfileLocalServiceUtil.class,
 				"_service");
 		}
 
@@ -312,8 +297,8 @@ public class KeyValueLocalServiceUtil {
 	/**
 	 * @deprecated
 	 */
-	public void setService(KeyValueLocalService service) {
+	public void setService(ProfileLocalService service) {
 	}
 
-	private static KeyValueLocalService _service;
+	private static ProfileLocalService _service;
 }

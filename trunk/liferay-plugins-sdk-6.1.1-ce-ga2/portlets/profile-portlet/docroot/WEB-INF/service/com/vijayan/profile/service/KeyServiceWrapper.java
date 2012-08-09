@@ -21,7 +21,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * This class is a wrapper for {@link KeyService}.
  * </p>
  *
- * @author    ravi
+ * @author    vijayan
  * @see       KeyService
  * @generated
  */
