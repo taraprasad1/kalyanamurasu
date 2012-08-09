@@ -23,26 +23,26 @@ import com.liferay.portal.service.BaseService;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * The interface for the key value remote service.
+ * The interface for the profile remote service.
  *
  * <p>
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
  * @author vijayan
- * @see KeyValueServiceUtil
- * @see com.vijayan.profile.service.base.KeyValueServiceBaseImpl
- * @see com.vijayan.profile.service.impl.KeyValueServiceImpl
+ * @see ProfileServiceUtil
+ * @see com.vijayan.profile.service.base.ProfileServiceBaseImpl
+ * @see com.vijayan.profile.service.impl.ProfileServiceImpl
  * @generated
  */
 @JSONWebService
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface KeyValueService extends BaseService, InvokableService {
+public interface ProfileService extends BaseService, InvokableService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link KeyValueServiceUtil} to access the key value remote service. Add custom service methods to {@link com.vijayan.profile.service.impl.KeyValueServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link ProfileServiceUtil} to access the profile remote service. Add custom service methods to {@link com.vijayan.profile.service.impl.ProfileServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**
@@ -62,7 +62,4 @@ public interface KeyValueService extends BaseService, InvokableService {
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
-
-	public java.util.List<com.vijayan.profile.model.KeyValue> valueSearch(
-		long keyId) throws com.liferay.portal.kernel.exception.SystemException;
 }

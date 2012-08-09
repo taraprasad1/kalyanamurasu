@@ -18,17 +18,17 @@ import com.liferay.portal.service.ServiceWrapper;
 
 /**
  * <p>
- * This class is a wrapper for {@link KeyValueService}.
+ * This class is a wrapper for {@link ProfileService}.
  * </p>
  *
  * @author    vijayan
- * @see       KeyValueService
+ * @see       ProfileService
  * @generated
  */
-public class KeyValueServiceWrapper implements KeyValueService,
-	ServiceWrapper<KeyValueService> {
-	public KeyValueServiceWrapper(KeyValueService keyValueService) {
-		_keyValueService = keyValueService;
+public class ProfileServiceWrapper implements ProfileService,
+	ServiceWrapper<ProfileService> {
+	public ProfileServiceWrapper(ProfileService profileService) {
+		_profileService = profileService;
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class KeyValueServiceWrapper implements KeyValueService,
 	* @return the Spring bean ID for this bean
 	*/
 	public java.lang.String getBeanIdentifier() {
-		return _keyValueService.getBeanIdentifier();
+		return _profileService.getBeanIdentifier();
 	}
 
 	/**
@@ -46,41 +46,36 @@ public class KeyValueServiceWrapper implements KeyValueService,
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_keyValueService.setBeanIdentifier(beanIdentifier);
+		_profileService.setBeanIdentifier(beanIdentifier);
 	}
 
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
-		return _keyValueService.invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public java.util.List<com.vijayan.profile.model.KeyValue> valueSearch(
-		long keyId) throws com.liferay.portal.kernel.exception.SystemException {
-		return _keyValueService.valueSearch(keyId);
+		return _profileService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */
-	public KeyValueService getWrappedKeyValueService() {
-		return _keyValueService;
+	public ProfileService getWrappedProfileService() {
+		return _profileService;
 	}
 
 	/**
 	 * @deprecated Renamed to {@link #setWrappedService}
 	 */
-	public void setWrappedKeyValueService(KeyValueService keyValueService) {
-		_keyValueService = keyValueService;
+	public void setWrappedProfileService(ProfileService profileService) {
+		_profileService = profileService;
 	}
 
-	public KeyValueService getWrappedService() {
-		return _keyValueService;
+	public ProfileService getWrappedService() {
+		return _profileService;
 	}
 
-	public void setWrappedService(KeyValueService keyValueService) {
-		_keyValueService = keyValueService;
+	public void setWrappedService(ProfileService profileService) {
+		_profileService = profileService;
 	}
 
-	private KeyValueService _keyValueService;
+	private ProfileService _profileService;
 }

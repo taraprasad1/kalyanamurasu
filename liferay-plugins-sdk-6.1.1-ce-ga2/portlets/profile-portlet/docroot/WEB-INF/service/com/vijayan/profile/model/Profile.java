@@ -17,18 +17,18 @@ package com.vijayan.profile.model;
 import com.liferay.portal.model.PersistedModel;
 
 /**
- * The extended model interface for the KeyValue service. Represents a row in the &quot;kalyan_key_value&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Profile service. Represents a row in the &quot;kalyan_profile&quot; database table, with each column mapped to a property of this class.
  *
  * @author vijayan
- * @see KeyValueModel
- * @see com.vijayan.profile.model.impl.KeyValueImpl
- * @see com.vijayan.profile.model.impl.KeyValueModelImpl
+ * @see ProfileModel
+ * @see com.vijayan.profile.model.impl.ProfileImpl
+ * @see com.vijayan.profile.model.impl.ProfileModelImpl
  * @generated
  */
-public interface KeyValue extends KeyValueModel, PersistedModel {
+public interface Profile extends ProfileModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link com.vijayan.profile.model.impl.KeyValueImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to {@link com.vijayan.profile.model.impl.ProfileImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

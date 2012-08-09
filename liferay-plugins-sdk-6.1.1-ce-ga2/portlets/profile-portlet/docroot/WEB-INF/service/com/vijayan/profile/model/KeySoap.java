@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * This class is used by SOAP remote services, specifically {@link com.vijayan.profile.service.http.KeyServiceSoap}.
  *
- * @author    ravi
+ * @author    vijayan
  * @see       com.vijayan.profile.service.http.KeyServiceSoap
  * @generated
  */

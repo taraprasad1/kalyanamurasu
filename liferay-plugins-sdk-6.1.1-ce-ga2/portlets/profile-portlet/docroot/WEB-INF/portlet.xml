@@ -5,7 +5,7 @@
 	<portlet>
 		<portlet-name>profile</portlet-name>
 		<display-name>Profile</display-name>
-		<portlet-class>com.vijayan.profile.Profile</portlet-class>
+		<portlet-class>com.vijayan.profile.ProfilePortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/html/profile/view_profile.jsp</value>

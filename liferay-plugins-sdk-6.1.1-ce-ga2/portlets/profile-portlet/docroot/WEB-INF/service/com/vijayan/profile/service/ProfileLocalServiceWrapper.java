@@ -18,71 +18,71 @@ import com.liferay.portal.service.ServiceWrapper;
 
 /**
  * <p>
- * This class is a wrapper for {@link KeyLocalService}.
+ * This class is a wrapper for {@link ProfileLocalService}.
  * </p>
  *
  * @author    vijayan
- * @see       KeyLocalService
+ * @see       ProfileLocalService
  * @generated
  */
-public class KeyLocalServiceWrapper implements KeyLocalService,
-	ServiceWrapper<KeyLocalService> {
-	public KeyLocalServiceWrapper(KeyLocalService keyLocalService) {
-		_keyLocalService = keyLocalService;
+public class ProfileLocalServiceWrapper implements ProfileLocalService,
+	ServiceWrapper<ProfileLocalService> {
+	public ProfileLocalServiceWrapper(ProfileLocalService profileLocalService) {
+		_profileLocalService = profileLocalService;
 	}
 
 	/**
-	* Adds the key to the database. Also notifies the appropriate model listeners.
+	* Adds the profile to the database. Also notifies the appropriate model listeners.
 	*
-	* @param key the key
-	* @return the key that was added
+	* @param profile the profile
+	* @return the profile that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.vijayan.profile.model.Key addKey(
-		com.vijayan.profile.model.Key key)
+	public com.vijayan.profile.model.Profile addProfile(
+		com.vijayan.profile.model.Profile profile)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _keyLocalService.addKey(key);
+		return _profileLocalService.addProfile(profile);
 	}
 
 	/**
-	* Creates a new key with the primary key. Does not add the key to the database.
+	* Creates a new profile with the primary key. Does not add the profile to the database.
 	*
-	* @param keyId the primary key for the new key
-	* @return the new key
+	* @param profileId the primary key for the new profile
+	* @return the new profile
 	*/
-	public com.vijayan.profile.model.Key createKey(long keyId) {
-		return _keyLocalService.createKey(keyId);
+	public com.vijayan.profile.model.Profile createProfile(long profileId) {
+		return _profileLocalService.createProfile(profileId);
 	}
 
 	/**
-	* Deletes the key with the primary key from the database. Also notifies the appropriate model listeners.
+	* Deletes the profile with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param keyId the primary key of the key
-	* @return the key that was removed
-	* @throws PortalException if a key with the primary key could not be found
+	* @param profileId the primary key of the profile
+	* @return the profile that was removed
+	* @throws PortalException if a profile with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.vijayan.profile.model.Key deleteKey(long keyId)
+	public com.vijayan.profile.model.Profile deleteProfile(long profileId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _keyLocalService.deleteKey(keyId);
+		return _profileLocalService.deleteProfile(profileId);
 	}
 
 	/**
-	* Deletes the key from the database. Also notifies the appropriate model listeners.
+	* Deletes the profile from the database. Also notifies the appropriate model listeners.
 	*
-	* @param key the key
-	* @return the key that was removed
+	* @param profile the profile
+	* @return the profile that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.vijayan.profile.model.Key deleteKey(
-		com.vijayan.profile.model.Key key)
+	public com.vijayan.profile.model.Profile deleteProfile(
+		com.vijayan.profile.model.Profile profile)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _keyLocalService.deleteKey(key);
+		return _profileLocalService.deleteProfile(profile);
 	}
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return _keyLocalService.dynamicQuery();
+		return _profileLocalService.dynamicQuery();
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class KeyLocalServiceWrapper implements KeyLocalService,
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _keyLocalService.dynamicQuery(dynamicQuery);
+		return _profileLocalService.dynamicQuery(dynamicQuery);
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class KeyLocalServiceWrapper implements KeyLocalService,
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		return _keyLocalService.dynamicQuery(dynamicQuery, start, end);
+		return _profileLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
 	/**
@@ -139,7 +139,7 @@ public class KeyLocalServiceWrapper implements KeyLocalService,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _keyLocalService.dynamicQuery(dynamicQuery, start, end,
+		return _profileLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
 
@@ -153,88 +153,89 @@ public class KeyLocalServiceWrapper implements KeyLocalService,
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _keyLocalService.dynamicQueryCount(dynamicQuery);
+		return _profileLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
-	public com.vijayan.profile.model.Key fetchKey(long keyId)
+	public com.vijayan.profile.model.Profile fetchProfile(long profileId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _keyLocalService.fetchKey(keyId);
+		return _profileLocalService.fetchProfile(profileId);
 	}
 
 	/**
-	* Returns the key with the primary key.
+	* Returns the profile with the primary key.
 	*
-	* @param keyId the primary key of the key
-	* @return the key
-	* @throws PortalException if a key with the primary key could not be found
+	* @param profileId the primary key of the profile
+	* @return the profile
+	* @throws PortalException if a profile with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.vijayan.profile.model.Key getKey(long keyId)
+	public com.vijayan.profile.model.Profile getProfile(long profileId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _keyLocalService.getKey(keyId);
+		return _profileLocalService.getProfile(profileId);
 	}
 
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _keyLocalService.getPersistedModel(primaryKeyObj);
+		return _profileLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
-	* Returns a range of all the keies.
+	* Returns a range of all the profiles.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param start the lower bound of the range of keies
-	* @param end the upper bound of the range of keies (not inclusive)
-	* @return the range of keies
+	* @param start the lower bound of the range of profiles
+	* @param end the upper bound of the range of profiles (not inclusive)
+	* @return the range of profiles
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.vijayan.profile.model.Key> getKeies(int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		return _keyLocalService.getKeies(start, end);
+	public java.util.List<com.vijayan.profile.model.Profile> getProfiles(
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _profileLocalService.getProfiles(start, end);
 	}
 
 	/**
-	* Returns the number of keies.
+	* Returns the number of profiles.
 	*
-	* @return the number of keies
+	* @return the number of profiles
 	* @throws SystemException if a system exception occurred
 	*/
-	public int getKeiesCount()
+	public int getProfilesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _keyLocalService.getKeiesCount();
+		return _profileLocalService.getProfilesCount();
 	}
 
 	/**
-	* Updates the key in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Updates the profile in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
-	* @param key the key
-	* @return the key that was updated
+	* @param profile the profile
+	* @return the profile that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.vijayan.profile.model.Key updateKey(
-		com.vijayan.profile.model.Key key)
+	public com.vijayan.profile.model.Profile updateProfile(
+		com.vijayan.profile.model.Profile profile)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _keyLocalService.updateKey(key);
+		return _profileLocalService.updateProfile(profile);
 	}
 
 	/**
-	* Updates the key in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Updates the profile in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
-	* @param key the key
-	* @param merge whether to merge the key with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
-	* @return the key that was updated
+	* @param profile the profile
+	* @param merge whether to merge the profile with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
+	* @return the profile that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.vijayan.profile.model.Key updateKey(
-		com.vijayan.profile.model.Key key, boolean merge)
+	public com.vijayan.profile.model.Profile updateProfile(
+		com.vijayan.profile.model.Profile profile, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _keyLocalService.updateKey(key, merge);
+		return _profileLocalService.updateProfile(profile, merge);
 	}
 
 	/**
@@ -243,7 +244,7 @@ public class KeyLocalServiceWrapper implements KeyLocalService,
 	* @return the Spring bean ID for this bean
 	*/
 	public java.lang.String getBeanIdentifier() {
-		return _keyLocalService.getBeanIdentifier();
+		return _profileLocalService.getBeanIdentifier();
 	}
 
 	/**
@@ -252,45 +253,37 @@ public class KeyLocalServiceWrapper implements KeyLocalService,
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_keyLocalService.setBeanIdentifier(beanIdentifier);
+		_profileLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
-		return _keyLocalService.invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public com.vijayan.profile.model.Key keySearch(java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _keyLocalService.keySearch(name);
-	}
-
-	public com.vijayan.profile.model.Key keyAdd(java.lang.String name) {
-		return _keyLocalService.keyAdd(name);
+		return _profileLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */
-	public KeyLocalService getWrappedKeyLocalService() {
-		return _keyLocalService;
+	public ProfileLocalService getWrappedProfileLocalService() {
+		return _profileLocalService;
 	}
 
 	/**
 	 * @deprecated Renamed to {@link #setWrappedService}
 	 */
-	public void setWrappedKeyLocalService(KeyLocalService keyLocalService) {
-		_keyLocalService = keyLocalService;
+	public void setWrappedProfileLocalService(
+		ProfileLocalService profileLocalService) {
+		_profileLocalService = profileLocalService;
 	}
 
-	public KeyLocalService getWrappedService() {
-		return _keyLocalService;
+	public ProfileLocalService getWrappedService() {
+		return _profileLocalService;
 	}
 
-	public void setWrappedService(KeyLocalService keyLocalService) {
-		_keyLocalService = keyLocalService;
+	public void setWrappedService(ProfileLocalService profileLocalService) {
+		_profileLocalService = profileLocalService;
 	}
 
-	private KeyLocalService _keyLocalService;
+	private ProfileLocalService _profileLocalService;
 }

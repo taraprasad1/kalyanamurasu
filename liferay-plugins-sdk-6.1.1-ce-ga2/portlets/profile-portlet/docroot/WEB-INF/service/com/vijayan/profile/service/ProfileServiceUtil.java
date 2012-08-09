@@ -19,23 +19,23 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * The utility for the key value remote service. This utility wraps {@link com.vijayan.profile.service.impl.KeyValueServiceImpl} and is the primary access point for service operations in application layer code running on a remote server.
+ * The utility for the profile remote service. This utility wraps {@link com.vijayan.profile.service.impl.ProfileServiceImpl} and is the primary access point for service operations in application layer code running on a remote server.
  *
  * <p>
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
  * @author vijayan
- * @see KeyValueService
- * @see com.vijayan.profile.service.base.KeyValueServiceBaseImpl
- * @see com.vijayan.profile.service.impl.KeyValueServiceImpl
+ * @see ProfileService
+ * @see com.vijayan.profile.service.base.ProfileServiceBaseImpl
+ * @see com.vijayan.profile.service.impl.ProfileServiceImpl
  * @generated
  */
-public class KeyValueServiceUtil {
+public class ProfileServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to {@link com.vijayan.profile.service.impl.KeyValueServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to {@link com.vijayan.profile.service.impl.ProfileServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 
 	/**
@@ -62,28 +62,23 @@ public class KeyValueServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static java.util.List<com.vijayan.profile.model.KeyValue> valueSearch(
-		long keyId) throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().valueSearch(keyId);
-	}
-
 	public static void clearService() {
 		_service = null;
 	}
 
-	public static KeyValueService getService() {
+	public static ProfileService getService() {
 		if (_service == null) {
 			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					KeyValueService.class.getName());
+					ProfileService.class.getName());
 
-			if (invokableService instanceof KeyValueService) {
-				_service = (KeyValueService)invokableService;
+			if (invokableService instanceof ProfileService) {
+				_service = (ProfileService)invokableService;
 			}
 			else {
-				_service = new KeyValueServiceClp(invokableService);
+				_service = new ProfileServiceClp(invokableService);
 			}
 
-			ReferenceRegistry.registerReference(KeyValueServiceUtil.class,
+			ReferenceRegistry.registerReference(ProfileServiceUtil.class,
 				"_service");
 		}
 
@@ -93,8 +88,8 @@ public class KeyValueServiceUtil {
 	/**
 	 * @deprecated
 	 */
-	public void setService(KeyValueService service) {
+	public void setService(ProfileService service) {
 	}
 
-	private static KeyValueService _service;
+	private static ProfileService _service;
 }

@@ -25,7 +25,7 @@ import com.vijayan.profile.model.KeyValue;
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
- * @author ravi
+ * @author vijayan
  * @see KeyValuePersistenceImpl
  * @see KeyValueUtil
  * @generated

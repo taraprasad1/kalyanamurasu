@@ -24,7 +24,7 @@ import java.util.Map;
  * This class is a wrapper for {@link Key}.
  * </p>
  *
- * @author    ravi
+ * @author    vijayan
  * @see       Key
  * @generated
  */

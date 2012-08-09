@@ -19,8 +19,8 @@ import com.liferay.portal.service.InvokableService;
 /**
  * @author vijayan
  */
-public class KeyServiceClp implements KeyService {
-	public KeyServiceClp(InvokableService invokableService) {
+public class ProfileServiceClp implements ProfileService {
+	public ProfileServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;
 
 		_methodName0 = "getBeanIdentifier";

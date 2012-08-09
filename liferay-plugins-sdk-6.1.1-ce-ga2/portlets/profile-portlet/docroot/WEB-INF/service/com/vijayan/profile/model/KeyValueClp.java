@@ -30,7 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author ravi
+ * @author vijayan
  */
 public class KeyValueClp extends BaseModelImpl<KeyValue> implements KeyValue {
 	public KeyValueClp() {

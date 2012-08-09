@@ -22,6 +22,8 @@ import com.vijayan.profile.service.KeyLocalServiceUtil;
 import com.vijayan.profile.service.KeyServiceUtil;
 import com.vijayan.profile.service.KeyValueLocalServiceUtil;
 import com.vijayan.profile.service.KeyValueServiceUtil;
+import com.vijayan.profile.service.ProfileLocalServiceUtil;
+import com.vijayan.profile.service.ProfileServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
@@ -44,6 +46,9 @@ public class ClpMessageListener extends BaseMessageListener {
 			KeyValueLocalServiceUtil.clearService();
 
 			KeyValueServiceUtil.clearService();
+			ProfileLocalServiceUtil.clearService();
+
+			ProfileServiceUtil.clearService();
 		}
 	}
 }
