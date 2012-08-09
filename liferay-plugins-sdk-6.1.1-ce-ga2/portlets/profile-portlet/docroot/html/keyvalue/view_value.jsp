@@ -1,4 +1,4 @@
-<%@include file="/html/profile/init.jsp" %>
+<%@include file="/html/common/init.jsp" %>
 
 <portlet:renderURL var="valueListURL" />
 <portlet:resourceURL var="addKeyValueURL">
