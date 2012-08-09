@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.matrimony.model.Key">
+		<field name="keyId" type="long" />
+		<field name="name" type="String" />
+	</model>
+	<model name="com.matrimony.model.KeyValue">
+		<field name="valueId" type="long" />
+		<field name="keyId" type="long" />
+		<field name="name" type="String" />
+	</model>
+	<model name="com.matrimony.model.Profile">
+		<field name="profileId" type="long" />
+		<field name="profileCode" type="String" />
+		<field name="createdForMy" type="String" />
+		<field name="name" type="String" />
+		<field name="gender" type="boolean" />
+		<field name="birthDateWithTime" type="Date" />
+		<field name="rasi" type="String" />
+		<field name="star" type="String" />
+		<field name="dosam" type="String" />
+		<field name="religion" type="String" />
+		<field name="caste" type="String" />
+		<field name="subCaste" type="String" />
+		<field name="height" type="String" />
+		<field name="weight" type="String" />
+		<field name="complexion" type="String" />
+		<field name="motherTongue" type="String" />
+		<field name="languageKnown" type="String" />
+		<field name="maritalStatus" type="String" />
+		<field name="children" type="int" />
+		<field name="country" type="String" />
+		<field name="state" type="String" />
+		<field name="city" type="String" />
+		<field name="address" type="String" />
+		<field name="pinCode" type="String" />
+		<field name="phone" type="String" />
+		<field name="mobile" type="String" />
+		<field name="emailAddress" type="String" />
+		<field name="education" type="String" />
+		<field name="profession" type="String" />
+		<field name="currency" type="String" />
+		<field name="annualIncome" type="String" />
+		<field name="hobbies" type="String" />
+		<field name="aboutMe" type="String" />
+		<field name="familyValue" type="String" />
+		<field name="familyType" type="String" />
+		<field name="familyStatus" type="String" />
+		<field name="securityCode" type="String" />
+		<field name="photoSecurityCode" type="String" />
+		<field name="lastLoggedIn" type="Date" />
+		<field name="status" type="int" />
+		<field name="scheme" type="int" />
+		<field name="horoscope" type="boolean" />
+		<field name="createdBy" type="long" />
+		<field name="modifiedBy" type="long" />
+		<field name="createdDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="companyId" type="long" />
+		<field name="groupId" type="long" />
+	</model>
+</model-hints>

@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.matrimony.model.Key" />
+	<import class="com.matrimony.model.KeyValue" />
+	<import class="com.matrimony.model.Profile" />
+	<class name="com.matrimony.model.impl.KeyImpl" table="matrimony_key">
+		<cache usage="read-write" />
+		<id name="keyId" type="long">
+			<generator class="identity" />
+		</id>
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.matrimony.model.impl.KeyValueImpl" table="matrimony_key_value">
+		<cache usage="read-write" />
+		<id name="valueId" type="long">
+			<generator class="identity" />
+		</id>
+		<property name="keyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.matrimony.model.impl.ProfileImpl" table="matrimony_profile">
+		<cache usage="read-write" />
+		<id name="profileId" type="long">
+			<generator class="identity" />
+		</id>
+		<property name="profileCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createdForMy" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="gender" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="birthDateWithTime" type="org.hibernate.type.TimestampType" />
+		<property name="rasi" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="star" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="dosam" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="religion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="caste" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="subCaste" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="height" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="weight" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="complexion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="motherTongue" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="languageKnown" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="maritalStatus" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="children" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="country" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="state" type="com.liferay.portal.dao.orm.hibernate.StringType" column="state_" />
+		<property name="city" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="address" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="pinCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="phone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="mobile" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="emailAddress" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="education" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="profession" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="currency" type="com.liferay.portal.dao.orm.hibernate.StringType" column="currency_" />
+		<property name="annualIncome" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="hobbies" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="aboutMe" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="familyValue" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="familyType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="familyStatus" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="securityCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="photoSecurityCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lastLoggedIn" type="org.hibernate.type.TimestampType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="scheme" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="horoscope" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="createdBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modifiedBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+</hibernate-mapping>
