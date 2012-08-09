@@ -1,4 +1,4 @@
-<%@include file="/html/profile/init.jsp" %>
+<%@include file="/html/common/init.jsp" %>
 <!-- Create a serveResource URL -->
 <portlet:resourceURL var="addKeyURL">
 	<portlet:param name="<%= KeyValueConstants.ACTION %>" value="<%= KeyValueConstants.ADD_KEY %>"/>
