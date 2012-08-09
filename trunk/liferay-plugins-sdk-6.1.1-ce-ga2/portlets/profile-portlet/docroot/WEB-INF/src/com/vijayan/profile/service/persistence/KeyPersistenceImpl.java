@@ -61,7 +61,7 @@ import java.util.List;
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
- * @author ravi
+ * @author vijayan
  * @see KeyPersistence
  * @see KeyUtil
  * @generated
@@ -866,6 +866,8 @@ public class KeyPersistenceImpl extends BasePersistenceImpl<Key>
 	protected KeyPersistence keyPersistence;
 	@BeanReference(type = KeyValuePersistence.class)
 	protected KeyValuePersistence keyValuePersistence;
+	@BeanReference(type = ProfilePersistence.class)
+	protected ProfilePersistence profilePersistence;
 	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)

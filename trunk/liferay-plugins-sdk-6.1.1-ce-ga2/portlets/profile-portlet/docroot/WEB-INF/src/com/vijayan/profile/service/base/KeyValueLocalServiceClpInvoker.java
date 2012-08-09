@@ -104,25 +104,25 @@ public class KeyValueLocalServiceClpInvoker {
 				"com.vijayan.profile.model.KeyValue", "boolean"
 			};
 
-		_methodName44 = "getBeanIdentifier";
+		_methodName50 = "getBeanIdentifier";
 
-		_methodParameterTypes44 = new String[] {  };
+		_methodParameterTypes50 = new String[] {  };
 
-		_methodName45 = "setBeanIdentifier";
+		_methodName51 = "setBeanIdentifier";
 
-		_methodParameterTypes45 = new String[] { "java.lang.String" };
+		_methodParameterTypes51 = new String[] { "java.lang.String" };
 
-		_methodName50 = "valueNameSearch";
+		_methodName56 = "valueNameSearch";
 
-		_methodParameterTypes50 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes56 = new String[] { "java.lang.String", "long" };
 
-		_methodName51 = "valueSearch";
+		_methodName57 = "valueSearch";
 
-		_methodParameterTypes51 = new String[] { "long" };
+		_methodParameterTypes57 = new String[] { "long" };
 
-		_methodName52 = "addValue";
+		_methodName58 = "addValue";
 
-		_methodParameterTypes52 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes58 = new String[] { "java.lang.String", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -214,29 +214,29 @@ public class KeyValueLocalServiceClpInvoker {
 				((Boolean)arguments[1]).booleanValue());
 		}
 
-		if (_methodName44.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
-			return KeyValueLocalServiceUtil.getBeanIdentifier();
-		}
-
-		if (_methodName45.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
-			KeyValueLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-		}
-
 		if (_methodName50.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
-			return KeyValueLocalServiceUtil.valueNameSearch((java.lang.String)arguments[0],
-				((Long)arguments[1]).longValue());
+			return KeyValueLocalServiceUtil.getBeanIdentifier();
 		}
 
 		if (_methodName51.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+			KeyValueLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+		}
+
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+			return KeyValueLocalServiceUtil.valueNameSearch((java.lang.String)arguments[0],
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			return KeyValueLocalServiceUtil.valueSearch(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			return KeyValueLocalServiceUtil.addValue((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue());
 		}
@@ -276,14 +276,14 @@ public class KeyValueLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName44;
-	private String[] _methodParameterTypes44;
-	private String _methodName45;
-	private String[] _methodParameterTypes45;
 	private String _methodName50;
 	private String[] _methodParameterTypes50;
 	private String _methodName51;
 	private String[] _methodParameterTypes51;
-	private String _methodName52;
-	private String[] _methodParameterTypes52;
+	private String _methodName56;
+	private String[] _methodParameterTypes56;
+	private String _methodName57;
+	private String[] _methodParameterTypes57;
+	private String _methodName58;
+	private String[] _methodParameterTypes58;
 }

@@ -14,17 +14,10 @@
 
 package com.vijayan.profile.service.http;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-
-import com.vijayan.profile.service.KeyValueServiceUtil;
-
-import java.rmi.RemoteException;
-
 /**
  * <p>
  * This class provides a SOAP utility for the
- * {@link com.vijayan.profile.service.KeyValueServiceUtil} service utility. The
+ * {@link com.vijayan.profile.service.ProfileServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -33,10 +26,10 @@ import java.rmi.RemoteException;
  * <p>
  * ServiceBuilder follows certain rules in translating the methods. For example,
  * if the method in the service utility returns a {@link java.util.List}, that
- * is translated to an array of {@link com.vijayan.profile.model.KeyValueSoap}.
+ * is translated to an array of {@link com.vijayan.profile.model.ProfileSoap}.
  * If the method in the service utility returns a
- * {@link com.vijayan.profile.model.KeyValue}, that is translated to a
- * {@link com.vijayan.profile.model.KeyValueSoap}. Methods that SOAP cannot
+ * {@link com.vijayan.profile.model.Profile}, that is translated to a
+ * {@link com.vijayan.profile.model.ProfileSoap}. Methods that SOAP cannot
  * safely wire are skipped.
  * </p>
  *
@@ -59,25 +52,10 @@ import java.rmi.RemoteException;
  * </p>
  *
  * @author    vijayan
- * @see       KeyValueServiceHttp
- * @see       com.vijayan.profile.model.KeyValueSoap
- * @see       com.vijayan.profile.service.KeyValueServiceUtil
+ * @see       ProfileServiceHttp
+ * @see       com.vijayan.profile.model.ProfileSoap
+ * @see       com.vijayan.profile.service.ProfileServiceUtil
  * @generated
  */
-public class KeyValueServiceSoap {
-	public static com.vijayan.profile.model.KeyValueSoap[] valueSearch(
-		long keyId) throws RemoteException {
-		try {
-			java.util.List<com.vijayan.profile.model.KeyValue> returnValue = KeyValueServiceUtil.valueSearch(keyId);
-
-			return com.vijayan.profile.model.KeyValueSoap.toSoapModels(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
-	private static Log _log = LogFactoryUtil.getLog(KeyValueServiceSoap.class);
+public class ProfileServiceSoap {
 }

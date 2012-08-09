@@ -15,7 +15,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.vijayan.profile.constant.KeyValueConstants;
 import com.vijayan.profile.model.Key;
 import com.vijayan.profile.model.KeyValue;
@@ -25,7 +24,7 @@ import com.vijayan.profile.service.KeyValueLocalServiceUtil;
 /**
  * Portlet implementation class Key
  */
-public class KeyPortlet extends MVCPortlet {
+public class KeyPortlet extends BaseController {
 	private static final Log LOGGER = LogFactoryUtil.getLog(KeyPortlet.class);
 
 	public void serveResource(ResourceRequest resourceRequest,

@@ -7,4 +7,7 @@
 	<bean id="com.vijayan.profile.service.KeyValueLocalService" class="com.vijayan.profile.service.impl.KeyValueLocalServiceImpl" />
 	<bean id="com.vijayan.profile.service.KeyValueService" class="com.vijayan.profile.service.impl.KeyValueServiceImpl" />
 	<bean id="com.vijayan.profile.service.persistence.KeyValuePersistence" class="com.vijayan.profile.service.persistence.KeyValuePersistenceImpl" parent="basePersistence" />
+	<bean id="com.vijayan.profile.service.ProfileLocalService" class="com.vijayan.profile.service.impl.ProfileLocalServiceImpl" />
+	<bean id="com.vijayan.profile.service.ProfileService" class="com.vijayan.profile.service.impl.ProfileServiceImpl" />
+	<bean id="com.vijayan.profile.service.persistence.ProfilePersistence" class="com.vijayan.profile.service.persistence.ProfilePersistenceImpl" parent="basePersistence" />
 </beans>

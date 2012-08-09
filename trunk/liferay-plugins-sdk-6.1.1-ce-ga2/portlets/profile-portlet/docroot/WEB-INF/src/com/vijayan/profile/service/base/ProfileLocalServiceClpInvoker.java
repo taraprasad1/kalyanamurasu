@@ -14,30 +14,34 @@
 
 package com.vijayan.profile.service.base;
 
-import com.vijayan.profile.service.KeyLocalServiceUtil;
+import com.vijayan.profile.service.ProfileLocalServiceUtil;
 
 import java.util.Arrays;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class KeyLocalServiceClpInvoker {
-	public KeyLocalServiceClpInvoker() {
-		_methodName0 = "addKey";
+public class ProfileLocalServiceClpInvoker {
+	public ProfileLocalServiceClpInvoker() {
+		_methodName0 = "addProfile";
 
-		_methodParameterTypes0 = new String[] { "com.vijayan.profile.model.Key" };
+		_methodParameterTypes0 = new String[] {
+				"com.vijayan.profile.model.Profile"
+			};
 
-		_methodName1 = "createKey";
+		_methodName1 = "createProfile";
 
 		_methodParameterTypes1 = new String[] { "long" };
 
-		_methodName2 = "deleteKey";
+		_methodName2 = "deleteProfile";
 
 		_methodParameterTypes2 = new String[] { "long" };
 
-		_methodName3 = "deleteKey";
+		_methodName3 = "deleteProfile";
 
-		_methodParameterTypes3 = new String[] { "com.vijayan.profile.model.Key" };
+		_methodParameterTypes3 = new String[] {
+				"com.vijayan.profile.model.Profile"
+			};
 
 		_methodName4 = "dynamicQuery";
 
@@ -68,11 +72,11 @@ public class KeyLocalServiceClpInvoker {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
 			};
 
-		_methodName9 = "fetchKey";
+		_methodName9 = "fetchProfile";
 
 		_methodParameterTypes9 = new String[] { "long" };
 
-		_methodName10 = "getKey";
+		_methodName10 = "getProfile";
 
 		_methodParameterTypes10 = new String[] { "long" };
 
@@ -80,22 +84,24 @@ public class KeyLocalServiceClpInvoker {
 
 		_methodParameterTypes11 = new String[] { "java.io.Serializable" };
 
-		_methodName12 = "getKeies";
+		_methodName12 = "getProfiles";
 
 		_methodParameterTypes12 = new String[] { "int", "int" };
 
-		_methodName13 = "getKeiesCount";
+		_methodName13 = "getProfilesCount";
 
 		_methodParameterTypes13 = new String[] {  };
 
-		_methodName14 = "updateKey";
+		_methodName14 = "updateProfile";
 
-		_methodParameterTypes14 = new String[] { "com.vijayan.profile.model.Key" };
+		_methodParameterTypes14 = new String[] {
+				"com.vijayan.profile.model.Profile"
+			};
 
-		_methodName15 = "updateKey";
+		_methodName15 = "updateProfile";
 
 		_methodParameterTypes15 = new String[] {
-				"com.vijayan.profile.model.Key", "boolean"
+				"com.vijayan.profile.model.Profile", "boolean"
 			};
 
 		_methodName50 = "getBeanIdentifier";
@@ -105,58 +111,50 @@ public class KeyLocalServiceClpInvoker {
 		_methodName51 = "setBeanIdentifier";
 
 		_methodParameterTypes51 = new String[] { "java.lang.String" };
-
-		_methodName56 = "keySearch";
-
-		_methodParameterTypes56 = new String[] { "java.lang.String" };
-
-		_methodName57 = "keyAdd";
-
-		_methodParameterTypes57 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		if (_methodName0.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-			return KeyLocalServiceUtil.addKey((com.vijayan.profile.model.Key)arguments[0]);
+			return ProfileLocalServiceUtil.addProfile((com.vijayan.profile.model.Profile)arguments[0]);
 		}
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return KeyLocalServiceUtil.createKey(((Long)arguments[0]).longValue());
+			return ProfileLocalServiceUtil.createProfile(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return KeyLocalServiceUtil.deleteKey(((Long)arguments[0]).longValue());
+			return ProfileLocalServiceUtil.deleteProfile(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName3.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-			return KeyLocalServiceUtil.deleteKey((com.vijayan.profile.model.Key)arguments[0]);
+			return ProfileLocalServiceUtil.deleteProfile((com.vijayan.profile.model.Profile)arguments[0]);
 		}
 
 		if (_methodName4.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes4, parameterTypes)) {
-			return KeyLocalServiceUtil.dynamicQuery();
+			return ProfileLocalServiceUtil.dynamicQuery();
 		}
 
 		if (_methodName5.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes5, parameterTypes)) {
-			return KeyLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
+			return ProfileLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
 		}
 
 		if (_methodName6.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes6, parameterTypes)) {
-			return KeyLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+			return ProfileLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
 		if (_methodName7.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes7, parameterTypes)) {
-			return KeyLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+			return ProfileLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
@@ -164,64 +162,54 @@ public class KeyLocalServiceClpInvoker {
 
 		if (_methodName8.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes8, parameterTypes)) {
-			return KeyLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
+			return ProfileLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
 		}
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return KeyLocalServiceUtil.fetchKey(((Long)arguments[0]).longValue());
+			return ProfileLocalServiceUtil.fetchProfile(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return KeyLocalServiceUtil.getKey(((Long)arguments[0]).longValue());
+			return ProfileLocalServiceUtil.getProfile(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return KeyLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return ProfileLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName12.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-			return KeyLocalServiceUtil.getKeies(((Integer)arguments[0]).intValue(),
+			return ProfileLocalServiceUtil.getProfiles(((Integer)arguments[0]).intValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
 		if (_methodName13.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
-			return KeyLocalServiceUtil.getKeiesCount();
+			return ProfileLocalServiceUtil.getProfilesCount();
 		}
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return KeyLocalServiceUtil.updateKey((com.vijayan.profile.model.Key)arguments[0]);
+			return ProfileLocalServiceUtil.updateProfile((com.vijayan.profile.model.Profile)arguments[0]);
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return KeyLocalServiceUtil.updateKey((com.vijayan.profile.model.Key)arguments[0],
+			return ProfileLocalServiceUtil.updateProfile((com.vijayan.profile.model.Profile)arguments[0],
 				((Boolean)arguments[1]).booleanValue());
 		}
 
 		if (_methodName50.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
-			return KeyLocalServiceUtil.getBeanIdentifier();
+			return ProfileLocalServiceUtil.getBeanIdentifier();
 		}
 
 		if (_methodName51.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
-			KeyLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-		}
-
-		if (_methodName56.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
-			return KeyLocalServiceUtil.keySearch((java.lang.String)arguments[0]);
-		}
-
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
-			return KeyLocalServiceUtil.keyAdd((java.lang.String)arguments[0]);
+			ProfileLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 		}
 
 		throw new UnsupportedOperationException();
@@ -263,8 +251,4 @@ public class KeyLocalServiceClpInvoker {
 	private String[] _methodParameterTypes50;
 	private String _methodName51;
 	private String[] _methodParameterTypes51;
-	private String _methodName56;
-	private String[] _methodParameterTypes56;
-	private String _methodName57;
-	private String[] _methodParameterTypes57;
 }
