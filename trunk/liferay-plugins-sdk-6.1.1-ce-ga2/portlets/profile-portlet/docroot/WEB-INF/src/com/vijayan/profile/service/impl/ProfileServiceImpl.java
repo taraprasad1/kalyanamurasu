@@ -12,28 +12,28 @@
  * details.
  */
 
-package com.vijayan.profile.service.impl;
+package com.matrimony.profile.service.impl;
 
-import com.vijayan.profile.service.base.ProfileServiceBaseImpl;
+import com.matrimony.profile.service.base.ProfileServiceBaseImpl;
 
 /**
  * The implementation of the profile remote service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.vijayan.profile.service.ProfileService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.matrimony.profile.service.ProfileService} interface.
  *
  * <p>
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
- * @author vijayan
- * @see com.vijayan.profile.service.base.ProfileServiceBaseImpl
- * @see com.vijayan.profile.service.ProfileServiceUtil
+ * @author matrimony
+ * @see com.matrimony.profile.service.base.ProfileServiceBaseImpl
+ * @see com.matrimony.profile.service.ProfileServiceUtil
  */
 public class ProfileServiceImpl extends ProfileServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link com.vijayan.profile.service.ProfileServiceUtil} to access the profile remote service.
+	 * Never reference this interface directly. Always use {@link com.matrimony.profile.service.ProfileServiceUtil} to access the profile remote service.
 	 */
 }

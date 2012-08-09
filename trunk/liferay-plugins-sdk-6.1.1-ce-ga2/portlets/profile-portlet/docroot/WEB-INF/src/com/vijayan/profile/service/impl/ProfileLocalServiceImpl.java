@@ -12,28 +12,28 @@
  * details.
  */
 
-package com.vijayan.profile.service.impl;
+package com.matrimony.profile.service.impl;
 
-import com.vijayan.profile.service.base.ProfileLocalServiceBaseImpl;
+import com.matrimony.profile.service.base.ProfileLocalServiceBaseImpl;
 
 /**
  * The implementation of the profile local service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.vijayan.profile.service.ProfileLocalService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.matrimony.profile.service.ProfileLocalService} interface.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
- * @author vijayan
- * @see com.vijayan.profile.service.base.ProfileLocalServiceBaseImpl
- * @see com.vijayan.profile.service.ProfileLocalServiceUtil
+ * @author matrimony
+ * @see com.matrimony.profile.service.base.ProfileLocalServiceBaseImpl
+ * @see com.matrimony.profile.service.ProfileLocalServiceUtil
  */
 public class ProfileLocalServiceImpl extends ProfileLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link com.vijayan.profile.service.ProfileLocalServiceUtil} to access the profile local service.
+	 * Never reference this interface directly. Always use {@link com.matrimony.profile.service.ProfileLocalServiceUtil} to access the profile local service.
 	 */
 }

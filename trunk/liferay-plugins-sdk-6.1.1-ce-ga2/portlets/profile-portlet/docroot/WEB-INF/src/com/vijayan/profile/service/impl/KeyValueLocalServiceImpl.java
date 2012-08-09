@@ -12,19 +12,19 @@
  * details.
  */
 
-package com.vijayan.profile.service.impl;
+package com.matrimony.profile.service.impl;
 
 import java.util.List;
 
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.vijayan.profile.NoSuchKeyValueException;
-import com.vijayan.profile.constant.KeyValueConstants;
-import com.vijayan.profile.model.KeyValue;
-import com.vijayan.profile.model.impl.KeyValueImpl;
-import com.vijayan.profile.service.KeyValueLocalServiceUtil;
-import com.vijayan.profile.service.base.KeyValueLocalServiceBaseImpl;
+import com.matrimony.profile.constant.KeyValueConstants;
+import com.matrimony.profile.model.impl.KeyValueImpl;
+import com.matrimony.profile.service.base.KeyValueLocalServiceBaseImpl;
+import com.matrimony.profile.NoSuchKeyValueException;
+import com.matrimony.profile.model.KeyValue;
+import com.matrimony.profile.service.KeyValueLocalServiceUtil;
 
 /**
  * The implementation of the key value local service.
@@ -32,7 +32,7 @@ import com.vijayan.profile.service.base.KeyValueLocalServiceBaseImpl;
  * <p>
  * All custom service methods should be put in this class. Whenever methods are
  * added, rerun ServiceBuilder to copy their definitions into the
- * {@link com.vijayan.profile.service.KeyValueLocalService} interface.
+ * {@link com.matrimony.profile.service.KeyValueLocalService} interface.
  * 
  * <p>
  * This is a local service. Methods of this service will not have security
@@ -41,8 +41,8 @@ import com.vijayan.profile.service.base.KeyValueLocalServiceBaseImpl;
  * </p>
  * 
  * @author ravi
- * @see com.vijayan.profile.service.base.KeyValueLocalServiceBaseImpl
- * @see com.vijayan.profile.service.KeyValueLocalServiceUtil
+ * @see com.matrimony.profile.service.base.KeyValueLocalServiceBaseImpl
+ * @see com.matrimony.profile.service.KeyValueLocalServiceUtil
  */
 public class KeyValueLocalServiceImpl extends KeyValueLocalServiceBaseImpl {
 	private static final Log LOGGER = LogFactoryUtil
@@ -52,7 +52,7 @@ public class KeyValueLocalServiceImpl extends KeyValueLocalServiceBaseImpl {
 	 * NOTE FOR DEVELOPERS:
 	 * 
 	 * Never reference this interface directly. Always use {@link
-	 * com.vijayan.profile.service.KeyValueLocalServiceUtil} to access the key
+	 * com.matrimony.profile.service.KeyValueLocalServiceUtil} to access the key
 	 * value local service.
 	 */
 
