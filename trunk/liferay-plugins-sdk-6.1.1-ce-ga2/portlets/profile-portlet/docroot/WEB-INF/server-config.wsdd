@@ -34,7 +34,7 @@
 	</transport>
 	<service name="Plugin_profile_KeyService" provider="java:RPC" style="rpc" use="encoded">
 		<parameter name="allowedMethods" value="*" />
-		<parameter name="className" value="com.vijayan.profile.service.http.KeyServiceSoap" />
+		<parameter name="className" value="com.matrimony.profile.service.http.KeyServiceSoap" />
 		<parameter name="typeMappingVersion" value="1.2" />
 		<parameter name="wsdlPortType" value="KeyServiceSoap" />
 		<parameter name="wsdlServiceElement" value="KeyServiceSoapService" />
@@ -43,7 +43,7 @@
 	</service>
 	<service name="Plugin_profile_KeyValueService" provider="java:RPC" style="rpc" use="encoded">
 		<parameter name="allowedMethods" value="*" />
-		<parameter name="className" value="com.vijayan.profile.service.http.KeyValueServiceSoap" />
+		<parameter name="className" value="com.matrimony.profile.service.http.KeyValueServiceSoap" />
 		<parameter name="typeMappingVersion" value="1.2" />
 		<parameter name="wsdlPortType" value="KeyValueServiceSoap" />
 		<parameter name="wsdlServiceElement" value="KeyValueServiceSoapService" />
