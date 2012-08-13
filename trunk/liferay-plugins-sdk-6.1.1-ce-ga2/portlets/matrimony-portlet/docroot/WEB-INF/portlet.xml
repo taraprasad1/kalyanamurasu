@@ -39,7 +39,7 @@
 		<portlet-class>com.matrimony.ProfilePortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
-			<value>/html/matrimony/profile/view_profile.jsp</value>
+			<value>/html/matrimony/profile/list_profile.jsp</value>
 		</init-param>
 		<init-param>
 			<name>edit-jsp</name>
