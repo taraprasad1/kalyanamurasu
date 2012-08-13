@@ -261,6 +261,10 @@ public class ProfileLocalServiceWrapper implements ProfileLocalService,
 		return _profileLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public com.matrimony.model.Profile createProfileObj() {
+		return _profileLocalService.createProfileObj();
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

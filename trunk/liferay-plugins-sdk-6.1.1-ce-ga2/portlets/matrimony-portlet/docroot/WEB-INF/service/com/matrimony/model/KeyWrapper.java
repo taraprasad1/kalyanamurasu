@@ -160,7 +160,7 @@ public class KeyWrapper implements Key, ModelWrapper<Key> {
 		return new KeyWrapper((Key)_key.clone());
 	}
 
-	public int compareTo(Key key) {
+	public int compareTo(com.matrimony.model.Key key) {
 		return _key.compareTo(key);
 	}
 
@@ -169,11 +169,11 @@ public class KeyWrapper implements Key, ModelWrapper<Key> {
 		return _key.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<Key> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.matrimony.model.Key> toCacheModel() {
 		return _key.toCacheModel();
 	}
 
-	public Key toEscapedModel() {
+	public com.matrimony.model.Key toEscapedModel() {
 		return new KeyWrapper(_key.toEscapedModel());
 	}
 
