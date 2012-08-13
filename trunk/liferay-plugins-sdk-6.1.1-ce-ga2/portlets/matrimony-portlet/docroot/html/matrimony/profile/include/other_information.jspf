@@ -1,0 +1,14 @@
+<aui:input name="education" type="text" label="education" inlineLabel="left" />
+<aui:input name="profession" type="text" label="profession" inlineLabel="left" />
+<aui:input name="currency" type="text" label="currency" inlineLabel="left" />
+<aui:input name="annualIncome" type="text" label="annualIncome" inlineLabel="left" />
+<aui:input name="hobbies" type="text" label="hobbies" inlineLabel="left" />
+<aui:input name="aboutMe" type="text" label="aboutMe" inlineLabel="left" />
+<aui:input name="familyValue" type="text" label="familyValue" inlineLabel="left" />
+<aui:input name="familyType" type="text" label="familyType" inlineLabel="left" />
+<aui:input name="familyStatus" type="text" label="familyStatus" inlineLabel="left" />
+<aui:input name="securityCode" type="text" label="securityCode" inlineLabel="left" />
+<aui:input name="photoSecurityCode" type="text" label="photoSecurityCode" inlineLabel="left" />
+<aui:input name="status" type="text" label="status" inlineLabel="left" />
+<aui:input name="scheme" type="text" label="scheme" inlineLabel="left" />
+<aui:input name="horoscope" type="text" label="horoscope" inlineLabel="left" value="true"/>		
