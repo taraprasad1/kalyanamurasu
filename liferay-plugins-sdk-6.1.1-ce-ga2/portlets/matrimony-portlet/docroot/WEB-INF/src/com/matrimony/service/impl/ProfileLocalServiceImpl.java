@@ -14,26 +14,31 @@
 
 package com.matrimony.service.impl;
 
+import com.matrimony.model.Profile;
+import com.matrimony.model.impl.ProfileImpl;
 import com.matrimony.service.base.ProfileLocalServiceBaseImpl;
 
 /**
  * The implementation of the profile local service.
- *
+ * 
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.matrimony.service.ProfileLocalService} interface.
- *
+ * All custom service methods should be put in this class. Whenever methods are
+ * added, rerun ServiceBuilder to copy their definitions into the
+ * {@link com.matrimony.service.ProfileLocalService} interface.
+ * 
  * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
+ * This is a local service. Methods of this service will not have security
+ * checks based on the propagated JAAS credentials because this service can only
+ * be accessed from within the same VM.
  * </p>
- *
+ * 
  * @author matrimony
  * @see com.matrimony.service.base.ProfileLocalServiceBaseImpl
  * @see com.matrimony.service.ProfileLocalServiceUtil
  */
 public class ProfileLocalServiceImpl extends ProfileLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.matrimony.service.ProfileLocalServiceUtil} to access the profile local service.
-	 */
+
+	public Profile createProfileObj(){
+		return new ProfileImpl();
+	}
 }
