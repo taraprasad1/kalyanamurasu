@@ -1,5 +1,7 @@
 package com.matrimony.util;
 
-public class CommonUtil {
 
+public class CommonUtil {
+	
+		
 }

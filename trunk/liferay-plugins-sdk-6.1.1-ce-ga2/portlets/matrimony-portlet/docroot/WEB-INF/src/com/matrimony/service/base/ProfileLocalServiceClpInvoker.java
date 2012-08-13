@@ -105,6 +105,10 @@ public class ProfileLocalServiceClpInvoker {
 		_methodName51 = "setBeanIdentifier";
 
 		_methodParameterTypes51 = new String[] { "java.lang.String" };
+
+		_methodName56 = "createProfileObj";
+
+		_methodParameterTypes56 = new String[] {  };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -206,6 +210,11 @@ public class ProfileLocalServiceClpInvoker {
 			ProfileLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 		}
 
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+			return ProfileLocalServiceUtil.createProfileObj();
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -245,4 +254,6 @@ public class ProfileLocalServiceClpInvoker {
 	private String[] _methodParameterTypes50;
 	private String _methodName51;
 	private String[] _methodParameterTypes51;
+	private String _methodName56;
+	private String[] _methodParameterTypes56;
 }
