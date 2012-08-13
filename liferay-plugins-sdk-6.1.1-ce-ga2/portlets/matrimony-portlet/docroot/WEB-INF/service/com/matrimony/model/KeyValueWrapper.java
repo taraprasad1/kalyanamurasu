@@ -185,7 +185,7 @@ public class KeyValueWrapper implements KeyValue, ModelWrapper<KeyValue> {
 		return new KeyValueWrapper((KeyValue)_keyValue.clone());
 	}
 
-	public int compareTo(KeyValue keyValue) {
+	public int compareTo(com.matrimony.model.KeyValue keyValue) {
 		return _keyValue.compareTo(keyValue);
 	}
 
@@ -194,11 +194,11 @@ public class KeyValueWrapper implements KeyValue, ModelWrapper<KeyValue> {
 		return _keyValue.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<KeyValue> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.matrimony.model.KeyValue> toCacheModel() {
 		return _keyValue.toCacheModel();
 	}
 
-	public KeyValue toEscapedModel() {
+	public com.matrimony.model.KeyValue toEscapedModel() {
 		return new KeyValueWrapper(_keyValue.toEscapedModel());
 	}
 

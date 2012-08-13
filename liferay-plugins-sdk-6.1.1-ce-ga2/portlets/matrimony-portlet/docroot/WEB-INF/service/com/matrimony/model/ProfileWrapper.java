@@ -1329,7 +1329,7 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 		return new ProfileWrapper((Profile)_profile.clone());
 	}
 
-	public int compareTo(Profile profile) {
+	public int compareTo(com.matrimony.model.Profile profile) {
 		return _profile.compareTo(profile);
 	}
 
@@ -1338,11 +1338,11 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 		return _profile.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<Profile> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.matrimony.model.Profile> toCacheModel() {
 		return _profile.toCacheModel();
 	}
 
-	public Profile toEscapedModel() {
+	public com.matrimony.model.Profile toEscapedModel() {
 		return new ProfileWrapper(_profile.toEscapedModel());
 	}
 
