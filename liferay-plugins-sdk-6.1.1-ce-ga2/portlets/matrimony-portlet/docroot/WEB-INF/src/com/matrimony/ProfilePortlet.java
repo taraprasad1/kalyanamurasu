@@ -36,7 +36,6 @@ public class ProfilePortlet extends MVCPortlet {
 			}
 		}
 	}
-
 	public void updateAccount(ActionRequest actionRequest,
 			ActionResponse actionResponse) throws IOException, PortletException {
 		System.out.println("update begin------->");
