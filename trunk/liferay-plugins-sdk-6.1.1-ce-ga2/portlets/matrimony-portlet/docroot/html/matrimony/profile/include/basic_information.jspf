@@ -1,8 +1,10 @@
-<aui:select name="createdForMy" label="profile-created-for" inlineLabel="true" help="profile-help-created-for-me">
+<aui:select name="createdForMy" label="profile-created-for" inlineField="true" inputCssClass="selectBoxStyle" helpMessage="help-profile-created-for">
 	<% for(KeyValue values : ProfileUtil.getKeyValueList("createdFor")){ %>
 		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
 	<% } %>
-</aui:select>
-<aui:input type="text" name="name" label="profile-name" inlineLabel="true"/>
-<aui:input type="radio" name="gender" label="profile-male" inlineLabel="right" inlineField="true" checked="<%=true %>" value="male"/>
-<aui:input type="radio" name="gender" inlineLabel="right"  label="profile-female"  value="female"/>
+</aui:select><br/>
+<aui:input type="text" name="name" label="profile-name" inlineField="true" inputCssClass="textBoxStyle" helpMessage="help-profile-name"/><br/>
+<aui:field-wrapper name="gender" inlineField="true" >
+	<aui:input name="gender" type="radio" value="male" label="male" inlineField="true" inputCssClass="radioButtonStyle" />
+	<aui:input name="gender" type="radio" value="female" label="female"  inlineField="true" inputCssClass="radioButtonStyle"/>
+</aui:field-wrapper><br/>
