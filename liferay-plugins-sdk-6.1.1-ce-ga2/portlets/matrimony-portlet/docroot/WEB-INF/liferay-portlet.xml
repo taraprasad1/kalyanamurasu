@@ -4,15 +4,17 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>matrimony</portlet-name>
-		<icon>/icon.png</icon>
+		<icon>/icon.png</icon>		
 		<instanceable>false</instanceable>		
 		<css-class-wrapper>matrimony-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>profile</portlet-name>
-		<icon>/icon.png</icon>
-		<instanceable>false</instanceable>
-		<header-portlet-css>/css/main.css</header-portlet-css>
+		<icon>/icon.png</icon>		
+		<configuration-action-class>com.matrimony.ConfigurationImpl</configuration-action-class>
+		<action-url-redirect>true</action-url-redirect>
+		<instanceable>false</instanceable>		
+		<header-portlet-css>/css/main.css</header-portlet-css>		
 		<footer-portlet-javascript>
 			/js/main.js
 		</footer-portlet-javascript>
