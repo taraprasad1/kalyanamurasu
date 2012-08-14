@@ -1,20 +1,20 @@
-<aui:select name="country" label="country" inlineLabel="left">
+<aui:select name="country" label="profile-country" inlineLabel="left">
 	<% for(Country country : CountryServiceUtil.getCountries()) { %>
 		<aui:option value="<%= country.getName() %>"><%= country.getName() %></aui:option>
 	<% } %>
 </aui:select>
-<aui:select name="state" label="state" inlineLabel="left">
+<aui:select name="state" label="profile-state" inlineLabel="left">
 	<% for(Region region : RegionServiceUtil.getRegions()) { %>
 		<aui:option value="<%= region.getName() %>"><%= region.getName() %></aui:option>
 	<% } %>
 </aui:select>
-<aui:select name="city" label="city" inlineLabel="left">
+<aui:select name="city" label="profile-city" inlineLabel="left">
 	<% for(KeyValue values : ProfileUtil.getKeyValueList("city")) { %>
 		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
 	<% } %>
 </aui:select>
-<aui:input type="textarea" name="address" label="address" inlineLabel="left" />
-<aui:input type="text" name="pinCode" label="pinCode" inlineLabel="left" />
-<aui:input type="text" name="phone" label="phone" inlineLabel="left" />
-<aui:input name="mobile" type="text" label="mobile" inlineLabel="left" />
-<aui:input name="emailAddress" type="text" label="emailAddress" inlineLabel="left" />
+<aui:input type="textarea" name="address" label="profile-address" inlineLabel="left" />
+<aui:input type="text" name="pinCode" label="profile-pin-code" inlineLabel="left" />
+<aui:input type="text" name="phone" label="profile-phone" inlineLabel="left" />
+<aui:input name="mobile" type="text" label="profile-mobile" inlineLabel="left" />
+<aui:input name="emailAddress" type="text" label="profile-email-address" inlineLabel="left" />

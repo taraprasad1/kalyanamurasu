@@ -27,16 +27,16 @@
 		<aui:model-context bean="<%= profile %>" model="<%= Profile.class %>" />
 		<aui:input type="hidden" name="profileId" label="name" inlineLabel="left"/>
 		<liferay-ui:panel-container id="panel-container-1" extended="true" accordion="true" >
-			<liferay-ui:panel id="profile-basic" title="Basic Information" collapsible="true" extended="false" >
+			<liferay-ui:panel id="profile-basic" title="Basic Information" collapsible="true" extended="true" >
 				<%@ include file="/html/matrimony/profile/include/basic_information.jspf" %>
 			</liferay-ui:panel>
-			<liferay-ui:panel id="profile-personnel" title="Personnel Information" collapsible="true" extended="true" >
+			<liferay-ui:panel id="profile-personnel" title="Personnel Information" collapsible="true" extended="false" >
 				<%@ include file="/html/matrimony/profile/include/personnel_information.jspf" %>
 			</liferay-ui:panel>
-			<liferay-ui:panel id="profile-contact" title="Contact Information" collapsible="true" extended="true" >
+			<liferay-ui:panel id="profile-contact" title="Contact Information" collapsible="true" extended="false" >
 				<%@ include file="/html/matrimony/profile/include/contact_information.jspf" %>
 			</liferay-ui:panel>
-			<liferay-ui:panel id="profile-other" title="Other Information" collapsible="true" extended="true" >
+			<liferay-ui:panel id="profile-other" title="Other Information" collapsible="true" extended="false" >
 				<%@ include file="/html/matrimony/profile/include/other_information.jspf" %>
 			</liferay-ui:panel>
 		</liferay-ui:panel-container>
