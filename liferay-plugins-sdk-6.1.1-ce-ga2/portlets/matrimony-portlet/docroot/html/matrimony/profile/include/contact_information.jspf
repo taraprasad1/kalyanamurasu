@@ -1,20 +1,20 @@
-<aui:select name="country" label="profile-country" inlineLabel="left">
+<aui:select name="country" label="profile-country" inlineField="true" inputCssClass="selectBoxStyle">
 	<% for(Country country : CountryServiceUtil.getCountries()) { %>
 		<aui:option value="<%= country.getName() %>"><%= country.getName() %></aui:option>
 	<% } %>
-</aui:select>
-<aui:select name="state" label="profile-state" inlineLabel="left">
+</aui:select><br/>
+<aui:select name="state" label="profile-state" inlineField="true" inputCssClass="selectBoxStyle">
 	<% for(Region region : RegionServiceUtil.getRegions()) { %>
 		<aui:option value="<%= region.getName() %>"><%= region.getName() %></aui:option>
 	<% } %>
-</aui:select>
-<aui:select name="city" label="profile-city" inlineLabel="left">
+</aui:select><br/>
+<aui:select name="city" label="profile-city" inlineField="true" inputCssClass="selectBoxStyle">
 	<% for(KeyValue values : ProfileUtil.getKeyValueList("city")) { %>
 		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
 	<% } %>
-</aui:select>
-<aui:input type="textarea" name="address" label="profile-address" inlineLabel="left" />
-<aui:input type="text" name="pinCode" label="profile-pin-code" inlineLabel="left" />
-<aui:input type="text" name="phone" label="profile-phone" inlineLabel="left" />
-<aui:input name="mobile" type="text" label="profile-mobile" inlineLabel="left" />
-<aui:input name="emailAddress" type="text" label="profile-email-address" inlineLabel="left" />
+</aui:select><br/>
+<aui:input type="textarea" name="address" label="profile-address" inlineField="true" inputCssClass="textBoxStyle"/><br/>
+<aui:input type="text" name="pinCode" label="profile-pin-code" inlineField="true" inputCssClass="textBoxStyle"/><br/>
+<aui:input type="text" name="phone" label="profile-phone" inlineField="true" inputCssClass="textBoxStyle"/><br/>
+<aui:input name="mobile" type="text" label="profile-mobile" inlineField="true" inputCssClass="textBoxStyle"/><br/>
+<aui:input name="emailAddress" type="text" label="profile-email-address" inlineField="true" inputCssClass="textBoxStyle"/><br/>
