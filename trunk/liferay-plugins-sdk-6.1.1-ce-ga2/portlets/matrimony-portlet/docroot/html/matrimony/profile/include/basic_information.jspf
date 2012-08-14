@@ -3,6 +3,6 @@
 		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
 	<% } %>
 </aui:select>
-<aui:input type="text" name="name" label="profile-name" inlineLabel="left"/>
+<aui:input type="text" name="name" label="profile-name" inlineLabel="true"/>
 <aui:input type="radio" name="gender" label="profile-male" inlineLabel="right" inlineField="true" checked="<%=true %>" value="male"/>
 <aui:input type="radio" name="gender" inlineLabel="right"  label="profile-female"  value="female"/>

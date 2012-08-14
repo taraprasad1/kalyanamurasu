@@ -1,61 +1,65 @@
-<aui:select name="rasi" label="rasi" inlineLabel="left">
+<aui:select name="rasi" label="profile-rasi" inlineLabel="left">
 	<% for(KeyValue values : ProfileUtil.getKeyValueList("rasi")) { %>
 		<aui:option value="<%= values.getName() %>" ><%= values.getName() %></aui:option>
 	<% } %>		
 </aui:select>
-<aui:select name="star" label="star" inlineLabel="left">
+<aui:select name="star" label="profile-star" inlineLabel="left">
 	<% for(KeyValue values : ProfileUtil.getKeyValueList("star")) { %>
 		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
 	<% } %>	
 </aui:select>
-<aui:select name="dosam" label="dosam" inlineLabel="left">
+<aui:select name="dosam" label="profile-dosam" inlineLabel="left">
 	<% for(KeyValue values : ProfileUtil.getKeyValueList("dosam")) { %>
 		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
 	<% } %>		
 </aui:select>
-<aui:select name="religion" label="religion" inlineLabel="left">
+<aui:select name="religion" label="profile-religion" inlineLabel="left">
 	<% for(KeyValue values : ProfileUtil.getKeyValueList("religion")) { %>
 		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
 	<% } %>		
 </aui:select>
-<aui:select name="caste" label="caste" inlineLabel="left">
+<aui:select name="caste" label="profile-caste" inlineLabel="left">
 	<% for(KeyValue values : ProfileUtil.getKeyValueList("caste")) { %>
 		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
 	<% } %>		
 </aui:select>
-<aui:select name="subCaste" label="subCaste" inlineLabel="left">
+<aui:select name="subCaste" label="profile-sub-caste" inlineLabel="left">
 	<% for(KeyValue values : ProfileUtil.getKeyValueList("subCaste")) { %>
 		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
 	<% } %>	
 </aui:select>
-<aui:select name="height" label="height" inlineLabel="left">
+<aui:select name="height" label="profile-height" inlineLabel="left">
 	<% for(KeyValue values : ProfileUtil.getKeyValueList("height")) { %>
 		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
 	<% } %>		
 </aui:select>
-<aui:select name="weight" label="weight" inlineLabel="left">
+<aui:select name="weight" label="profile-weight" inlineLabel="left">
 	<% for(KeyValue values : ProfileUtil.getKeyValueList("weight")) { %>
 		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
 	<% } %>		
 </aui:select>
-<aui:select name="complexion" label="complexion" inlineLabel="left">
+<aui:select name="complexion" label="profile-complexion" inlineLabel="left">
 	<% for(KeyValue values : ProfileUtil.getKeyValueList("complexion")) { %>
 		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
 	<% } %>	
 </aui:select>
-<aui:select name="motherTongue" label="motherTongue" inlineLabel="left">
+<aui:select name="motherTongue" label="profile-mother-tongue" inlineLabel="left">
 	<% for(KeyValue values : ProfileUtil.getKeyValueList("motherTongue")) { %>	
 		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
 	<% } %>	
 </aui:select>
-<aui:select name="languageKnown" label="languageKnown" inlineLabel="left">
+<aui:select name="languageKnown" label="profile-language-known" inlineLabel="left">
 	<% for(KeyValue values : ProfileUtil.getKeyValueList("languageKnown")) { %>	
 		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
 	<% } %>	
 </aui:select>
-<aui:select name="maritalStatus" label="maritalStatus" inlineLabel="left">
+<aui:select name="maritalStatus" label="profile-marital-status" inlineLabel="left">
 	<% for(KeyValue values : ProfileUtil.getKeyValueList("maritalStatus")) { %>	
 		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
 	<% } %>	
 </aui:select>
-<aui:input type="text" name="children" label="children" inlineLabel="left" />
+<aui:select  name="children" label="profile-children" inlineLabel="left" >
+	<% for(KeyValue values : ProfileUtil.getKeyValueList("children")) { %>	
+		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
+	<% } %>	
+</aui:select>
