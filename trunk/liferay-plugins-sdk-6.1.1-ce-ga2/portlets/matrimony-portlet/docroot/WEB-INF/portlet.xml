@@ -42,8 +42,8 @@
 			<value>/html/matrimony/profile/list_profile.jsp</value>
 		</init-param>
 		<init-param>
-			<name>edit-jsp</name>
-			<value>/html/matrimony/profile/edit.jsp</value>
+			<name>config-template</name>
+			<value>/html/matrimony/profile/configuration.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
