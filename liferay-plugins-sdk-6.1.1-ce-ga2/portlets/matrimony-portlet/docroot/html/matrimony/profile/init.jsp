@@ -4,7 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
 <%@page import="javax.portlet.PortletPreferences"%>
-
+<%@ page import="javax.portlet.ActionRequest" %>
+<%@ page import="com.matrimony.service.ProfileLocalServiceUtil" %>
 <%@page import="com.liferay.portlet.PortletPreferencesFactoryUtil"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 
