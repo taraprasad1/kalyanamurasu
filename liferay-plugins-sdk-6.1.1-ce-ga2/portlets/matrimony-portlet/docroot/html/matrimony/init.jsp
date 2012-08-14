@@ -3,8 +3,6 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
-<portlet:defineObjects />
-<theme:defineObjects />
 
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -18,3 +16,5 @@
 <%@page import="com.matrimony.service.KeyLocalServiceUtil"%>
 <%@page import="com.matrimony.model.Key"%>
 
+<portlet:defineObjects />
+<theme:defineObjects />

@@ -2,3 +2,18 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+
+<%@page import="javax.portlet.PortletPreferences"%>
+
+<%@page import="com.liferay.portlet.PortletPreferencesFactoryUtil"%>
+<%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
+
+<%
+	PortletPreferences preferences = renderRequest.getPreferences();
+	String portletResource = ParamUtil.getString(request, "portletResource");
+	
+	if(Validator.isNotNull(portletResource)) {
+		preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+	}
+	String listView = preferences.getValue("listView", "table");
+%>
