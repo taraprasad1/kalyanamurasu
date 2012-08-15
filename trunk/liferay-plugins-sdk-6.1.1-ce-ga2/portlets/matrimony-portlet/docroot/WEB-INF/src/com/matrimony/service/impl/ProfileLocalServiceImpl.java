@@ -32,7 +32,7 @@ import com.matrimony.service.base.ProfileLocalServiceBaseImpl;
  * be accessed from within the same VM.
  * </p>
  * 
- * @author matrimony
+ * @author Arun
  * @see com.matrimony.service.base.ProfileLocalServiceBaseImpl
  * @see com.matrimony.service.ProfileLocalServiceUtil
  */
