@@ -1,8 +1,6 @@
-<portlet:renderURL var="newProfileURL">
-	<portlet:param name="jspPage" value="/html/matrimony/profile/edit_profile.jsp"/>
-</portlet:renderURL>
-
-<a href="<%= newProfileURL%>">Create account</a><br/><br/>
+<liferay-util:include page="/html/matrimony/profile/toolbar.jsp" servletContext="<%= getServletContext() %>">
+	<liferay-util:param name="toolbarItem" value="view-all" />
+</liferay-util:include>
 
 <liferay-ui:search-container>
 	<liferay-ui:search-container-results
