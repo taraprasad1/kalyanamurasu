@@ -3,6 +3,9 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
+<%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
+
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
