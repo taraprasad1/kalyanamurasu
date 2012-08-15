@@ -12,7 +12,6 @@
 <%@include file="/html/matrimony/profile/init.jsp" %>
 <%
 	long profileId = ParamUtil.getLong(request, "profileId");
-	System.out.println("profileId---->" + profileId);
 	Profile profile = new ProfileImpl();
 	PortletURL updateAccountURL = renderResponse.createActionURL();
 	updateAccountURL.setParameter(ActionRequest.ACTION_NAME, "updateAccount");
