@@ -69,6 +69,18 @@
 			<finder-column name="status"></finder-column>
 		</finder>
     </entity>
+    <entity name="ProfileTemp" local-service="true" remote-service="true" table="matrimony_profile_temp">
+    	<column name="profileTempId" type="long" primary="true" id-type="identity" />
+    	<column name="profileId" type="long" />
+    	<column name="name" type="long" />
+    	<column name="address" type="String" />
+		<column name="pinCode" type="String" />
+		<column name="phone" type="String" />
+		<column name="mobile" type="String" />
+		<column name="emailAddress" type="String" />
+		<column name="aboutMe" type="String" />
+		<column name="scheme" type="int" />
+    </entity>
 	<entity name="Key" local-service="true" remote-service="true" table="matrimony_key">
         <!-- PK fields -->
         <column name="keyId" type="long" primary="true" id-type="identity"></column>
@@ -93,5 +105,38 @@
         	<finder-column name="name" />
         	<finder-column name="keyId" />
         </finder>
+    </entity>
+    <entity name="Interaction" local-service="true" table="matrimony_profile_interaction">
+    	<column name="interactionId" type="long" primary="true" id-type="identity" />
+    	<column name="maleId" type="long" />
+    	<column name="femaleId" type="long" />
+    	<column name ="maleLastViewedFemale" type="Date"/> 
+		<column name="maleViewedCount" type="int" /> 
+		<column name ="femaleLastViewedMale" type="Date"/> 	
+		<column name="femaleViewedCount" type="int" /> 
+    	<column name="canViewMalePhoto" type="boolean"/>
+		<column name="canViewFemalePhoto" type="boolean"/>
+		<column name="canViewMaleContact" type="boolean"/>
+		<column name="canViewFemaleContact" type="boolean"/>
+		<column name ="proposedOn" type="Date"/> 
+		<column name="proposedByMale" type="boolean"  /> 
+		<column name="proposalNotSeen" type="boolean"/>
+		<column name="respondedOn" type="Date"/>
+		<column name="responseType" type="int"  /> 
+		<column name="responseNotSeen" type="boolean"/>
+		<column name="shortlistedByMale" type="Date"/>
+		<column name="shortlistedByFemale" type="Date"/>
+		<column name="blockedByMale" type="Date"/>
+		<column name="blockedByFemale" type="Date"/>
+		<column name="capturedInMaleReport" type="int" />
+		<column name="capturedInFemaleReport" type="int" />
+    </entity>
+    <entity name="Photo" local-service="true" table="matrimony_photo">
+    	<column name="photoId" type="long" primary="true" id-type="identity" />
+    	<column name="profileId" type="long" />
+    	<column name="content" type="String" />
+    	<column name="name" type="String" />
+    	<column name="type" type="String" />
+    	<column name="thumbnail" type="boolean" />
     </entity>
 </service-builder>
