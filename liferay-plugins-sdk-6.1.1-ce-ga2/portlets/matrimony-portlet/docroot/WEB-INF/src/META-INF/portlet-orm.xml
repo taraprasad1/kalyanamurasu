@@ -7,6 +7,52 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
+	<mapped-superclass class="com.matrimony.model.impl.InteractionModelImpl">
+		<attributes>
+			<id name="interactionId" />
+			<basic name="maleId" />
+			<basic name="femaleId" />
+			<basic name="maleLastViewedFemale">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="maleViewedCount" />
+			<basic name="femaleLastViewedMale">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="femaleViewedCount" />
+			<basic name="canViewMalePhoto" />
+			<basic name="canViewFemalePhoto" />
+			<basic name="canViewMaleContact" />
+			<basic name="canViewFemaleContact" />
+			<basic name="proposedOn">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="proposedByMale" />
+			<basic name="proposalNotSeen" />
+			<basic name="respondedOn">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="responseType" />
+			<basic name="responseNotSeen" />
+			<basic name="shortlistedByMale">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="shortlistedByFemale">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="blockedByMale">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="blockedByFemale">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="capturedInMaleReport" />
+			<basic name="capturedInFemaleReport" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.matrimony.model.impl.KeyModelImpl">
 		<attributes>
 			<id name="keyId" />
@@ -21,6 +67,21 @@
 			<id name="valueId" />
 			<basic name="keyId" />
 			<basic name="name" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.matrimony.model.impl.PhotoModelImpl">
+		<attributes>
+			<id name="photoId" />
+			<basic name="profileId" />
+			<basic name="content" />
+			<basic name="name" />
+			<basic name="type">
+				<column name="TYPE_" />
+			</basic>
+			<basic name="thumbnail" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -93,6 +154,27 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.matrimony.model.impl.ProfileTempModelImpl">
+		<attributes>
+			<id name="profileTempId" />
+			<basic name="profileId" />
+			<basic name="name" />
+			<basic name="address" />
+			<basic name="pinCode" />
+			<basic name="phone" />
+			<basic name="mobile" />
+			<basic name="emailAddress" />
+			<basic name="aboutMe" />
+			<basic name="scheme" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.matrimony.model.impl.InteractionImpl" name="Interaction">
+		<table name="matrimony_profile_interaction" />
+		<attributes />
+	</entity>
 	<entity class="com.matrimony.model.impl.KeyImpl" name="Key">
 		<table name="matrimony_key" />
 		<attributes />
@@ -101,8 +183,16 @@
 		<table name="matrimony_key_value" />
 		<attributes />
 	</entity>
+	<entity class="com.matrimony.model.impl.PhotoImpl" name="Photo">
+		<table name="matrimony_photo" />
+		<attributes />
+	</entity>
 	<entity class="com.matrimony.model.impl.ProfileImpl" name="Profile">
 		<table name="matrimony_profile" />
+		<attributes />
+	</entity>
+	<entity class="com.matrimony.model.impl.ProfileTempImpl" name="ProfileTemp">
+		<table name="matrimony_profile_temp" />
 		<attributes />
 	</entity>
 </entity-mappings>

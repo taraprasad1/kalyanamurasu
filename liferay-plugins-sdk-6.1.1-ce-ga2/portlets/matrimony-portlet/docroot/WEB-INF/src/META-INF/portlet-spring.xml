@@ -1,13 +1,22 @@
 <?xml version="1.0"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.matrimony.service.InteractionLocalService" class="com.matrimony.service.impl.InteractionLocalServiceImpl" />
+	<bean id="com.matrimony.service.InteractionService" class="com.matrimony.service.impl.InteractionServiceImpl" />
+	<bean id="com.matrimony.service.persistence.InteractionPersistence" class="com.matrimony.service.persistence.InteractionPersistenceImpl" parent="basePersistence" />
 	<bean id="com.matrimony.service.KeyLocalService" class="com.matrimony.service.impl.KeyLocalServiceImpl" />
 	<bean id="com.matrimony.service.KeyService" class="com.matrimony.service.impl.KeyServiceImpl" />
 	<bean id="com.matrimony.service.persistence.KeyPersistence" class="com.matrimony.service.persistence.KeyPersistenceImpl" parent="basePersistence" />
 	<bean id="com.matrimony.service.KeyValueLocalService" class="com.matrimony.service.impl.KeyValueLocalServiceImpl" />
 	<bean id="com.matrimony.service.KeyValueService" class="com.matrimony.service.impl.KeyValueServiceImpl" />
 	<bean id="com.matrimony.service.persistence.KeyValuePersistence" class="com.matrimony.service.persistence.KeyValuePersistenceImpl" parent="basePersistence" />
+	<bean id="com.matrimony.service.PhotoLocalService" class="com.matrimony.service.impl.PhotoLocalServiceImpl" />
+	<bean id="com.matrimony.service.PhotoService" class="com.matrimony.service.impl.PhotoServiceImpl" />
+	<bean id="com.matrimony.service.persistence.PhotoPersistence" class="com.matrimony.service.persistence.PhotoPersistenceImpl" parent="basePersistence" />
 	<bean id="com.matrimony.service.ProfileLocalService" class="com.matrimony.service.impl.ProfileLocalServiceImpl" />
 	<bean id="com.matrimony.service.ProfileService" class="com.matrimony.service.impl.ProfileServiceImpl" />
 	<bean id="com.matrimony.service.persistence.ProfilePersistence" class="com.matrimony.service.persistence.ProfilePersistenceImpl" parent="basePersistence" />
+	<bean id="com.matrimony.service.ProfileTempLocalService" class="com.matrimony.service.impl.ProfileTempLocalServiceImpl" />
+	<bean id="com.matrimony.service.ProfileTempService" class="com.matrimony.service.impl.ProfileTempServiceImpl" />
+	<bean id="com.matrimony.service.persistence.ProfileTempPersistence" class="com.matrimony.service.persistence.ProfileTempPersistenceImpl" parent="basePersistence" />
 </beans>
