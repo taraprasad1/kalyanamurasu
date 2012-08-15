@@ -25,9 +25,12 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
+import com.matrimony.model.InteractionClp;
 import com.matrimony.model.KeyClp;
 import com.matrimony.model.KeyValueClp;
+import com.matrimony.model.PhotoClp;
 import com.matrimony.model.ProfileClp;
+import com.matrimony.model.ProfileTempClp;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -104,6 +107,10 @@ public class ClpSerializer {
 
 		String oldModelClassName = oldModelClass.getName();
 
+		if (oldModelClassName.equals(InteractionClp.class.getName())) {
+			return translateInputInteraction(oldModel);
+		}
+
 		if (oldModelClassName.equals(KeyClp.class.getName())) {
 			return translateInputKey(oldModel);
 		}
@@ -112,8 +119,16 @@ public class ClpSerializer {
 			return translateInputKeyValue(oldModel);
 		}
 
+		if (oldModelClassName.equals(PhotoClp.class.getName())) {
+			return translateInputPhoto(oldModel);
+		}
+
 		if (oldModelClassName.equals(ProfileClp.class.getName())) {
 			return translateInputProfile(oldModel);
+		}
+
+		if (oldModelClassName.equals(ProfileTempClp.class.getName())) {
+			return translateInputProfileTemp(oldModel);
 		}
 
 		return oldModel;
@@ -129,6 +144,16 @@ public class ClpSerializer {
 		}
 
 		return newList;
+	}
+
+	public static Object translateInputInteraction(BaseModel<?> oldModel) {
+		InteractionClp oldClpModel = (InteractionClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getInteractionRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
 	}
 
 	public static Object translateInputKey(BaseModel<?> oldModel) {
@@ -151,10 +176,30 @@ public class ClpSerializer {
 		return newModel;
 	}
 
+	public static Object translateInputPhoto(BaseModel<?> oldModel) {
+		PhotoClp oldClpModel = (PhotoClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getPhotoRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
 	public static Object translateInputProfile(BaseModel<?> oldModel) {
 		ProfileClp oldClpModel = (ProfileClp)oldModel;
 
 		BaseModel<?> newModel = oldClpModel.getProfileRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
+	public static Object translateInputProfileTemp(BaseModel<?> oldModel) {
+		ProfileTempClp oldClpModel = (ProfileTempClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getProfileTempRemoteModel();
 
 		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
@@ -178,6 +223,10 @@ public class ClpSerializer {
 
 		String oldModelClassName = oldModelClass.getName();
 
+		if (oldModelClassName.equals("com.matrimony.model.impl.InteractionImpl")) {
+			return translateOutputInteraction(oldModel);
+		}
+
 		if (oldModelClassName.equals("com.matrimony.model.impl.KeyImpl")) {
 			return translateOutputKey(oldModel);
 		}
@@ -186,8 +235,16 @@ public class ClpSerializer {
 			return translateOutputKeyValue(oldModel);
 		}
 
+		if (oldModelClassName.equals("com.matrimony.model.impl.PhotoImpl")) {
+			return translateOutputPhoto(oldModel);
+		}
+
 		if (oldModelClassName.equals("com.matrimony.model.impl.ProfileImpl")) {
 			return translateOutputProfile(oldModel);
+		}
+
+		if (oldModelClassName.equals("com.matrimony.model.impl.ProfileTempImpl")) {
+			return translateOutputProfileTemp(oldModel);
 		}
 
 		return oldModel;
@@ -270,6 +327,10 @@ public class ClpSerializer {
 			return new SystemException();
 		}
 
+		if (className.equals("com.matrimony.NoSuchInteractionException")) {
+			return new com.matrimony.NoSuchInteractionException();
+		}
+
 		if (className.equals("com.matrimony.NoSuchKeyException")) {
 			return new com.matrimony.NoSuchKeyException();
 		}
@@ -278,11 +339,29 @@ public class ClpSerializer {
 			return new com.matrimony.NoSuchKeyValueException();
 		}
 
+		if (className.equals("com.matrimony.NoSuchPhotoException")) {
+			return new com.matrimony.NoSuchPhotoException();
+		}
+
 		if (className.equals("com.matrimony.NoSuchProfileException")) {
 			return new com.matrimony.NoSuchProfileException();
 		}
 
+		if (className.equals("com.matrimony.NoSuchProfileTempException")) {
+			return new com.matrimony.NoSuchProfileTempException();
+		}
+
 		return throwable;
+	}
+
+	public static Object translateOutputInteraction(BaseModel<?> oldModel) {
+		InteractionClp newModel = new InteractionClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setInteractionRemoteModel(oldModel);
+
+		return newModel;
 	}
 
 	public static Object translateOutputKey(BaseModel<?> oldModel) {
@@ -305,12 +384,32 @@ public class ClpSerializer {
 		return newModel;
 	}
 
+	public static Object translateOutputPhoto(BaseModel<?> oldModel) {
+		PhotoClp newModel = new PhotoClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setPhotoRemoteModel(oldModel);
+
+		return newModel;
+	}
+
 	public static Object translateOutputProfile(BaseModel<?> oldModel) {
 		ProfileClp newModel = new ProfileClp();
 
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setProfileRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputProfileTemp(BaseModel<?> oldModel) {
+		ProfileTempClp newModel = new ProfileTempClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setProfileTempRemoteModel(oldModel);
 
 		return newModel;
 	}

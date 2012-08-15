@@ -2,9 +2,40 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.matrimony.model.Interaction" />
 	<import class="com.matrimony.model.Key" />
 	<import class="com.matrimony.model.KeyValue" />
+	<import class="com.matrimony.model.Photo" />
 	<import class="com.matrimony.model.Profile" />
+	<import class="com.matrimony.model.ProfileTemp" />
+	<class name="com.matrimony.model.impl.InteractionImpl" table="matrimony_profile_interaction">
+		<cache usage="read-write" />
+		<id name="interactionId" type="long">
+			<generator class="identity" />
+		</id>
+		<property name="maleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="femaleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="maleLastViewedFemale" type="org.hibernate.type.TimestampType" />
+		<property name="maleViewedCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="femaleLastViewedMale" type="org.hibernate.type.TimestampType" />
+		<property name="femaleViewedCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="canViewMalePhoto" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="canViewFemalePhoto" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="canViewMaleContact" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="canViewFemaleContact" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="proposedOn" type="org.hibernate.type.TimestampType" />
+		<property name="proposedByMale" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="proposalNotSeen" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="respondedOn" type="org.hibernate.type.TimestampType" />
+		<property name="responseType" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="responseNotSeen" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="shortlistedByMale" type="org.hibernate.type.TimestampType" />
+		<property name="shortlistedByFemale" type="org.hibernate.type.TimestampType" />
+		<property name="blockedByMale" type="org.hibernate.type.TimestampType" />
+		<property name="blockedByFemale" type="org.hibernate.type.TimestampType" />
+		<property name="capturedInMaleReport" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="capturedInFemaleReport" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
 	<class name="com.matrimony.model.impl.KeyImpl" table="matrimony_key">
 		<cache usage="read-write" />
 		<id name="keyId" type="long">
@@ -19,6 +50,17 @@
 		</id>
 		<property name="keyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.matrimony.model.impl.PhotoImpl" table="matrimony_photo">
+		<cache usage="read-write" />
+		<id name="photoId" type="long">
+			<generator class="identity" />
+		</id>
+		<property name="profileId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" column="type_" />
+		<property name="thumbnail" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 	<class name="com.matrimony.model.impl.ProfileImpl" table="matrimony_profile">
 		<cache usage="read-write" />
@@ -72,5 +114,20 @@
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.matrimony.model.impl.ProfileTempImpl" table="matrimony_profile_temp">
+		<cache usage="read-write" />
+		<id name="profileTempId" type="long">
+			<generator class="identity" />
+		</id>
+		<property name="profileId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="address" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="pinCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="phone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="mobile" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="emailAddress" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="aboutMe" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="scheme" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 </hibernate-mapping>

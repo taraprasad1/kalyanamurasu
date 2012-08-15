@@ -31,15 +31,24 @@ import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.matrimony.model.KeyValue;
 
+import com.matrimony.service.InteractionLocalService;
+import com.matrimony.service.InteractionService;
 import com.matrimony.service.KeyLocalService;
 import com.matrimony.service.KeyService;
 import com.matrimony.service.KeyValueLocalService;
 import com.matrimony.service.KeyValueService;
+import com.matrimony.service.PhotoLocalService;
+import com.matrimony.service.PhotoService;
 import com.matrimony.service.ProfileLocalService;
 import com.matrimony.service.ProfileService;
+import com.matrimony.service.ProfileTempLocalService;
+import com.matrimony.service.ProfileTempService;
+import com.matrimony.service.persistence.InteractionPersistence;
 import com.matrimony.service.persistence.KeyPersistence;
 import com.matrimony.service.persistence.KeyValuePersistence;
+import com.matrimony.service.persistence.PhotoPersistence;
 import com.matrimony.service.persistence.ProfilePersistence;
+import com.matrimony.service.persistence.ProfileTempPersistence;
 
 import javax.sql.DataSource;
 
@@ -62,6 +71,62 @@ public abstract class KeyValueServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * Never modify or reference this class directly. Always use {@link com.matrimony.service.KeyValueServiceUtil} to access the key value remote service.
 	 */
+
+	/**
+	 * Returns the interaction local service.
+	 *
+	 * @return the interaction local service
+	 */
+	public InteractionLocalService getInteractionLocalService() {
+		return interactionLocalService;
+	}
+
+	/**
+	 * Sets the interaction local service.
+	 *
+	 * @param interactionLocalService the interaction local service
+	 */
+	public void setInteractionLocalService(
+		InteractionLocalService interactionLocalService) {
+		this.interactionLocalService = interactionLocalService;
+	}
+
+	/**
+	 * Returns the interaction remote service.
+	 *
+	 * @return the interaction remote service
+	 */
+	public InteractionService getInteractionService() {
+		return interactionService;
+	}
+
+	/**
+	 * Sets the interaction remote service.
+	 *
+	 * @param interactionService the interaction remote service
+	 */
+	public void setInteractionService(InteractionService interactionService) {
+		this.interactionService = interactionService;
+	}
+
+	/**
+	 * Returns the interaction persistence.
+	 *
+	 * @return the interaction persistence
+	 */
+	public InteractionPersistence getInteractionPersistence() {
+		return interactionPersistence;
+	}
+
+	/**
+	 * Sets the interaction persistence.
+	 *
+	 * @param interactionPersistence the interaction persistence
+	 */
+	public void setInteractionPersistence(
+		InteractionPersistence interactionPersistence) {
+		this.interactionPersistence = interactionPersistence;
+	}
 
 	/**
 	 * Returns the key local service.
@@ -173,6 +238,60 @@ public abstract class KeyValueServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
+	 * Returns the photo local service.
+	 *
+	 * @return the photo local service
+	 */
+	public PhotoLocalService getPhotoLocalService() {
+		return photoLocalService;
+	}
+
+	/**
+	 * Sets the photo local service.
+	 *
+	 * @param photoLocalService the photo local service
+	 */
+	public void setPhotoLocalService(PhotoLocalService photoLocalService) {
+		this.photoLocalService = photoLocalService;
+	}
+
+	/**
+	 * Returns the photo remote service.
+	 *
+	 * @return the photo remote service
+	 */
+	public PhotoService getPhotoService() {
+		return photoService;
+	}
+
+	/**
+	 * Sets the photo remote service.
+	 *
+	 * @param photoService the photo remote service
+	 */
+	public void setPhotoService(PhotoService photoService) {
+		this.photoService = photoService;
+	}
+
+	/**
+	 * Returns the photo persistence.
+	 *
+	 * @return the photo persistence
+	 */
+	public PhotoPersistence getPhotoPersistence() {
+		return photoPersistence;
+	}
+
+	/**
+	 * Sets the photo persistence.
+	 *
+	 * @param photoPersistence the photo persistence
+	 */
+	public void setPhotoPersistence(PhotoPersistence photoPersistence) {
+		this.photoPersistence = photoPersistence;
+	}
+
+	/**
 	 * Returns the profile local service.
 	 *
 	 * @return the profile local service
@@ -224,6 +343,62 @@ public abstract class KeyValueServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setProfilePersistence(ProfilePersistence profilePersistence) {
 		this.profilePersistence = profilePersistence;
+	}
+
+	/**
+	 * Returns the profile temp local service.
+	 *
+	 * @return the profile temp local service
+	 */
+	public ProfileTempLocalService getProfileTempLocalService() {
+		return profileTempLocalService;
+	}
+
+	/**
+	 * Sets the profile temp local service.
+	 *
+	 * @param profileTempLocalService the profile temp local service
+	 */
+	public void setProfileTempLocalService(
+		ProfileTempLocalService profileTempLocalService) {
+		this.profileTempLocalService = profileTempLocalService;
+	}
+
+	/**
+	 * Returns the profile temp remote service.
+	 *
+	 * @return the profile temp remote service
+	 */
+	public ProfileTempService getProfileTempService() {
+		return profileTempService;
+	}
+
+	/**
+	 * Sets the profile temp remote service.
+	 *
+	 * @param profileTempService the profile temp remote service
+	 */
+	public void setProfileTempService(ProfileTempService profileTempService) {
+		this.profileTempService = profileTempService;
+	}
+
+	/**
+	 * Returns the profile temp persistence.
+	 *
+	 * @return the profile temp persistence
+	 */
+	public ProfileTempPersistence getProfileTempPersistence() {
+		return profileTempPersistence;
+	}
+
+	/**
+	 * Sets the profile temp persistence.
+	 *
+	 * @param profileTempPersistence the profile temp persistence
+	 */
+	public void setProfileTempPersistence(
+		ProfileTempPersistence profileTempPersistence) {
+		this.profileTempPersistence = profileTempPersistence;
 	}
 
 	/**
@@ -409,6 +584,12 @@ public abstract class KeyValueServiceBaseImpl extends BaseServiceImpl
 		}
 	}
 
+	@BeanReference(type = InteractionLocalService.class)
+	protected InteractionLocalService interactionLocalService;
+	@BeanReference(type = InteractionService.class)
+	protected InteractionService interactionService;
+	@BeanReference(type = InteractionPersistence.class)
+	protected InteractionPersistence interactionPersistence;
 	@BeanReference(type = KeyLocalService.class)
 	protected KeyLocalService keyLocalService;
 	@BeanReference(type = KeyService.class)
@@ -421,12 +602,24 @@ public abstract class KeyValueServiceBaseImpl extends BaseServiceImpl
 	protected KeyValueService keyValueService;
 	@BeanReference(type = KeyValuePersistence.class)
 	protected KeyValuePersistence keyValuePersistence;
+	@BeanReference(type = PhotoLocalService.class)
+	protected PhotoLocalService photoLocalService;
+	@BeanReference(type = PhotoService.class)
+	protected PhotoService photoService;
+	@BeanReference(type = PhotoPersistence.class)
+	protected PhotoPersistence photoPersistence;
 	@BeanReference(type = ProfileLocalService.class)
 	protected ProfileLocalService profileLocalService;
 	@BeanReference(type = ProfileService.class)
 	protected ProfileService profileService;
 	@BeanReference(type = ProfilePersistence.class)
 	protected ProfilePersistence profilePersistence;
+	@BeanReference(type = ProfileTempLocalService.class)
+	protected ProfileTempLocalService profileTempLocalService;
+	@BeanReference(type = ProfileTempService.class)
+	protected ProfileTempService profileTempService;
+	@BeanReference(type = ProfileTempPersistence.class)
+	protected ProfileTempPersistence profileTempPersistence;
 	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)

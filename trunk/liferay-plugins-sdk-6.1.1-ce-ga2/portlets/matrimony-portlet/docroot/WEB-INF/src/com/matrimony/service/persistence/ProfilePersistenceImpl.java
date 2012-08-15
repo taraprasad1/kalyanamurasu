@@ -1608,12 +1608,18 @@ public class ProfilePersistenceImpl extends BasePersistenceImpl<Profile>
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@BeanReference(type = InteractionPersistence.class)
+	protected InteractionPersistence interactionPersistence;
 	@BeanReference(type = KeyPersistence.class)
 	protected KeyPersistence keyPersistence;
 	@BeanReference(type = KeyValuePersistence.class)
 	protected KeyValuePersistence keyValuePersistence;
+	@BeanReference(type = PhotoPersistence.class)
+	protected PhotoPersistence photoPersistence;
 	@BeanReference(type = ProfilePersistence.class)
 	protected ProfilePersistence profilePersistence;
+	@BeanReference(type = ProfileTempPersistence.class)
+	protected ProfileTempPersistence profileTempPersistence;
 	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)

@@ -23,32 +23,32 @@ import java.util.Arrays;
  */
 public class ProfileServiceClpInvoker {
 	public ProfileServiceClpInvoker() {
-		_methodName34 = "getBeanIdentifier";
+		_methodName52 = "getBeanIdentifier";
 
-		_methodParameterTypes34 = new String[] {  };
+		_methodParameterTypes52 = new String[] {  };
 
-		_methodName35 = "setBeanIdentifier";
+		_methodName53 = "setBeanIdentifier";
 
-		_methodParameterTypes35 = new String[] { "java.lang.String" };
+		_methodParameterTypes53 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName34.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes34, parameterTypes)) {
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
 			return ProfileServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName35.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes35, parameterTypes)) {
+		if (_methodName53.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			ProfileServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 		}
 
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName34;
-	private String[] _methodParameterTypes34;
-	private String _methodName35;
-	private String[] _methodParameterTypes35;
+	private String _methodName52;
+	private String[] _methodParameterTypes52;
+	private String _methodName53;
+	private String[] _methodParameterTypes53;
 }

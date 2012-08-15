@@ -1,6 +1,31 @@
 <?xml version="1.0"?>
 
 <model-hints>
+	<model name="com.matrimony.model.Interaction">
+		<field name="interactionId" type="long" />
+		<field name="maleId" type="long" />
+		<field name="femaleId" type="long" />
+		<field name="maleLastViewedFemale" type="Date" />
+		<field name="maleViewedCount" type="int" />
+		<field name="femaleLastViewedMale" type="Date" />
+		<field name="femaleViewedCount" type="int" />
+		<field name="canViewMalePhoto" type="boolean" />
+		<field name="canViewFemalePhoto" type="boolean" />
+		<field name="canViewMaleContact" type="boolean" />
+		<field name="canViewFemaleContact" type="boolean" />
+		<field name="proposedOn" type="Date" />
+		<field name="proposedByMale" type="boolean" />
+		<field name="proposalNotSeen" type="boolean" />
+		<field name="respondedOn" type="Date" />
+		<field name="responseType" type="int" />
+		<field name="responseNotSeen" type="boolean" />
+		<field name="shortlistedByMale" type="Date" />
+		<field name="shortlistedByFemale" type="Date" />
+		<field name="blockedByMale" type="Date" />
+		<field name="blockedByFemale" type="Date" />
+		<field name="capturedInMaleReport" type="int" />
+		<field name="capturedInFemaleReport" type="int" />
+	</model>
 	<model name="com.matrimony.model.Key">
 		<field name="keyId" type="long" />
 		<field name="name" type="String" />
@@ -9,6 +34,14 @@
 		<field name="valueId" type="long" />
 		<field name="keyId" type="long" />
 		<field name="name" type="String" />
+	</model>
+	<model name="com.matrimony.model.Photo">
+		<field name="photoId" type="long" />
+		<field name="profileId" type="long" />
+		<field name="content" type="String" />
+		<field name="name" type="String" />
+		<field name="type" type="String" />
+		<field name="thumbnail" type="boolean" />
 	</model>
 	<model name="com.matrimony.model.Profile">
 		<field name="profileId" type="long" />
@@ -59,5 +92,17 @@
 		<field name="modifiedDate" type="Date" />
 		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
+	</model>
+	<model name="com.matrimony.model.ProfileTemp">
+		<field name="profileTempId" type="long" />
+		<field name="profileId" type="long" />
+		<field name="name" type="long" />
+		<field name="address" type="String" />
+		<field name="pinCode" type="String" />
+		<field name="phone" type="String" />
+		<field name="mobile" type="String" />
+		<field name="emailAddress" type="String" />
+		<field name="aboutMe" type="String" />
+		<field name="scheme" type="int" />
 	</model>
 </model-hints>

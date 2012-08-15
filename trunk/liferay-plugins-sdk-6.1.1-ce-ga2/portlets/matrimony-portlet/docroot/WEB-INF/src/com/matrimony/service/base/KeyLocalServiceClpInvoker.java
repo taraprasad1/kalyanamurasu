@@ -98,21 +98,21 @@ public class KeyLocalServiceClpInvoker {
 				"com.matrimony.model.Key", "boolean"
 			};
 
-		_methodName50 = "getBeanIdentifier";
+		_methodName68 = "getBeanIdentifier";
 
-		_methodParameterTypes50 = new String[] {  };
+		_methodParameterTypes68 = new String[] {  };
 
-		_methodName51 = "setBeanIdentifier";
+		_methodName69 = "setBeanIdentifier";
 
-		_methodParameterTypes51 = new String[] { "java.lang.String" };
+		_methodParameterTypes69 = new String[] { "java.lang.String" };
 
-		_methodName56 = "keySearch";
+		_methodName74 = "keySearch";
 
-		_methodParameterTypes56 = new String[] { "java.lang.String" };
+		_methodParameterTypes74 = new String[] { "java.lang.String" };
 
-		_methodName57 = "keyAdd";
+		_methodName75 = "keyAdd";
 
-		_methodParameterTypes57 = new String[] { "java.lang.String" };
+		_methodParameterTypes75 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -204,23 +204,23 @@ public class KeyLocalServiceClpInvoker {
 				((Boolean)arguments[1]).booleanValue());
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
 			return KeyLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName51.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
 			KeyLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 		}
 
-		if (_methodName56.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
 			return KeyLocalServiceUtil.keySearch((java.lang.String)arguments[0]);
 		}
 
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+		if (_methodName75.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
 			return KeyLocalServiceUtil.keyAdd((java.lang.String)arguments[0]);
 		}
 
@@ -259,12 +259,12 @@ public class KeyLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName50;
-	private String[] _methodParameterTypes50;
-	private String _methodName51;
-	private String[] _methodParameterTypes51;
-	private String _methodName56;
-	private String[] _methodParameterTypes56;
-	private String _methodName57;
-	private String[] _methodParameterTypes57;
+	private String _methodName68;
+	private String[] _methodParameterTypes68;
+	private String _methodName69;
+	private String[] _methodParameterTypes69;
+	private String _methodName74;
+	private String[] _methodParameterTypes74;
+	private String _methodName75;
+	private String[] _methodParameterTypes75;
 }

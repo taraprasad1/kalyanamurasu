@@ -9,6 +9,15 @@ create table matrimony_key_value (
 	name VARCHAR(75) null
 );
 
+create table matrimony_photo (
+	photoId LONG not null primary key IDENTITY,
+	profileId LONG,
+	content VARCHAR(75) null,
+	name VARCHAR(75) null,
+	type_ VARCHAR(75) null,
+	thumbnail BOOLEAN
+);
+
 create table matrimony_profile (
 	profileId LONG not null primary key IDENTITY,
 	profileCode VARCHAR(75) null,
@@ -58,4 +67,43 @@ create table matrimony_profile (
 	modifiedDate DATE null,
 	companyId LONG,
 	groupId LONG
+);
+
+create table matrimony_profile_interaction (
+	interactionId LONG not null primary key IDENTITY,
+	maleId LONG,
+	femaleId LONG,
+	maleLastViewedFemale DATE null,
+	maleViewedCount INTEGER,
+	femaleLastViewedMale DATE null,
+	femaleViewedCount INTEGER,
+	canViewMalePhoto BOOLEAN,
+	canViewFemalePhoto BOOLEAN,
+	canViewMaleContact BOOLEAN,
+	canViewFemaleContact BOOLEAN,
+	proposedOn DATE null,
+	proposedByMale BOOLEAN,
+	proposalNotSeen BOOLEAN,
+	respondedOn DATE null,
+	responseType INTEGER,
+	responseNotSeen BOOLEAN,
+	shortlistedByMale DATE null,
+	shortlistedByFemale DATE null,
+	blockedByMale DATE null,
+	blockedByFemale DATE null,
+	capturedInMaleReport INTEGER,
+	capturedInFemaleReport INTEGER
+);
+
+create table matrimony_profile_temp (
+	profileTempId LONG not null primary key IDENTITY,
+	profileId LONG,
+	name LONG,
+	address VARCHAR(75) null,
+	pinCode VARCHAR(75) null,
+	phone VARCHAR(75) null,
+	mobile VARCHAR(75) null,
+	emailAddress VARCHAR(75) null,
+	aboutMe VARCHAR(75) null,
+	scheme INTEGER
 );
