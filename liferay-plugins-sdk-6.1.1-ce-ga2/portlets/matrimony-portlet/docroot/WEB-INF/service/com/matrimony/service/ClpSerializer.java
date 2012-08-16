@@ -327,6 +327,18 @@ public class ClpSerializer {
 			return new SystemException();
 		}
 
+		if (className.equals("com.matrimony.ImageSizeExceedsLimitException")) {
+			return new com.matrimony.ImageSizeExceedsLimitException();
+		}
+
+		if (className.equals("com.matrimony.InvalidImageException")) {
+			return new com.matrimony.InvalidImageException();
+		}
+
+		if (className.equals("com.matrimony.InvalidImageTypeException")) {
+			return new com.matrimony.InvalidImageTypeException();
+		}
+
 		if (className.equals("com.matrimony.NoSuchInteractionException")) {
 			return new com.matrimony.NoSuchInteractionException();
 		}

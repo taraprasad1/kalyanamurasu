@@ -269,7 +269,7 @@ public class PhotoWrapper implements Photo, ModelWrapper<Photo> {
 		return new PhotoWrapper((Photo)_photo.clone());
 	}
 
-	public int compareTo(Photo photo) {
+	public int compareTo(com.matrimony.model.Photo photo) {
 		return _photo.compareTo(photo);
 	}
 
@@ -278,11 +278,11 @@ public class PhotoWrapper implements Photo, ModelWrapper<Photo> {
 		return _photo.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<Photo> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.matrimony.model.Photo> toCacheModel() {
 		return _photo.toCacheModel();
 	}
 
-	public Photo toEscapedModel() {
+	public com.matrimony.model.Photo toEscapedModel() {
 		return new PhotoWrapper(_photo.toEscapedModel());
 	}
 
