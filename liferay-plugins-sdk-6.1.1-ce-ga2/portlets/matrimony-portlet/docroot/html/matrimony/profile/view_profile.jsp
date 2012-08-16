@@ -1,6 +1,3 @@
-<%@page import="com.matrimony.service.ProfileLocalServiceUtil"%>
-<%@page import="com.matrimony.model.Profile"%>
-<%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@include file="/html/matrimony/profile/init.jsp" %>
 <% 
 	Profile profile = null;
@@ -9,6 +6,8 @@
 	if(profileId > 0l) {
 		profile = ProfileLocalServiceUtil.getProfile(profileId);
 	}
+	List<Photo> photoList = new ArrayList<Photo>();
+	photoList = PhotoLocalServiceUtil.getPhotoList(profileId);
 %>
 <liferay-ui:header backLabel="&laquo; Back to List" title="Profile Details" backURL="<%= backURL %>" />
 <c:if test="<%= Validator.isNotNull(profileId) %>">
@@ -65,5 +64,18 @@
 			<th>Dosam</th>
 			<td><%= profile.getDosam() %></td>
 		</tr>
+		<tr>
+			<th>Photo</th>
+			<td>
+				<% for(Photo photo: photoList) {%>
+					<portlet:resourceURL var="viewImageURL" >
+						<portlet:param name="imageId" value='<%= photo.getPhotoId() + "" %>' />
+						<portlet:param name="thumbnail" value="true" />
+					</portlet:resourceURL>
+					<img src="<%= viewImageURL %>" />
+				<% } %>
+			
+			</td>
+			</tr>
 	</table>
 </c:if>

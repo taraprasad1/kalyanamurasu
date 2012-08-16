@@ -17,4 +17,10 @@
 		<portlet:param name="profileId" value="<%= String.valueOf(aProfile.getProfileId()) %>" />				
 	</portlet:actionURL>
 	<liferay-ui:icon image="delete" message="Delete Profile" url="<%= deleteURL %>" />
+	
+	<portlet:renderURL var="editPhotoURL">
+		<portlet:param name="jspPage" value="/html/matrimony/profile/upload_photo.jsp" />
+		<portlet:param name="profileId" value="<%= String.valueOf(aProfile.getProfileId()) %>" />				
+	</portlet:renderURL>
+	<liferay-ui:icon image="edit" message="Edit Photo" url="<%= editPhotoURL %>" />
 </liferay-ui:icon-menu>
