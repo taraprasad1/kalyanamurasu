@@ -1,14 +1,3 @@
-<%@page import="com.matrimony.service.ProfileLocalServiceUtil"%>
-<%@page import="com.matrimony.model.Profile"%>
-<%@page import="com.matrimony.model.impl.ProfileImpl"%>
-<%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
-<%@page import="com.liferay.portal.service.RegionServiceUtil"%>
-<%@page import="com.liferay.portal.model.Region"%>
-<%@page import="com.liferay.portal.service.CountryServiceUtil"%>
-<%@page import="com.liferay.portal.model.Country"%>
-<%@page import="com.matrimony.model.impl.KeyValueImpl"%>
-<%@page import="com.matrimony.util.ProfileUtil"%>
-<%@page import="javax.portlet.ActionRequest"%>
 <%@include file="/html/matrimony/profile/init.jsp" %>
 <%
 	long profileId = ParamUtil.getLong(request, "profileId");
