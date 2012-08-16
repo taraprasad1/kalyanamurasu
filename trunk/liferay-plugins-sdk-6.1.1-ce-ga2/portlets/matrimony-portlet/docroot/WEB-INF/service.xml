@@ -138,5 +138,13 @@
     	<column name="name" type="String" />
     	<column name="type" type="String" />
     	<column name="thumbnail" type="boolean" />
+    	 <finder name="ProfileId" return-type="Collection">
+            <finder-column name="profileId" />
+        </finder>
     </entity>
+    <exceptions>
+    	<exception>InvalidImageType</exception>
+		<exception>ImageSizeExceedsLimit</exception>
+		<exception>InvalidImage</exception>
+    </exceptions>
 </service-builder>
