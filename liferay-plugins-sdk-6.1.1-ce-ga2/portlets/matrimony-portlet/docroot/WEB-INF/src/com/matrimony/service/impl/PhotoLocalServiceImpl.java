@@ -14,6 +14,10 @@
 
 package com.matrimony.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.matrimony.model.Photo;
 import com.matrimony.service.base.PhotoLocalServiceBaseImpl;
 
 /**
@@ -36,4 +40,9 @@ public class PhotoLocalServiceImpl extends PhotoLocalServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link com.matrimony.service.PhotoLocalServiceUtil} to access the photo local service.
 	 */
+	public List<Photo> getPhotoList(long profileId) throws Exception{
+		List<Photo> photoList = new ArrayList<Photo>();
+		photoList = photoPersistence.findByProfileId(profileId);
+		return photoList;
+	}
 }
