@@ -80,7 +80,10 @@ public class PhotoModelImpl extends BaseModelImpl<Photo> implements PhotoModel {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.matrimony.model.Photo"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.matrimony.model.Photo"),
+			true);
+	public static long PROFILEID_COLUMN_BITMASK = 1L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -223,7 +226,19 @@ public class PhotoModelImpl extends BaseModelImpl<Photo> implements PhotoModel {
 	}
 
 	public void setProfileId(long profileId) {
+		_columnBitmask |= PROFILEID_COLUMN_BITMASK;
+
+		if (!_setOriginalProfileId) {
+			_setOriginalProfileId = true;
+
+			_originalProfileId = _profileId;
+		}
+
 		_profileId = profileId;
+	}
+
+	public long getOriginalProfileId() {
+		return _originalProfileId;
 	}
 
 	@JSON
@@ -279,6 +294,10 @@ public class PhotoModelImpl extends BaseModelImpl<Photo> implements PhotoModel {
 
 	public void setThumbnail(boolean thumbnail) {
 		_thumbnail = thumbnail;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -367,6 +386,13 @@ public class PhotoModelImpl extends BaseModelImpl<Photo> implements PhotoModel {
 
 	@Override
 	public void resetOriginalValues() {
+		PhotoModelImpl photoModelImpl = this;
+
+		photoModelImpl._originalProfileId = photoModelImpl._profileId;
+
+		photoModelImpl._setOriginalProfileId = false;
+
+		photoModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -470,9 +496,12 @@ public class PhotoModelImpl extends BaseModelImpl<Photo> implements PhotoModel {
 		};
 	private long _photoId;
 	private long _profileId;
+	private long _originalProfileId;
+	private boolean _setOriginalProfileId;
 	private String _content;
 	private String _name;
 	private String _type;
 	private boolean _thumbnail;
+	private long _columnBitmask;
 	private Photo _escapedModelProxy;
 }

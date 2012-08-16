@@ -105,6 +105,10 @@ public class PhotoLocalServiceClpInvoker {
 		_methodName69 = "setBeanIdentifier";
 
 		_methodParameterTypes69 = new String[] { "java.lang.String" };
+
+		_methodName74 = "getPhotoList";
+
+		_methodParameterTypes74 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -206,6 +210,11 @@ public class PhotoLocalServiceClpInvoker {
 			PhotoLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 		}
 
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
+			return PhotoLocalServiceUtil.getPhotoList(((Long)arguments[0]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -245,4 +254,6 @@ public class PhotoLocalServiceClpInvoker {
 	private String[] _methodParameterTypes68;
 	private String _methodName69;
 	private String[] _methodParameterTypes69;
+	private String _methodName74;
+	private String[] _methodParameterTypes74;
 }

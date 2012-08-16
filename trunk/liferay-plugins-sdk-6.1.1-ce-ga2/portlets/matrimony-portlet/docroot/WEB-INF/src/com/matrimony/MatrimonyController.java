@@ -1,12 +1,31 @@
 package com.matrimony;
 
-import javax.portlet.ActionRequest;
+import java.awt.image.RenderedImage;
+import java.io.IOException;
 
+import javax.portlet.ActionRequest;
+import javax.portlet.PortletException;
+import javax.portlet.ResourceRequest;
+import javax.portlet.ResourceResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.image.ImageBag;
+import com.liferay.portal.kernel.image.ImageToolUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.servlet.ServletResponseUtil;
+import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.matrimony.model.Photo;
 import com.matrimony.model.Profile;
+import com.matrimony.service.PhotoLocalServiceUtil;
+import com.matrimony.util.MatrimonyPropsValues;
 
 public class MatrimonyController extends MVCPortlet{
 	private static final Log LOGGER = LogFactoryUtil.getLog(MatrimonyController.class);
@@ -56,5 +75,46 @@ public class MatrimonyController extends MVCPortlet{
 		profile.setHoroscope(ParamUtil.getBoolean(actionRequest, "horoscope"));
 		
 		return profile;
+	}
+	
+	public void serveResource(ResourceRequest resourceRequest,
+			ResourceResponse resourceResponse) throws IOException,
+			PortletException {
+		HttpServletRequest servletRequest = PortalUtil.getHttpServletRequest(resourceRequest);
+		HttpServletResponse servletResponse = PortalUtil.getHttpServletResponse(resourceResponse);
+		long imageId = ParamUtil.getLong(resourceRequest, "imageId");
+		boolean thumbnail = ParamUtil.getBoolean(resourceRequest, "thumbnail");
+		int width = ParamUtil.getInteger(resourceRequest, "width");
+		int height = ParamUtil.getInteger(resourceRequest, "height");
+		boolean	download = ParamUtil.getBoolean(resourceRequest, "download");
+		
+		if (Validator.isNull(thumbnail)) {
+			thumbnail = false;
+		}
+		if (width == 0 && height == 0) {
+			width = MatrimonyPropsValues.IMAGE_WIDTH;
+			height = MatrimonyPropsValues.IMAGE_HEIGHT;
+		}
+		if (Validator.isNotNull(imageId)) {
+			try {
+				Photo image = PhotoLocalServiceUtil.getPhoto(imageId);
+				
+				byte[] bytes = (byte[]) Base64.decode(image.getContent());
+				if (thumbnail) {
+					ImageBag imageBag = ImageToolUtil.read(bytes);
+					RenderedImage thumbnailImage = imageBag.getRenderedImage();
+					thumbnailImage = ImageToolUtil.scale(thumbnailImage, height, width);
+					bytes =  ImageToolUtil.getBytes(thumbnailImage, imageBag.getType());
+				}
+				if (download){
+					ServletResponseUtil.sendFile(servletRequest, servletResponse, image.getName(), bytes);
+				} else {
+					ServletResponseUtil.write(servletResponse, bytes);
+				}
+			} catch (PortalException e) {
+			} catch (SystemException e) {
+			}
+		}
+		super.serveResource(resourceRequest, resourceResponse);
 	}
 }
