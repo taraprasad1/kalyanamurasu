@@ -361,7 +361,7 @@ public class ProfileTempWrapper implements ProfileTemp,
 		return new ProfileTempWrapper((ProfileTemp)_profileTemp.clone());
 	}
 
-	public int compareTo(ProfileTemp profileTemp) {
+	public int compareTo(com.matrimony.model.ProfileTemp profileTemp) {
 		return _profileTemp.compareTo(profileTemp);
 	}
 
@@ -370,11 +370,11 @@ public class ProfileTempWrapper implements ProfileTemp,
 		return _profileTemp.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<ProfileTemp> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.matrimony.model.ProfileTemp> toCacheModel() {
 		return _profileTemp.toCacheModel();
 	}
 
-	public ProfileTemp toEscapedModel() {
+	public com.matrimony.model.ProfileTemp toEscapedModel() {
 		return new ProfileTempWrapper(_profileTemp.toEscapedModel());
 	}
 

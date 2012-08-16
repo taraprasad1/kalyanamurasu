@@ -269,6 +269,11 @@ public class PhotoLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static java.util.List<com.matrimony.model.Photo> getPhotoList(
+		long profileId) throws java.lang.Exception {
+		return getService().getPhotoList(profileId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

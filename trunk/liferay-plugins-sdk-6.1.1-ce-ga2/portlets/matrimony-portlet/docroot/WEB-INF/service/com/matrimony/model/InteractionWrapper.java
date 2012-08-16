@@ -755,7 +755,7 @@ public class InteractionWrapper implements Interaction,
 		return new InteractionWrapper((Interaction)_interaction.clone());
 	}
 
-	public int compareTo(Interaction interaction) {
+	public int compareTo(com.matrimony.model.Interaction interaction) {
 		return _interaction.compareTo(interaction);
 	}
 
@@ -764,11 +764,11 @@ public class InteractionWrapper implements Interaction,
 		return _interaction.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<Interaction> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.matrimony.model.Interaction> toCacheModel() {
 		return _interaction.toCacheModel();
 	}
 
-	public Interaction toEscapedModel() {
+	public com.matrimony.model.Interaction toEscapedModel() {
 		return new InteractionWrapper(_interaction.toEscapedModel());
 	}
 

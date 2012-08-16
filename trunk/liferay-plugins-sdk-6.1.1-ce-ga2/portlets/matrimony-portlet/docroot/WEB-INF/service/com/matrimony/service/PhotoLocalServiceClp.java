@@ -105,6 +105,10 @@ public class PhotoLocalServiceClp implements PhotoLocalService {
 		_methodName17 = "setBeanIdentifier";
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
+
+		_methodName19 = "getPhotoList";
+
+		_methodParameterTypes19 = new String[] { "long" };
 	}
 
 	public com.matrimony.model.Photo addPhoto(com.matrimony.model.Photo photo)
@@ -627,6 +631,33 @@ public class PhotoLocalServiceClp implements PhotoLocalService {
 		throw new UnsupportedOperationException();
 	}
 
+	public java.util.List<com.matrimony.model.Photo> getPhotoList(
+		long profileId) throws java.lang.Exception {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19, new Object[] { profileId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof java.lang.Exception) {
+				throw (java.lang.Exception)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.matrimony.model.Photo>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -664,4 +695,6 @@ public class PhotoLocalServiceClp implements PhotoLocalService {
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
+	private String _methodName19;
+	private String[] _methodParameterTypes19;
 }

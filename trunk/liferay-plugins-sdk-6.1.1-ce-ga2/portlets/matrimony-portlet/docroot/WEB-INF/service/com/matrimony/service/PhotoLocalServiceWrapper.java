@@ -260,6 +260,11 @@ public class PhotoLocalServiceWrapper implements PhotoLocalService,
 		return _photoLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public java.util.List<com.matrimony.model.Photo> getPhotoList(
+		long profileId) throws java.lang.Exception {
+		return _photoLocalService.getPhotoList(profileId);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */
