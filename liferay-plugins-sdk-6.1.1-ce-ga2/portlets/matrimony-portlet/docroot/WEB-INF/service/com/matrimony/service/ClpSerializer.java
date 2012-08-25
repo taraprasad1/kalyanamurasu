@@ -25,12 +25,17 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
+import com.matrimony.model.CasteClp;
+import com.matrimony.model.CityClp;
 import com.matrimony.model.InteractionClp;
 import com.matrimony.model.KeyClp;
 import com.matrimony.model.KeyValueClp;
 import com.matrimony.model.PhotoClp;
 import com.matrimony.model.ProfileClp;
+import com.matrimony.model.ProfileKeyValueClp;
 import com.matrimony.model.ProfileTempClp;
+import com.matrimony.model.ReligionClp;
+import com.matrimony.model.SubCasteClp;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -107,6 +112,14 @@ public class ClpSerializer {
 
 		String oldModelClassName = oldModelClass.getName();
 
+		if (oldModelClassName.equals(CasteClp.class.getName())) {
+			return translateInputCaste(oldModel);
+		}
+
+		if (oldModelClassName.equals(CityClp.class.getName())) {
+			return translateInputCity(oldModel);
+		}
+
 		if (oldModelClassName.equals(InteractionClp.class.getName())) {
 			return translateInputInteraction(oldModel);
 		}
@@ -127,8 +140,20 @@ public class ClpSerializer {
 			return translateInputProfile(oldModel);
 		}
 
+		if (oldModelClassName.equals(ProfileKeyValueClp.class.getName())) {
+			return translateInputProfileKeyValue(oldModel);
+		}
+
 		if (oldModelClassName.equals(ProfileTempClp.class.getName())) {
 			return translateInputProfileTemp(oldModel);
+		}
+
+		if (oldModelClassName.equals(ReligionClp.class.getName())) {
+			return translateInputReligion(oldModel);
+		}
+
+		if (oldModelClassName.equals(SubCasteClp.class.getName())) {
+			return translateInputSubCaste(oldModel);
 		}
 
 		return oldModel;
@@ -144,6 +169,26 @@ public class ClpSerializer {
 		}
 
 		return newList;
+	}
+
+	public static Object translateInputCaste(BaseModel<?> oldModel) {
+		CasteClp oldClpModel = (CasteClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getCasteRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
+	public static Object translateInputCity(BaseModel<?> oldModel) {
+		CityClp oldClpModel = (CityClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getCityRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
 	}
 
 	public static Object translateInputInteraction(BaseModel<?> oldModel) {
@@ -196,10 +241,40 @@ public class ClpSerializer {
 		return newModel;
 	}
 
+	public static Object translateInputProfileKeyValue(BaseModel<?> oldModel) {
+		ProfileKeyValueClp oldClpModel = (ProfileKeyValueClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getProfileKeyValueRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
 	public static Object translateInputProfileTemp(BaseModel<?> oldModel) {
 		ProfileTempClp oldClpModel = (ProfileTempClp)oldModel;
 
 		BaseModel<?> newModel = oldClpModel.getProfileTempRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
+	public static Object translateInputReligion(BaseModel<?> oldModel) {
+		ReligionClp oldClpModel = (ReligionClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getReligionRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
+	public static Object translateInputSubCaste(BaseModel<?> oldModel) {
+		SubCasteClp oldClpModel = (SubCasteClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getSubCasteRemoteModel();
 
 		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
@@ -223,6 +298,14 @@ public class ClpSerializer {
 
 		String oldModelClassName = oldModelClass.getName();
 
+		if (oldModelClassName.equals("com.matrimony.model.impl.CasteImpl")) {
+			return translateOutputCaste(oldModel);
+		}
+
+		if (oldModelClassName.equals("com.matrimony.model.impl.CityImpl")) {
+			return translateOutputCity(oldModel);
+		}
+
 		if (oldModelClassName.equals("com.matrimony.model.impl.InteractionImpl")) {
 			return translateOutputInteraction(oldModel);
 		}
@@ -243,8 +326,21 @@ public class ClpSerializer {
 			return translateOutputProfile(oldModel);
 		}
 
+		if (oldModelClassName.equals(
+					"com.matrimony.model.impl.ProfileKeyValueImpl")) {
+			return translateOutputProfileKeyValue(oldModel);
+		}
+
 		if (oldModelClassName.equals("com.matrimony.model.impl.ProfileTempImpl")) {
 			return translateOutputProfileTemp(oldModel);
+		}
+
+		if (oldModelClassName.equals("com.matrimony.model.impl.ReligionImpl")) {
+			return translateOutputReligion(oldModel);
+		}
+
+		if (oldModelClassName.equals("com.matrimony.model.impl.SubCasteImpl")) {
+			return translateOutputSubCaste(oldModel);
 		}
 
 		return oldModel;
@@ -339,6 +435,14 @@ public class ClpSerializer {
 			return new com.matrimony.InvalidImageTypeException();
 		}
 
+		if (className.equals("com.matrimony.NoSuchCasteException")) {
+			return new com.matrimony.NoSuchCasteException();
+		}
+
+		if (className.equals("com.matrimony.NoSuchCityException")) {
+			return new com.matrimony.NoSuchCityException();
+		}
+
 		if (className.equals("com.matrimony.NoSuchInteractionException")) {
 			return new com.matrimony.NoSuchInteractionException();
 		}
@@ -359,11 +463,43 @@ public class ClpSerializer {
 			return new com.matrimony.NoSuchProfileException();
 		}
 
+		if (className.equals("com.matrimony.NoSuchProfileKeyValueException")) {
+			return new com.matrimony.NoSuchProfileKeyValueException();
+		}
+
 		if (className.equals("com.matrimony.NoSuchProfileTempException")) {
 			return new com.matrimony.NoSuchProfileTempException();
 		}
 
+		if (className.equals("com.matrimony.NoSuchReligionException")) {
+			return new com.matrimony.NoSuchReligionException();
+		}
+
+		if (className.equals("com.matrimony.NoSuchSubCasteException")) {
+			return new com.matrimony.NoSuchSubCasteException();
+		}
+
 		return throwable;
+	}
+
+	public static Object translateOutputCaste(BaseModel<?> oldModel) {
+		CasteClp newModel = new CasteClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setCasteRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputCity(BaseModel<?> oldModel) {
+		CityClp newModel = new CityClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setCityRemoteModel(oldModel);
+
+		return newModel;
 	}
 
 	public static Object translateOutputInteraction(BaseModel<?> oldModel) {
@@ -416,12 +552,42 @@ public class ClpSerializer {
 		return newModel;
 	}
 
+	public static Object translateOutputProfileKeyValue(BaseModel<?> oldModel) {
+		ProfileKeyValueClp newModel = new ProfileKeyValueClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setProfileKeyValueRemoteModel(oldModel);
+
+		return newModel;
+	}
+
 	public static Object translateOutputProfileTemp(BaseModel<?> oldModel) {
 		ProfileTempClp newModel = new ProfileTempClp();
 
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setProfileTempRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputReligion(BaseModel<?> oldModel) {
+		ReligionClp newModel = new ReligionClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setReligionRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputSubCaste(BaseModel<?> oldModel) {
+		SubCasteClp newModel = new SubCasteClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setSubCasteRemoteModel(oldModel);
 
 		return newModel;
 	}

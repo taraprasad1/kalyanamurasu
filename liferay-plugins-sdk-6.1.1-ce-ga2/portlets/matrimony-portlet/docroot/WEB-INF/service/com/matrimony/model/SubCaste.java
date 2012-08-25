@@ -17,25 +17,18 @@ package com.matrimony.model;
 import com.liferay.portal.model.PersistedModel;
 
 /**
- * The extended model interface for the Profile service. Represents a row in the &quot;matrimony_profile&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the SubCaste service. Represents a row in the &quot;matrimony_subcaste&quot; database table, with each column mapped to a property of this class.
  *
  * @author matrimony
- * @see ProfileModel
- * @see com.matrimony.model.impl.ProfileImpl
- * @see com.matrimony.model.impl.ProfileModelImpl
+ * @see SubCasteModel
+ * @see com.matrimony.model.impl.SubCasteImpl
+ * @see com.matrimony.model.impl.SubCasteModelImpl
  * @generated
  */
-public interface Profile extends ProfileModel, PersistedModel {
+public interface SubCaste extends SubCasteModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link com.matrimony.model.impl.ProfileImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to {@link com.matrimony.model.impl.SubCasteImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public java.lang.String getHobbies();
-
-	public void setHobbies(java.lang.String hobbies);
-
-	public java.lang.String getLanguageKnown();
-
-	public void setLanguageKnown(java.lang.String languageKnown);
 }
