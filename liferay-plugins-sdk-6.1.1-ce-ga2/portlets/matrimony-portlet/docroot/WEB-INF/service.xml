@@ -23,7 +23,6 @@
 		<column name="weight" type="String" />
 		<column name="complexion" type="String" />
 		<column name="motherTongue" type="String" />
-		<column name="languageKnown" type="String" />
 		<column name="maritalStatus" type="String" />
 		<column name="children" type="int" />
 		<column name="country" type="String" />
@@ -38,7 +37,6 @@
 		<column name="profession" type="String" />
 		<column name="currency" type="String" />
 		<column name="annualIncome" type="String" />
-		<column name="hobbies" type="String" />
 		<column name="aboutMe" type="String" />
 		<column name="familyValue" type="String" />
 		<column name="familyType" type="String" />
@@ -140,6 +138,69 @@
     	<column name="thumbnail" type="boolean" />
     	 <finder name="ProfileId" return-type="Collection">
             <finder-column name="profileId" />
+        </finder>
+    </entity>
+    <entity name="Caste" table="matrimony_caste" local-service="true" remote-service="false">
+    	<!-- PK fields -->                  
+        <column name="casteId" type="long" primary="true" />                  
+       	<column name="religionId" type="long" />                 
+       	<column name="name" type="String" />
+       	<finder name="ReligionId" return-type="Collection">
+            <finder-column name="religionId" />
+        </finder>
+    </entity>
+    <entity name="Religion" table="matrimony_religion" local-service="true" remote-service="false">
+    	<!-- PK fields -->                  
+        <column name="religionId" type="long" primary="true" />                  
+       	<column name="name" type="String" />    
+    </entity>
+    <entity name="SubCaste" table="matrimony_subcaste" local-service="true" remote-service="false">
+    	<!-- PK fields -->                  
+        <column name="subCasteId" type="long" primary="true" />    
+        <column name="casteId" type="long" />               
+       	<column name="name" type="String" />    
+       	<finder name="CasteId" return-type="Collection">
+            <finder-column name="casteId" />
+        </finder>
+    </entity>
+    <entity name="City" table="city" local-service="true" remote-service="false">  
+    	<!-- PK fields -->                  
+        <column name="cityId" type="long" primary="true" id-type="identity"/>                  
+        	
+       	<!-- Audit fields -->                  
+       	
+       	<column name="regionId" type="long" />                 
+       	<column name="cityName" type="String" />                 
+       	<column name="status" type="boolean" />                  
+       	
+       	<!-- Order -->                  
+       	<order by="asc">                         
+       		<order-column name="cityName" />                 
+       	</order>                  
+       	
+       	<!-- Finder methods -->                  
+       	<finder name="RegionId" return-type="Collection">                         
+       		<finder-column name="regionId" />                 
+       	</finder>                                  
+       	<finder name="RegionId_City" return-type="City">                         
+       		<finder-column name="regionId" />                         
+       		<finder-column name="cityName" />                 
+       	</finder>   
+       	<finder name="Status" return-type="Collection">                         
+       		<finder-column name="status" />                 
+       	</finder> 
+    </entity>
+    <entity name="ProfileKeyValue" local-service="true" remote-service="false" table="matrimony_profile_key">
+        <column name="profileId" type="long" primary="true"/>
+        <column name="keyId" type="long" primary="true"/>
+        <column name="valueId" type="long" primary="true"/>
+        <finder name="ProfileAndKeyId" return-type="Collection">
+        	<finder-column name="keyId" />
+        	<finder-column name="profileId" />
+        </finder>
+        <finder name="KeyandValueId" return-type="Collection">
+        	<finder-column name="keyId" />
+        	<finder-column name="valueId" />
         </finder>
     </entity>
     <exceptions>
