@@ -31,4 +31,21 @@ public class ProfileImpl extends ProfileBaseImpl {
 	 */
 	public ProfileImpl() {
 	}
+	
+	public String hobbies;
+	public String languageKnown;
+	
+	public String getHobbies() {
+		return hobbies;
+	}
+	public void setHobbies(String hobbies) {
+		this.hobbies = hobbies;
+	}
+	public String getLanguageKnown() {
+		return languageKnown;
+	}
+	public void setLanguageKnown(String languageKnown) {
+		this.languageKnown = languageKnown;
+	}
+
 }

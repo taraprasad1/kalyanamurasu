@@ -34,7 +34,7 @@ import java.util.Date;
 public class ProfileCacheModel implements CacheModel<Profile>, Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(97);
+		StringBundler sb = new StringBundler(93);
 
 		sb.append("{profileId=");
 		sb.append(profileId);
@@ -68,8 +68,6 @@ public class ProfileCacheModel implements CacheModel<Profile>, Serializable {
 		sb.append(complexion);
 		sb.append(", motherTongue=");
 		sb.append(motherTongue);
-		sb.append(", languageKnown=");
-		sb.append(languageKnown);
 		sb.append(", maritalStatus=");
 		sb.append(maritalStatus);
 		sb.append(", children=");
@@ -98,8 +96,6 @@ public class ProfileCacheModel implements CacheModel<Profile>, Serializable {
 		sb.append(currency);
 		sb.append(", annualIncome=");
 		sb.append(annualIncome);
-		sb.append(", hobbies=");
-		sb.append(hobbies);
 		sb.append(", aboutMe=");
 		sb.append(aboutMe);
 		sb.append(", familyValue=");
@@ -242,13 +238,6 @@ public class ProfileCacheModel implements CacheModel<Profile>, Serializable {
 			profileImpl.setMotherTongue(motherTongue);
 		}
 
-		if (languageKnown == null) {
-			profileImpl.setLanguageKnown(StringPool.BLANK);
-		}
-		else {
-			profileImpl.setLanguageKnown(languageKnown);
-		}
-
 		if (maritalStatus == null) {
 			profileImpl.setMaritalStatus(StringPool.BLANK);
 		}
@@ -340,13 +329,6 @@ public class ProfileCacheModel implements CacheModel<Profile>, Serializable {
 		}
 		else {
 			profileImpl.setAnnualIncome(annualIncome);
-		}
-
-		if (hobbies == null) {
-			profileImpl.setHobbies(StringPool.BLANK);
-		}
-		else {
-			profileImpl.setHobbies(hobbies);
 		}
 
 		if (aboutMe == null) {
@@ -442,7 +424,6 @@ public class ProfileCacheModel implements CacheModel<Profile>, Serializable {
 	public String weight;
 	public String complexion;
 	public String motherTongue;
-	public String languageKnown;
 	public String maritalStatus;
 	public int children;
 	public String country;
@@ -457,7 +438,6 @@ public class ProfileCacheModel implements CacheModel<Profile>, Serializable {
 	public String profession;
 	public String currency;
 	public String annualIncome;
-	public String hobbies;
 	public String aboutMe;
 	public String familyValue;
 	public String familyType;

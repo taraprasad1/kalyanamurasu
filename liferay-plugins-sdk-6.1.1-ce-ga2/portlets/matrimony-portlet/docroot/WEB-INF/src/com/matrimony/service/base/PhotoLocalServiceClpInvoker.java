@@ -98,17 +98,17 @@ public class PhotoLocalServiceClpInvoker {
 				"com.matrimony.model.Photo", "boolean"
 			};
 
-		_methodName68 = "getBeanIdentifier";
+		_methodName88 = "getBeanIdentifier";
 
-		_methodParameterTypes68 = new String[] {  };
+		_methodParameterTypes88 = new String[] {  };
 
-		_methodName69 = "setBeanIdentifier";
+		_methodName89 = "setBeanIdentifier";
 
-		_methodParameterTypes69 = new String[] { "java.lang.String" };
+		_methodParameterTypes89 = new String[] { "java.lang.String" };
 
-		_methodName74 = "getPhotoList";
+		_methodName94 = "getPhotoList";
 
-		_methodParameterTypes74 = new String[] { "long" };
+		_methodParameterTypes94 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -200,18 +200,18 @@ public class PhotoLocalServiceClpInvoker {
 				((Boolean)arguments[1]).booleanValue());
 		}
 
-		if (_methodName68.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+		if (_methodName88.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes88, parameterTypes)) {
 			return PhotoLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName69.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+		if (_methodName89.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes89, parameterTypes)) {
 			PhotoLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 		}
 
-		if (_methodName74.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
+		if (_methodName94.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes94, parameterTypes)) {
 			return PhotoLocalServiceUtil.getPhotoList(((Long)arguments[0]).longValue());
 		}
 
@@ -250,10 +250,10 @@ public class PhotoLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName68;
-	private String[] _methodParameterTypes68;
-	private String _methodName69;
-	private String[] _methodParameterTypes69;
-	private String _methodName74;
-	private String[] _methodParameterTypes74;
+	private String _methodName88;
+	private String[] _methodParameterTypes88;
+	private String _methodName89;
+	private String[] _methodParameterTypes89;
+	private String _methodName94;
+	private String[] _methodParameterTypes94;
 }

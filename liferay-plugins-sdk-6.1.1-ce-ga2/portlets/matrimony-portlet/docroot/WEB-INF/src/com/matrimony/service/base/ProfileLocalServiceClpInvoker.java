@@ -98,17 +98,17 @@ public class ProfileLocalServiceClpInvoker {
 				"com.matrimony.model.Profile", "boolean"
 			};
 
-		_methodName68 = "getBeanIdentifier";
+		_methodName88 = "getBeanIdentifier";
 
-		_methodParameterTypes68 = new String[] {  };
+		_methodParameterTypes88 = new String[] {  };
 
-		_methodName69 = "setBeanIdentifier";
+		_methodName89 = "setBeanIdentifier";
 
-		_methodParameterTypes69 = new String[] { "java.lang.String" };
+		_methodParameterTypes89 = new String[] { "java.lang.String" };
 
-		_methodName74 = "createProfileObj";
+		_methodName94 = "createProfileObj";
 
-		_methodParameterTypes74 = new String[] {  };
+		_methodParameterTypes94 = new String[] {  };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -200,18 +200,18 @@ public class ProfileLocalServiceClpInvoker {
 				((Boolean)arguments[1]).booleanValue());
 		}
 
-		if (_methodName68.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+		if (_methodName88.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes88, parameterTypes)) {
 			return ProfileLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName69.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+		if (_methodName89.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes89, parameterTypes)) {
 			ProfileLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 		}
 
-		if (_methodName74.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
+		if (_methodName94.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes94, parameterTypes)) {
 			return ProfileLocalServiceUtil.createProfileObj();
 		}
 
@@ -250,10 +250,10 @@ public class ProfileLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName68;
-	private String[] _methodParameterTypes68;
-	private String _methodName69;
-	private String[] _methodParameterTypes69;
-	private String _methodName74;
-	private String[] _methodParameterTypes74;
+	private String _methodName88;
+	private String[] _methodParameterTypes88;
+	private String _methodName89;
+	private String[] _methodParameterTypes89;
+	private String _methodName94;
+	private String[] _methodParameterTypes94;
 }

@@ -23,32 +23,32 @@ import java.util.Arrays;
  */
 public class PhotoServiceClpInvoker {
 	public PhotoServiceClpInvoker() {
-		_methodName52 = "getBeanIdentifier";
+		_methodName72 = "getBeanIdentifier";
 
-		_methodParameterTypes52 = new String[] {  };
+		_methodParameterTypes72 = new String[] {  };
 
-		_methodName53 = "setBeanIdentifier";
+		_methodName73 = "setBeanIdentifier";
 
-		_methodParameterTypes53 = new String[] { "java.lang.String" };
+		_methodParameterTypes73 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
 			return PhotoServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName53.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+		if (_methodName73.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
 			PhotoServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 		}
 
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName52;
-	private String[] _methodParameterTypes52;
-	private String _methodName53;
-	private String[] _methodParameterTypes53;
+	private String _methodName72;
+	private String[] _methodParameterTypes72;
+	private String _methodName73;
+	private String[] _methodParameterTypes73;
 }

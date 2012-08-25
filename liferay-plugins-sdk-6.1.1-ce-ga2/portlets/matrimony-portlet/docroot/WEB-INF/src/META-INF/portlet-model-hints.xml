@@ -1,6 +1,17 @@
 <?xml version="1.0"?>
 
 <model-hints>
+	<model name="com.matrimony.model.Caste">
+		<field name="casteId" type="long" />
+		<field name="religionId" type="long" />
+		<field name="name" type="String" />
+	</model>
+	<model name="com.matrimony.model.City">
+		<field name="cityId" type="long" />
+		<field name="regionId" type="long" />
+		<field name="cityName" type="String" />
+		<field name="status" type="boolean" />
+	</model>
 	<model name="com.matrimony.model.Interaction">
 		<field name="interactionId" type="long" />
 		<field name="maleId" type="long" />
@@ -49,7 +60,11 @@
 		<field name="createdForMy" type="String" />
 		<field name="name" type="String" />
 		<field name="gender" type="boolean" />
-		<field name="birthDateWithTime" type="Date" />
+		<field name="birthDateWithTime" type="Date">
+			<hint name="year-range-delta">120</hint>
+			<hint name="year-range-future">true</hint>
+			<hint name="show-time">true</hint>
+		</field>
 		<field name="rasi" type="String" />
 		<field name="star" type="String" />
 		<field name="dosam" type="String" />
@@ -60,7 +75,6 @@
 		<field name="weight" type="String" />
 		<field name="complexion" type="String" />
 		<field name="motherTongue" type="String" />
-		<field name="languageKnown" type="String" />
 		<field name="maritalStatus" type="String" />
 		<field name="children" type="int" />
 		<field name="country" type="String" />
@@ -75,7 +89,6 @@
 		<field name="profession" type="String" />
 		<field name="currency" type="String" />
 		<field name="annualIncome" type="String" />
-		<field name="hobbies" type="String" />
 		<field name="aboutMe" type="String" />
 		<field name="familyValue" type="String" />
 		<field name="familyType" type="String" />
@@ -93,6 +106,11 @@
 		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
 	</model>
+	<model name="com.matrimony.model.ProfileKeyValue">
+		<field name="profileId" type="long" />
+		<field name="keyId" type="long" />
+		<field name="valueId" type="long" />
+	</model>
 	<model name="com.matrimony.model.ProfileTemp">
 		<field name="profileTempId" type="long" />
 		<field name="profileId" type="long" />
@@ -104,5 +122,14 @@
 		<field name="emailAddress" type="String" />
 		<field name="aboutMe" type="String" />
 		<field name="scheme" type="int" />
+	</model>
+	<model name="com.matrimony.model.Religion">
+		<field name="religionId" type="long" />
+		<field name="name" type="String" />
+	</model>
+	<model name="com.matrimony.model.SubCaste">
+		<field name="subCasteId" type="long" />
+		<field name="casteId" type="long" />
+		<field name="name" type="String" />
 	</model>
 </model-hints>

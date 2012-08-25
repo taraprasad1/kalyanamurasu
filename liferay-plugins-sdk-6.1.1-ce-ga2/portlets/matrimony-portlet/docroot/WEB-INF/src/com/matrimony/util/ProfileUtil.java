@@ -2,12 +2,10 @@ package com.matrimony.util;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.List;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.matrimony.model.Key;
 import com.matrimony.model.KeyValue;
@@ -16,19 +14,29 @@ import com.matrimony.service.KeyLocalServiceUtil;
 import com.matrimony.service.KeyValueLocalServiceUtil;
 
 public class ProfileUtil {
-	public static List<KeyValue> getKeyValueList(String keyName)
+	public static List<String> getKeyValueList(String keyName)
 	{
-		List<KeyValue> keyValueList = new ArrayList<KeyValue>();
-		Key key = null;
-		try {
-			key = KeyLocalServiceUtil.keySearch(keyName);
-			if (Validator.isNotNull(key)) {
-				keyValueList = KeyValueLocalServiceUtil.valueSearch(key.getKeyId());
+		List<String> valueList = new ArrayList<String>();
+		if(Validator.isNotNull(keyName)) {
+			Key key = null;
+			try {
+				if (Validator.isNotNull(KeyLocalServiceUtil.keySearch(keyName))) {
+					key = KeyLocalServiceUtil.keySearch(keyName);
+					List<KeyValue> keyValueList = new ArrayList<KeyValue>();
+					if (Validator.isNotNull(key)){
+						keyValueList = KeyValueLocalServiceUtil.valueSearch(key.getKeyId());
+					}
+					for (KeyValue value: keyValueList) {
+						if(Validator.isNotNull(value.getName())) {
+							valueList.add(value.getName());
+						}
+					}
+				}
+			} catch (SystemException e) {
+				System.out.println("Key Not Found====>>" + keyName);
 			}
-		} catch (SystemException e) {
-
-		}	
-		return keyValueList;
+		}
+		return valueList;
 	}
 	
 	public static String getProfileCode(Profile profile) {

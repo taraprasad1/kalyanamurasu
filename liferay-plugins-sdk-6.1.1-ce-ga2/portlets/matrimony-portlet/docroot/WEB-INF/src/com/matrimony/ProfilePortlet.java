@@ -7,6 +7,8 @@ import java.util.Date;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 import javax.servlet.http.HttpServletRequest;
 
 import com.liferay.portal.kernel.exception.PortalException;
@@ -25,6 +27,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.matrimony.constant.KeyValueConstants;
 import com.matrimony.constant.ProfileConstants;
 import com.matrimony.model.Photo;
 import com.matrimony.model.Profile;
@@ -41,7 +44,7 @@ public class ProfilePortlet extends MatrimonyController {
 	private static final Log LOGGER = LogFactoryUtil.getLog(ProfilePortlet.class);
 	public void deleteAccount(ActionRequest actionRequest,
 			ActionResponse actionResponse) throws IOException, PortletException {
-		
+		System.out.println("Inside Delete Account==========>>");
 		long profileId  = ParamUtil.getLong(actionRequest, ProfileConstants.PROFILE_ID);
 		if(Validator.isNotNull(profileId)) {			
 			try {
@@ -56,6 +59,7 @@ public class ProfilePortlet extends MatrimonyController {
 
 	public void updateAccount(ActionRequest actionRequest,
 			ActionResponse actionResponse) throws IOException, PortletException {
+		System.out.println("Inside Update Account==========>>");
 		long profileId = ParamUtil.getLong(actionRequest, "profileId");
 		ThemeDisplay themeDisplay = (ThemeDisplay) actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 		Profile profile = ProfileLocalServiceUtil.createProfileObj();
@@ -91,6 +95,28 @@ public class ProfilePortlet extends MatrimonyController {
 			}
 		}
 	}
+	@Override
+	public void doView(RenderRequest renderRequest,
+			RenderResponse renderResponse) throws IOException, PortletException {
+		System.out.println("Inside View ==========>>");
+		String viewAction = ParamUtil.getString(renderRequest, KeyValueConstants.ACTION);
+		if(Validator.isNotNull(viewAction)) {
+			if(viewAction.equalsIgnoreCase(ProfileConstants.PROFILE_VIEW_EDIT_PAGE)){
+				String profileId = ParamUtil.getString(renderRequest, ProfileConstants.PROFILE_ID);
+				if(Validator.isNotNull(profileId)){
+					renderRequest.setAttribute(ProfileConstants.PROFILE_ID, profileId);
+				}
+				setDropDownValues(renderRequest);
+				viewTemplate = ProfileConstants.PROFILE_EDIT_PAGE_URL;
+			} else {
+				viewTemplate = ProfileConstants.PROFILE_LIST_PAGE_URL;
+			}
+		} else {
+			viewTemplate = ProfileConstants.PROFILE_LIST_PAGE_URL;
+		}
+		super.doView(renderRequest, renderResponse);
+	}
+
 	public void updatePhoto(ActionRequest actionRequest,
 			ActionResponse actionResponse) throws IOException, PortletException {
 		UploadPortletRequest uploadPortletRequest =

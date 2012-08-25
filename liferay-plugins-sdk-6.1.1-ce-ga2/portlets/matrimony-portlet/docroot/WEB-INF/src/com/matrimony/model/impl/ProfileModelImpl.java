@@ -81,7 +81,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 			{ "weight", Types.VARCHAR },
 			{ "complexion", Types.VARCHAR },
 			{ "motherTongue", Types.VARCHAR },
-			{ "languageKnown", Types.VARCHAR },
 			{ "maritalStatus", Types.VARCHAR },
 			{ "children", Types.INTEGER },
 			{ "country", Types.VARCHAR },
@@ -96,7 +95,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 			{ "profession", Types.VARCHAR },
 			{ "currency_", Types.VARCHAR },
 			{ "annualIncome", Types.VARCHAR },
-			{ "hobbies", Types.VARCHAR },
 			{ "aboutMe", Types.VARCHAR },
 			{ "familyValue", Types.VARCHAR },
 			{ "familyType", Types.VARCHAR },
@@ -114,7 +112,7 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 			{ "companyId", Types.BIGINT },
 			{ "groupId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table matrimony_profile (profileId LONG not null primary key IDENTITY,profileCode VARCHAR(75) null,createdForMy VARCHAR(75) null,name VARCHAR(75) null,gender BOOLEAN,birthDateWithTime DATE null,rasi VARCHAR(75) null,star VARCHAR(75) null,dosam VARCHAR(75) null,religion VARCHAR(75) null,caste VARCHAR(75) null,subCaste VARCHAR(75) null,height VARCHAR(75) null,weight VARCHAR(75) null,complexion VARCHAR(75) null,motherTongue VARCHAR(75) null,languageKnown VARCHAR(75) null,maritalStatus VARCHAR(75) null,children INTEGER,country VARCHAR(75) null,state_ VARCHAR(75) null,city VARCHAR(75) null,address VARCHAR(75) null,pinCode VARCHAR(75) null,phone VARCHAR(75) null,mobile VARCHAR(75) null,emailAddress VARCHAR(75) null,education VARCHAR(75) null,profession VARCHAR(75) null,currency_ VARCHAR(75) null,annualIncome VARCHAR(75) null,hobbies VARCHAR(75) null,aboutMe VARCHAR(75) null,familyValue VARCHAR(75) null,familyType VARCHAR(75) null,familyStatus VARCHAR(75) null,securityCode VARCHAR(75) null,photoSecurityCode VARCHAR(75) null,lastLoggedIn DATE null,status INTEGER,scheme INTEGER,horoscope BOOLEAN,createdBy LONG,modifiedBy LONG,createdDate DATE null,modifiedDate DATE null,companyId LONG,groupId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table matrimony_profile (profileId LONG not null primary key IDENTITY,profileCode VARCHAR(75) null,createdForMy VARCHAR(75) null,name VARCHAR(75) null,gender BOOLEAN,birthDateWithTime DATE null,rasi VARCHAR(75) null,star VARCHAR(75) null,dosam VARCHAR(75) null,religion VARCHAR(75) null,caste VARCHAR(75) null,subCaste VARCHAR(75) null,height VARCHAR(75) null,weight VARCHAR(75) null,complexion VARCHAR(75) null,motherTongue VARCHAR(75) null,maritalStatus VARCHAR(75) null,children INTEGER,country VARCHAR(75) null,state_ VARCHAR(75) null,city VARCHAR(75) null,address VARCHAR(75) null,pinCode VARCHAR(75) null,phone VARCHAR(75) null,mobile VARCHAR(75) null,emailAddress VARCHAR(75) null,education VARCHAR(75) null,profession VARCHAR(75) null,currency_ VARCHAR(75) null,annualIncome VARCHAR(75) null,aboutMe VARCHAR(75) null,familyValue VARCHAR(75) null,familyType VARCHAR(75) null,familyStatus VARCHAR(75) null,securityCode VARCHAR(75) null,photoSecurityCode VARCHAR(75) null,lastLoggedIn DATE null,status INTEGER,scheme INTEGER,horoscope BOOLEAN,createdBy LONG,modifiedBy LONG,createdDate DATE null,modifiedDate DATE null,companyId LONG,groupId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table matrimony_profile";
 	public static final String ORDER_BY_JPQL = " ORDER BY profile.modifiedDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY matrimony_profile.modifiedDate DESC";
@@ -162,7 +160,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 		model.setWeight(soapModel.getWeight());
 		model.setComplexion(soapModel.getComplexion());
 		model.setMotherTongue(soapModel.getMotherTongue());
-		model.setLanguageKnown(soapModel.getLanguageKnown());
 		model.setMaritalStatus(soapModel.getMaritalStatus());
 		model.setChildren(soapModel.getChildren());
 		model.setCountry(soapModel.getCountry());
@@ -177,7 +174,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 		model.setProfession(soapModel.getProfession());
 		model.setCurrency(soapModel.getCurrency());
 		model.setAnnualIncome(soapModel.getAnnualIncome());
-		model.setHobbies(soapModel.getHobbies());
 		model.setAboutMe(soapModel.getAboutMe());
 		model.setFamilyValue(soapModel.getFamilyValue());
 		model.setFamilyType(soapModel.getFamilyType());
@@ -268,7 +264,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 		attributes.put("weight", getWeight());
 		attributes.put("complexion", getComplexion());
 		attributes.put("motherTongue", getMotherTongue());
-		attributes.put("languageKnown", getLanguageKnown());
 		attributes.put("maritalStatus", getMaritalStatus());
 		attributes.put("children", getChildren());
 		attributes.put("country", getCountry());
@@ -283,7 +278,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 		attributes.put("profession", getProfession());
 		attributes.put("currency", getCurrency());
 		attributes.put("annualIncome", getAnnualIncome());
-		attributes.put("hobbies", getHobbies());
 		attributes.put("aboutMe", getAboutMe());
 		attributes.put("familyValue", getFamilyValue());
 		attributes.put("familyType", getFamilyType());
@@ -402,12 +396,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 			setMotherTongue(motherTongue);
 		}
 
-		String languageKnown = (String)attributes.get("languageKnown");
-
-		if (languageKnown != null) {
-			setLanguageKnown(languageKnown);
-		}
-
 		String maritalStatus = (String)attributes.get("maritalStatus");
 
 		if (maritalStatus != null) {
@@ -490,12 +478,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 
 		if (annualIncome != null) {
 			setAnnualIncome(annualIncome);
-		}
-
-		String hobbies = (String)attributes.get("hobbies");
-
-		if (hobbies != null) {
-			setHobbies(hobbies);
 		}
 
 		String aboutMe = (String)attributes.get("aboutMe");
@@ -809,20 +791,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 	}
 
 	@JSON
-	public String getLanguageKnown() {
-		if (_languageKnown == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _languageKnown;
-		}
-	}
-
-	public void setLanguageKnown(String languageKnown) {
-		_languageKnown = languageKnown;
-	}
-
-	@JSON
 	public String getMaritalStatus() {
 		if (_maritalStatus == null) {
 			return StringPool.BLANK;
@@ -1011,20 +979,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 
 	public void setAnnualIncome(String annualIncome) {
 		_annualIncome = annualIncome;
-	}
-
-	@JSON
-	public String getHobbies() {
-		if (_hobbies == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _hobbies;
-		}
-	}
-
-	public void setHobbies(String hobbies) {
-		_hobbies = hobbies;
 	}
 
 	@JSON
@@ -1279,7 +1233,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 		profileImpl.setWeight(getWeight());
 		profileImpl.setComplexion(getComplexion());
 		profileImpl.setMotherTongue(getMotherTongue());
-		profileImpl.setLanguageKnown(getLanguageKnown());
 		profileImpl.setMaritalStatus(getMaritalStatus());
 		profileImpl.setChildren(getChildren());
 		profileImpl.setCountry(getCountry());
@@ -1294,7 +1247,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 		profileImpl.setProfession(getProfession());
 		profileImpl.setCurrency(getCurrency());
 		profileImpl.setAnnualIncome(getAnnualIncome());
-		profileImpl.setHobbies(getHobbies());
 		profileImpl.setAboutMe(getAboutMe());
 		profileImpl.setFamilyValue(getFamilyValue());
 		profileImpl.setFamilyType(getFamilyType());
@@ -1497,14 +1449,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 			profileCacheModel.motherTongue = null;
 		}
 
-		profileCacheModel.languageKnown = getLanguageKnown();
-
-		String languageKnown = profileCacheModel.languageKnown;
-
-		if ((languageKnown != null) && (languageKnown.length() == 0)) {
-			profileCacheModel.languageKnown = null;
-		}
-
 		profileCacheModel.maritalStatus = getMaritalStatus();
 
 		String maritalStatus = profileCacheModel.maritalStatus;
@@ -1611,14 +1555,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 			profileCacheModel.annualIncome = null;
 		}
 
-		profileCacheModel.hobbies = getHobbies();
-
-		String hobbies = profileCacheModel.hobbies;
-
-		if ((hobbies != null) && (hobbies.length() == 0)) {
-			profileCacheModel.hobbies = null;
-		}
-
 		profileCacheModel.aboutMe = getAboutMe();
 
 		String aboutMe = profileCacheModel.aboutMe;
@@ -1713,7 +1649,7 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(97);
+		StringBundler sb = new StringBundler(93);
 
 		sb.append("{profileId=");
 		sb.append(getProfileId());
@@ -1747,8 +1683,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 		sb.append(getComplexion());
 		sb.append(", motherTongue=");
 		sb.append(getMotherTongue());
-		sb.append(", languageKnown=");
-		sb.append(getLanguageKnown());
 		sb.append(", maritalStatus=");
 		sb.append(getMaritalStatus());
 		sb.append(", children=");
@@ -1777,8 +1711,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 		sb.append(getCurrency());
 		sb.append(", annualIncome=");
 		sb.append(getAnnualIncome());
-		sb.append(", hobbies=");
-		sb.append(getHobbies());
 		sb.append(", aboutMe=");
 		sb.append(getAboutMe());
 		sb.append(", familyValue=");
@@ -1817,7 +1749,7 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(148);
+		StringBundler sb = new StringBundler(142);
 
 		sb.append("<model><model-name>");
 		sb.append("com.matrimony.model.Profile");
@@ -1888,10 +1820,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 		sb.append(getMotherTongue());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>languageKnown</column-name><column-value><![CDATA[");
-		sb.append(getLanguageKnown());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>maritalStatus</column-name><column-value><![CDATA[");
 		sb.append(getMaritalStatus());
 		sb.append("]]></column-value></column>");
@@ -1946,10 +1874,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 		sb.append(
 			"<column><column-name>annualIncome</column-name><column-value><![CDATA[");
 		sb.append(getAnnualIncome());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>hobbies</column-name><column-value><![CDATA[");
-		sb.append(getHobbies());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>aboutMe</column-name><column-value><![CDATA[");
@@ -2041,7 +1965,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 	private String _weight;
 	private String _complexion;
 	private String _motherTongue;
-	private String _languageKnown;
 	private String _maritalStatus;
 	private int _children;
 	private String _country;
@@ -2056,7 +1979,6 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 	private String _profession;
 	private String _currency;
 	private String _annualIncome;
-	private String _hobbies;
 	private String _aboutMe;
 	private String _familyValue;
 	private String _familyType;
