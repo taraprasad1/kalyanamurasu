@@ -1,65 +1,139 @@
+<% List<Religion> religionList = ReligionLocalServiceUtil.getReligions(-1, -1);%>
+<portlet:resourceURL var="religionChangeURL">
+	<portlet:param name="action" value="populateCaste" />
+</portlet:resourceURL>
+<portlet:resourceURL var="casteChangeURL">
+	<portlet:param name="action" value="populateSubCaste" />
+</portlet:resourceURL>
+<aui:field-wrapper>
+	<aui:select name="religion" label="profile-religion" inlineField="true" inputCssClass="selectBoxStyle">
+		<aui:option value="" >--Select--</aui:option>
+		<%
+		    for (Religion religion : religionList) {
+		%>
+		  <aui:option value="<%=religion.getReligionId() %>" >
+		  	<%= religion.getName()%>
+		  </aui:option>
+		<%
+		  }
+		%>
+	</aui:select><br/>
+    <div id="casteDiv">
+		<aui:select name="caste" label="profile-caste" inlineField="true" inputCssClass="selectBoxStyle">
+			<aui:option value="" >--Select--</aui:option>
+		</aui:select><br/>
+	</div>
+	<div id="subCasteDiv">
+		<aui:select name="subCaste" label="profile-sub-caste" inlineField="true" inputCssClass="selectBoxStyle">
+		 	<aui:option value="" >--Select--</aui:option>
+		</aui:select><br/>
+	</div>
+</aui:field-wrapper>
 <aui:select name="rasi" label="profile-rasi" inlineField="true" inputCssClass="selectBoxStyle">
-	<% for(KeyValue values : ProfileUtil.getKeyValueList("rasi")) { %>
-		<aui:option value="<%= values.getName() %>" ><%= values.getName() %></aui:option>
-	<% } %>		
+	<c:forEach items="${rasi}" var="rasiValue">
+		<aui:option value="${rasiValue}" label="${rasiValue}" selected="${selectedRasiValue == rasiValue}"/>
+	</c:forEach>	
 </aui:select><br/>
 <aui:select name="star" label="profile-star" inlineField="true" inputCssClass="selectBoxStyle">
-	<% for(KeyValue values : ProfileUtil.getKeyValueList("star")) { %>
-		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
-	<% } %>	
+	<c:forEach items="${star}" var="starValue">
+		<aui:option value="${starValue}" label="${starValue}" selected="${selectedStarValue == starValue}"/>
+	</c:forEach>
 </aui:select><br/>
 <aui:select name="dosam" label="profile-dosam" inlineField="true" inputCssClass="selectBoxStyle">
-	<% for(KeyValue values : ProfileUtil.getKeyValueList("dosam")) { %>
-		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
-	<% } %>		
-</aui:select><br/>
-<aui:select name="religion" label="profile-religion" inlineField="true" inputCssClass="selectBoxStyle">
-	<% for(KeyValue values : ProfileUtil.getKeyValueList("religion")) { %>
-		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
-	<% } %>		
-</aui:select><br/>
-<aui:select name="caste" label="profile-caste" inlineField="true" inputCssClass="selectBoxStyle">
-	<% for(KeyValue values : ProfileUtil.getKeyValueList("caste")) { %>
-		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
-	<% } %>		
-</aui:select><br/>
-<aui:select name="subCaste" label="profile-sub-caste" inlineField="true" inputCssClass="selectBoxStyle">
-	<% for(KeyValue values : ProfileUtil.getKeyValueList("subCaste")) { %>
-		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
-	<% } %>	
+	<c:forEach items="${dosam}" var="dosamValue">
+		<aui:option value="${dosamValue}" label="${dosamValue}" selected="${selectedDosamValue == dosamValue}"/>
+	</c:forEach>	
 </aui:select><br/>
 <aui:select name="height" label="profile-height" inlineField="true" inputCssClass="selectBoxStyle">
-	<% for(KeyValue values : ProfileUtil.getKeyValueList("height")) { %>
-		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
-	<% } %>		
+	<c:forEach items="${height}" var="heightValue">
+		<aui:option value="${heightValue}" label="${heightValue}" selected="${selectedHeightValue == heightValue}"/>
+	</c:forEach>
 </aui:select><br/>
 <aui:select name="weight" label="profile-weight" inlineField="true" inputCssClass="selectBoxStyle">
-	<% for(KeyValue values : ProfileUtil.getKeyValueList("weight")) { %>
-		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
-	<% } %>		
+	<c:forEach items="${weight}" var="weightValue">
+		<aui:option value="${weightValue}" label="${weightValue}" selected="${selectedWeightValue == weightValue}"/>
+	</c:forEach>
 </aui:select><br/>
 <aui:select name="complexion" label="profile-complexion" inlineField="true" inputCssClass="selectBoxStyle">
-	<% for(KeyValue values : ProfileUtil.getKeyValueList("complexion")) { %>
-		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
-	<% } %>	
+	<c:forEach items="${complexion}" var="complexionValue">
+		<aui:option value="${complexionValue}" label="${complexionValue}" selected="${selectedComplexionValue == complexionValue}"/>
+	</c:forEach>
 </aui:select><br/>
 <aui:select name="motherTongue" label="profile-mother-tongue" inlineField="true" inputCssClass="selectBoxStyle">
-	<% for(KeyValue values : ProfileUtil.getKeyValueList("motherTongue")) { %>	
-		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
-	<% } %>	
+	<c:forEach items="${language}" var="motherTongueValue">
+		<aui:option value="${motherTongueValue}" label="${motherTongueValue}" selected="${selectedMotherTongueValue == motherTongueValue}"/>
+	</c:forEach>
 </aui:select><br/>
-<aui:select name="languageKnown" label="profile-language-known" inlineField="true" inputCssClass="selectBoxStyle">
-	<% for(KeyValue values : ProfileUtil.getKeyValueList("languageKnown")) { %>	
-		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
-	<% } %>	
+<aui:select name="languageKnown" label="profile-language-known" inlineField="true" inputCssClass="selectBoxStyle"  multiple="true">
+	<c:forEach items="${language}" var="languageKnownValue">
+		<aui:option value="${languageKnownValue}" label="${languageKnownValue}" selected="${selectedLanguageKnownValue == languageKnownValue}"/>
+	</c:forEach>
 </aui:select><br/>
 <aui:select name="maritalStatus" label="profile-marital-status" inlineField="true" inputCssClass="selectBoxStyle">
-	<% for(KeyValue values : ProfileUtil.getKeyValueList("maritalStatus")) { %>	
-		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
-	<% } %>	
+	<c:forEach items="${maritalStatus}" var="maritalStatusValue">
+		<aui:option value="${maritalStatusValue}" label="${maritalStatusValue}" selected="${selectedMaritalStatusValue == maritalStatusValue}"/>
+	</c:forEach>
 </aui:select><br/>
 <aui:select  name="children" label="profile-children" inlineField="true" inputCssClass="selectBoxStyle">
-	<% for(KeyValue values : ProfileUtil.getKeyValueList("children")) { %>	
-		<aui:option value="<%= values.getName() %>"><%= values.getName() %></aui:option>
-	<% } %>	
+	<c:forEach items="${children}" var="childrenValue">
+		<aui:option value="${childrenValue}" label="${childrenValue}" selected="${selectedChildrenValue == childrenValue}"/>
+	</c:forEach>
 </aui:select><br/>
+
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		if(jQuery("#<portlet:namespace />religion option:selected").val() == '') {
+			jQuery("#casteDiv").hide();
+		}
+		if(jQuery("#<portlet:namespace />caste option:selected").val() == '') {
+			jQuery("#subCasteDiv").hide();
+		}
+		jQuery("#<portlet:namespace />religion").change(function(){
+			var religionId = jQuery("#<portlet:namespace />religion option:selected").val();
+			if(religionId != '') {
+				var url = "<%= religionChangeURL %>";
+				jQuery("#<portlet:namespace />caste option").remove();
+				jQuery("#<portlet:namespace />subCaste option").remove();
+				jQuery("#subCasteDiv").hide();
+				jQuery.getJSON(url + '&religionId='+religionId, function(data) {
+					jQuery("#<portlet:namespace />caste").append("<option value=''>--Select--</option>");
+					if(data.isValid) {
+						var castes = data.arrayList;
+						for(var i=0; i<castes.length; i++){
+							var casteValue = castes[i].split(":");
+							jQuery("#<portlet:namespace />caste").append("<option value="+ casteValue[1] +">" + casteValue[0] + "</option>");
+						}
+						if(castes.length > 0) {
+							jQuery("#casteDiv").show();
+						}
+					}
+				});
+			} else {
+				jQuery("#<portlet:namespace />caste option").remove();
+				jQuery("#casteDiv").hide();
+			}
+		});
+		jQuery("#<portlet:namespace />caste").change(function(){
+			var casteId = jQuery("#<portlet:namespace />caste option:selected").val();
+			if(casteId != '') {
+				var url = "<%= casteChangeURL %>";
+				jQuery("#<portlet:namespace />subCaste option").remove();
+				jQuery.getJSON(url + '&casteId='+casteId, function(data) {
+					jQuery("#<portlet:namespace />subCaste").append("<option value=''>--Select--</option>");
+					if(data.isValid) {
+						var subCastes = data.arrayList;
+						for(var i=0; i<subCastes.length; i++){
+							jQuery("#<portlet:namespace />subCaste").append("<option value="+ subCastes[i] +">" + subCastes[i] + "</option>");
+						}
+						jQuery("#<portlet:namespace />subCaste").append("<option value='other'>Other</option>");
+						jQuery("#subCasteDiv").show();
+					}
+				});
+			} else {
+				jQuery("#<portlet:namespace />subCaste option").remove();
+				jQuery("#subCasteDiv").hide();
+			}
+		});
+	});
+</script>

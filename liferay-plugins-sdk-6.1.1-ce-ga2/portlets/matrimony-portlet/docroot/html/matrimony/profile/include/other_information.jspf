@@ -1,14 +1,41 @@
-<aui:input name="education" type="text" label="profile-education" inlineField="true" inputCssClass="textBoxStyle"/><br/>
-<aui:input name="profession" type="text" label="profile-profession" inlineField="true" inputCssClass="textBoxStyle"/><br/>
-<aui:input name="currency" type="text" label="profile-currency" inlineField="true" inputCssClass="textBoxStyle"/><br/>
-<aui:input name="annualIncome" type="text" label="profile-annual-income" inlineField="true" inputCssClass="textBoxStyle"/><br/>
-<aui:input name="hobbies" type="text" label="profile-hobbies" inlineField="true" inputCssClass="textBoxStyle"/><br/>
-<aui:input name="aboutMe" type="text" label="profile-about-me" inlineField="true" inputCssClass="textBoxStyle"/><br/>
-<aui:input name="familyValue" type="text" label="profile-family-value" inlineField="true" inputCssClass="textBoxStyle"/><br/>
-<aui:input name="familyType" type="text" label="profile-family-type" inlineField="true" inputCssClass="textBoxStyle"/><br/>
-<aui:input name="familyStatus" type="text" label="profile-family-status" inlineField="true" inputCssClass="textBoxStyle"/><br/>
-<aui:input name="securityCode" type="text" label="profile-security-code" inlineField="true" inputCssClass="textBoxStyle"/><br/>
-<aui:input name="photoSecurityCode" type="text" label="profile-photo-security-code" inlineField="true" inputCssClass="textBoxStyle"/><br/>
-<aui:input name="status" type="text" label="profile-status" inlineField="true" inputCssClass="textBoxStyle"/><br/>
-<aui:input name="scheme" type="text" label="profile-scheme" inlineField="true" inputCssClass="textBoxStyle"/><br/>
-<aui:input name="horoscope" type="text" label="profile-horoscope" inlineField="true" inputCssClass="textBoxStyle"/><br/>	
+<aui:select  name="education" label="profile-education" inlineField="true" inputCssClass="selectBoxStyle">
+	<c:forEach items="${education}" var="educationValue">
+		<aui:option value="${educationValue}" label="${educationValue}" selected="${selectedEducationValue == educationValue}"/>
+	</c:forEach>
+</aui:select><br/>
+<aui:select  name="profession" label="profile-profession" inlineField="true" inputCssClass="selectBoxStyle">
+	<c:forEach items="${profession}" var="professionValue">
+		<aui:option value="${professionValue}" label="${professionValue}" selected="${selectedProfessionValue == professionValue}"/>
+	</c:forEach>
+</aui:select><br/>
+<aui:select  name="currency" label="profile-currency" inlineField="true" inputCssClass="selectBoxStyle">
+	<c:forEach items="${currency}" var="currencyValue">
+		<aui:option value="${currencyValue}" label="${currencyValue}" selected="${selectedCurrencyValue == currencyValue}"/>
+	</c:forEach>
+</aui:select><br/>
+<aui:select  name="annualIncome" label="profile-annual-income" inlineField="true" inputCssClass="selectBoxStyle">
+	<c:forEach items="${annualIncome}" var="annualIncomeValue">
+		<aui:option value="${annualIncomeValue}" label="${annualIncomeValue}" selected="${selectedAnnualIncomeValue == annualIncomeValue}"/>
+	</c:forEach>
+</aui:select><br/>
+<aui:select name="hobbies" label="profile-hobbies" inlineField="true" inputCssClass="selectBoxStyle"  multiple="true">
+	<c:forEach items="${hobbies}" var="hobbiesValue">
+		<aui:option value="${hobbiesValue}" label="${hobbiesValue}" selected="${selectedHobbiesValuee == hobbiesValue}"/>
+	</c:forEach>
+</aui:select><br/>
+<aui:input name="aboutMe" type="textarea" label="profile-about-me" inlineField="true" inputCssClass="textBoxStyle"/><br/>
+<aui:select  name="familyValue" label="profile-family-value" inlineField="true" inputCssClass="selectBoxStyle">
+	<c:forEach items="${familyValue}" var="familyVal">
+		<aui:option value="${familyVal}" label="${familyVal}" selected="${selectedFamilyVal == familyVal}"/>
+	</c:forEach>
+</aui:select><br/>
+<aui:select  name="familyType" label="profile-family-type" inlineField="true" inputCssClass="selectBoxStyle">
+	<c:forEach items="${familyType}" var="familyTypeValue">
+		<aui:option value="${familyTypeValue}" label="${familyTypeValue}" selected="${selectedFamilyTypeValue == familyTypeValue}"/>
+	</c:forEach>
+</aui:select><br/>
+<aui:select  name="familyStatus" label="profile-family-status" inlineField="true" inputCssClass="selectBoxStyle">
+	<c:forEach items="${familyStatus}" var="familyStatusValue">
+		<aui:option value="${familyStatusValue}" label="${familyStatusValue}" selected="${selectedFamilyStatusValue == familyStatusValue}"/>
+	</c:forEach>
+</aui:select><br/>
