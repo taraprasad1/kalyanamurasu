@@ -61,7 +61,6 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 		attributes.put("weight", getWeight());
 		attributes.put("complexion", getComplexion());
 		attributes.put("motherTongue", getMotherTongue());
-		attributes.put("languageKnown", getLanguageKnown());
 		attributes.put("maritalStatus", getMaritalStatus());
 		attributes.put("children", getChildren());
 		attributes.put("country", getCountry());
@@ -76,7 +75,6 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 		attributes.put("profession", getProfession());
 		attributes.put("currency", getCurrency());
 		attributes.put("annualIncome", getAnnualIncome());
-		attributes.put("hobbies", getHobbies());
 		attributes.put("aboutMe", getAboutMe());
 		attributes.put("familyValue", getFamilyValue());
 		attributes.put("familyType", getFamilyType());
@@ -194,12 +192,6 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 			setMotherTongue(motherTongue);
 		}
 
-		String languageKnown = (String)attributes.get("languageKnown");
-
-		if (languageKnown != null) {
-			setLanguageKnown(languageKnown);
-		}
-
 		String maritalStatus = (String)attributes.get("maritalStatus");
 
 		if (maritalStatus != null) {
@@ -282,12 +274,6 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 
 		if (annualIncome != null) {
 			setAnnualIncome(annualIncome);
-		}
-
-		String hobbies = (String)attributes.get("hobbies");
-
-		if (hobbies != null) {
-			setHobbies(hobbies);
 		}
 
 		String aboutMe = (String)attributes.get("aboutMe");
@@ -703,24 +689,6 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 	}
 
 	/**
-	* Returns the language known of this profile.
-	*
-	* @return the language known of this profile
-	*/
-	public java.lang.String getLanguageKnown() {
-		return _profile.getLanguageKnown();
-	}
-
-	/**
-	* Sets the language known of this profile.
-	*
-	* @param languageKnown the language known of this profile
-	*/
-	public void setLanguageKnown(java.lang.String languageKnown) {
-		_profile.setLanguageKnown(languageKnown);
-	}
-
-	/**
 	* Returns the marital status of this profile.
 	*
 	* @return the marital status of this profile
@@ -970,24 +938,6 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 	*/
 	public void setAnnualIncome(java.lang.String annualIncome) {
 		_profile.setAnnualIncome(annualIncome);
-	}
-
-	/**
-	* Returns the hobbies of this profile.
-	*
-	* @return the hobbies of this profile
-	*/
-	public java.lang.String getHobbies() {
-		return _profile.getHobbies();
-	}
-
-	/**
-	* Sets the hobbies of this profile.
-	*
-	* @param hobbies the hobbies of this profile
-	*/
-	public void setHobbies(java.lang.String hobbies) {
-		_profile.setHobbies(hobbies);
 	}
 
 	/**
@@ -1358,6 +1308,22 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_profile.persist();
+	}
+
+	public java.lang.String getHobbies() {
+		return _profile.getHobbies();
+	}
+
+	public void setHobbies(java.lang.String hobbies) {
+		_profile.setHobbies(hobbies);
+	}
+
+	public java.lang.String getLanguageKnown() {
+		return _profile.getLanguageKnown();
+	}
+
+	public void setLanguageKnown(java.lang.String languageKnown) {
+		_profile.setLanguageKnown(languageKnown);
 	}
 
 	/**

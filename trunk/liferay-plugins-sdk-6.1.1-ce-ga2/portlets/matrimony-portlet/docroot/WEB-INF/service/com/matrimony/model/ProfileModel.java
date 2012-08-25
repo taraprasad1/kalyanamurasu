@@ -304,21 +304,6 @@ public interface ProfileModel extends BaseModel<Profile> {
 	public void setMotherTongue(String motherTongue);
 
 	/**
-	 * Returns the language known of this profile.
-	 *
-	 * @return the language known of this profile
-	 */
-	@AutoEscape
-	public String getLanguageKnown();
-
-	/**
-	 * Sets the language known of this profile.
-	 *
-	 * @param languageKnown the language known of this profile
-	 */
-	public void setLanguageKnown(String languageKnown);
-
-	/**
 	 * Returns the marital status of this profile.
 	 *
 	 * @return the marital status of this profile
@@ -526,21 +511,6 @@ public interface ProfileModel extends BaseModel<Profile> {
 	 * @param annualIncome the annual income of this profile
 	 */
 	public void setAnnualIncome(String annualIncome);
-
-	/**
-	 * Returns the hobbies of this profile.
-	 *
-	 * @return the hobbies of this profile
-	 */
-	@AutoEscape
-	public String getHobbies();
-
-	/**
-	 * Sets the hobbies of this profile.
-	 *
-	 * @param hobbies the hobbies of this profile
-	 */
-	public void setHobbies(String hobbies);
 
 	/**
 	 * Returns the about me of this profile.

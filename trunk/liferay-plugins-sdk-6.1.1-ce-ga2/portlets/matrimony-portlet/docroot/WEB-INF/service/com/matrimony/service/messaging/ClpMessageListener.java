@@ -17,6 +17,8 @@ package com.matrimony.service.messaging;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
+import com.matrimony.service.CasteLocalServiceUtil;
+import com.matrimony.service.CityLocalServiceUtil;
 import com.matrimony.service.ClpSerializer;
 import com.matrimony.service.InteractionLocalServiceUtil;
 import com.matrimony.service.InteractionServiceUtil;
@@ -26,10 +28,13 @@ import com.matrimony.service.KeyValueLocalServiceUtil;
 import com.matrimony.service.KeyValueServiceUtil;
 import com.matrimony.service.PhotoLocalServiceUtil;
 import com.matrimony.service.PhotoServiceUtil;
+import com.matrimony.service.ProfileKeyValueLocalServiceUtil;
 import com.matrimony.service.ProfileLocalServiceUtil;
 import com.matrimony.service.ProfileServiceUtil;
 import com.matrimony.service.ProfileTempLocalServiceUtil;
 import com.matrimony.service.ProfileTempServiceUtil;
+import com.matrimony.service.ReligionLocalServiceUtil;
+import com.matrimony.service.SubCasteLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
@@ -46,6 +51,10 @@ public class ClpMessageListener extends BaseMessageListener {
 
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
+			CasteLocalServiceUtil.clearService();
+
+			CityLocalServiceUtil.clearService();
+
 			InteractionLocalServiceUtil.clearService();
 
 			InteractionServiceUtil.clearService();
@@ -61,9 +70,14 @@ public class ClpMessageListener extends BaseMessageListener {
 			ProfileLocalServiceUtil.clearService();
 
 			ProfileServiceUtil.clearService();
+			ProfileKeyValueLocalServiceUtil.clearService();
+
 			ProfileTempLocalServiceUtil.clearService();
 
 			ProfileTempServiceUtil.clearService();
+			ReligionLocalServiceUtil.clearService();
+
+			SubCasteLocalServiceUtil.clearService();
 		}
 	}
 }

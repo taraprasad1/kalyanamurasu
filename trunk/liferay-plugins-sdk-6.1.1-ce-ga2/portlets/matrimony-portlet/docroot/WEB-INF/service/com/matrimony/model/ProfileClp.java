@@ -82,7 +82,6 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 		attributes.put("weight", getWeight());
 		attributes.put("complexion", getComplexion());
 		attributes.put("motherTongue", getMotherTongue());
-		attributes.put("languageKnown", getLanguageKnown());
 		attributes.put("maritalStatus", getMaritalStatus());
 		attributes.put("children", getChildren());
 		attributes.put("country", getCountry());
@@ -97,7 +96,6 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 		attributes.put("profession", getProfession());
 		attributes.put("currency", getCurrency());
 		attributes.put("annualIncome", getAnnualIncome());
-		attributes.put("hobbies", getHobbies());
 		attributes.put("aboutMe", getAboutMe());
 		attributes.put("familyValue", getFamilyValue());
 		attributes.put("familyType", getFamilyType());
@@ -216,12 +214,6 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 			setMotherTongue(motherTongue);
 		}
 
-		String languageKnown = (String)attributes.get("languageKnown");
-
-		if (languageKnown != null) {
-			setLanguageKnown(languageKnown);
-		}
-
 		String maritalStatus = (String)attributes.get("maritalStatus");
 
 		if (maritalStatus != null) {
@@ -304,12 +296,6 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 
 		if (annualIncome != null) {
 			setAnnualIncome(annualIncome);
-		}
-
-		String hobbies = (String)attributes.get("hobbies");
-
-		if (hobbies != null) {
-			setHobbies(hobbies);
 		}
 
 		String aboutMe = (String)attributes.get("aboutMe");
@@ -541,14 +527,6 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 		_motherTongue = motherTongue;
 	}
 
-	public String getLanguageKnown() {
-		return _languageKnown;
-	}
-
-	public void setLanguageKnown(String languageKnown) {
-		_languageKnown = languageKnown;
-	}
-
 	public String getMaritalStatus() {
 		return _maritalStatus;
 	}
@@ -659,14 +637,6 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 
 	public void setAnnualIncome(String annualIncome) {
 		_annualIncome = annualIncome;
-	}
-
-	public String getHobbies() {
-		return _hobbies;
-	}
-
-	public void setHobbies(String hobbies) {
-		_hobbies = hobbies;
 	}
 
 	public String getAboutMe() {
@@ -801,6 +771,22 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 		_groupId = groupId;
 	}
 
+	public void setLanguageKnown(java.lang.String languageKnown) {
+		throw new UnsupportedOperationException();
+	}
+
+	public java.lang.String getLanguageKnown() {
+		throw new UnsupportedOperationException();
+	}
+
+	public void setHobbies(java.lang.String hobbies) {
+		throw new UnsupportedOperationException();
+	}
+
+	public java.lang.String getHobbies() {
+		throw new UnsupportedOperationException();
+	}
+
 	public BaseModel<?> getProfileRemoteModel() {
 		return _profileRemoteModel;
 	}
@@ -844,7 +830,6 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 		clone.setWeight(getWeight());
 		clone.setComplexion(getComplexion());
 		clone.setMotherTongue(getMotherTongue());
-		clone.setLanguageKnown(getLanguageKnown());
 		clone.setMaritalStatus(getMaritalStatus());
 		clone.setChildren(getChildren());
 		clone.setCountry(getCountry());
@@ -859,7 +844,6 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 		clone.setProfession(getProfession());
 		clone.setCurrency(getCurrency());
 		clone.setAnnualIncome(getAnnualIncome());
-		clone.setHobbies(getHobbies());
 		clone.setAboutMe(getAboutMe());
 		clone.setFamilyValue(getFamilyValue());
 		clone.setFamilyType(getFamilyType());
@@ -926,7 +910,7 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(97);
+		StringBundler sb = new StringBundler(93);
 
 		sb.append("{profileId=");
 		sb.append(getProfileId());
@@ -960,8 +944,6 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 		sb.append(getComplexion());
 		sb.append(", motherTongue=");
 		sb.append(getMotherTongue());
-		sb.append(", languageKnown=");
-		sb.append(getLanguageKnown());
 		sb.append(", maritalStatus=");
 		sb.append(getMaritalStatus());
 		sb.append(", children=");
@@ -990,8 +972,6 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 		sb.append(getCurrency());
 		sb.append(", annualIncome=");
 		sb.append(getAnnualIncome());
-		sb.append(", hobbies=");
-		sb.append(getHobbies());
 		sb.append(", aboutMe=");
 		sb.append(getAboutMe());
 		sb.append(", familyValue=");
@@ -1030,7 +1010,7 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(148);
+		StringBundler sb = new StringBundler(142);
 
 		sb.append("<model><model-name>");
 		sb.append("com.matrimony.model.Profile");
@@ -1101,10 +1081,6 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 		sb.append(getMotherTongue());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>languageKnown</column-name><column-value><![CDATA[");
-		sb.append(getLanguageKnown());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>maritalStatus</column-name><column-value><![CDATA[");
 		sb.append(getMaritalStatus());
 		sb.append("]]></column-value></column>");
@@ -1159,10 +1135,6 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 		sb.append(
 			"<column><column-name>annualIncome</column-name><column-value><![CDATA[");
 		sb.append(getAnnualIncome());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>hobbies</column-name><column-value><![CDATA[");
-		sb.append(getHobbies());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>aboutMe</column-name><column-value><![CDATA[");
@@ -1250,7 +1222,6 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 	private String _weight;
 	private String _complexion;
 	private String _motherTongue;
-	private String _languageKnown;
 	private String _maritalStatus;
 	private int _children;
 	private String _country;
@@ -1265,7 +1236,6 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 	private String _profession;
 	private String _currency;
 	private String _annualIncome;
-	private String _hobbies;
 	private String _aboutMe;
 	private String _familyValue;
 	private String _familyType;

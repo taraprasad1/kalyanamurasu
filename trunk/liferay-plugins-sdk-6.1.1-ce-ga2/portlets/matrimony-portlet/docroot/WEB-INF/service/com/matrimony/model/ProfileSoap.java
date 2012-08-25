@@ -47,7 +47,6 @@ public class ProfileSoap implements Serializable {
 		soapModel.setWeight(model.getWeight());
 		soapModel.setComplexion(model.getComplexion());
 		soapModel.setMotherTongue(model.getMotherTongue());
-		soapModel.setLanguageKnown(model.getLanguageKnown());
 		soapModel.setMaritalStatus(model.getMaritalStatus());
 		soapModel.setChildren(model.getChildren());
 		soapModel.setCountry(model.getCountry());
@@ -62,7 +61,6 @@ public class ProfileSoap implements Serializable {
 		soapModel.setProfession(model.getProfession());
 		soapModel.setCurrency(model.getCurrency());
 		soapModel.setAnnualIncome(model.getAnnualIncome());
-		soapModel.setHobbies(model.getHobbies());
 		soapModel.setAboutMe(model.getAboutMe());
 		soapModel.setFamilyValue(model.getFamilyValue());
 		soapModel.setFamilyType(model.getFamilyType());
@@ -263,14 +261,6 @@ public class ProfileSoap implements Serializable {
 		_motherTongue = motherTongue;
 	}
 
-	public String getLanguageKnown() {
-		return _languageKnown;
-	}
-
-	public void setLanguageKnown(String languageKnown) {
-		_languageKnown = languageKnown;
-	}
-
 	public String getMaritalStatus() {
 		return _maritalStatus;
 	}
@@ -381,14 +371,6 @@ public class ProfileSoap implements Serializable {
 
 	public void setAnnualIncome(String annualIncome) {
 		_annualIncome = annualIncome;
-	}
-
-	public String getHobbies() {
-		return _hobbies;
-	}
-
-	public void setHobbies(String hobbies) {
-		_hobbies = hobbies;
 	}
 
 	public String getAboutMe() {
@@ -539,7 +521,6 @@ public class ProfileSoap implements Serializable {
 	private String _weight;
 	private String _complexion;
 	private String _motherTongue;
-	private String _languageKnown;
 	private String _maritalStatus;
 	private int _children;
 	private String _country;
@@ -554,7 +535,6 @@ public class ProfileSoap implements Serializable {
 	private String _profession;
 	private String _currency;
 	private String _annualIncome;
-	private String _hobbies;
 	private String _aboutMe;
 	private String _familyValue;
 	private String _familyType;
