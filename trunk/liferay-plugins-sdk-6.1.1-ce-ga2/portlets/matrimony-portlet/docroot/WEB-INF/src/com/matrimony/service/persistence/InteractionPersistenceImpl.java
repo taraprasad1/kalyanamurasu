@@ -622,6 +622,10 @@ public class InteractionPersistenceImpl extends BasePersistenceImpl<Interaction>
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@BeanReference(type = CastePersistence.class)
+	protected CastePersistence castePersistence;
+	@BeanReference(type = CityPersistence.class)
+	protected CityPersistence cityPersistence;
 	@BeanReference(type = InteractionPersistence.class)
 	protected InteractionPersistence interactionPersistence;
 	@BeanReference(type = KeyPersistence.class)
@@ -632,8 +636,14 @@ public class InteractionPersistenceImpl extends BasePersistenceImpl<Interaction>
 	protected PhotoPersistence photoPersistence;
 	@BeanReference(type = ProfilePersistence.class)
 	protected ProfilePersistence profilePersistence;
+	@BeanReference(type = ProfileKeyValuePersistence.class)
+	protected ProfileKeyValuePersistence profileKeyValuePersistence;
 	@BeanReference(type = ProfileTempPersistence.class)
 	protected ProfileTempPersistence profileTempPersistence;
+	@BeanReference(type = ReligionPersistence.class)
+	protected ReligionPersistence religionPersistence;
+	@BeanReference(type = SubCastePersistence.class)
+	protected SubCastePersistence subCastePersistence;
 	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)

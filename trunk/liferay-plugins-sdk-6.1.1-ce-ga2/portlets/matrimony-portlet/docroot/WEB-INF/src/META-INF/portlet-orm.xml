@@ -7,6 +7,27 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
+	<mapped-superclass class="com.matrimony.model.impl.CasteModelImpl">
+		<attributes>
+			<id name="casteId" />
+			<basic name="religionId" />
+			<basic name="name" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.matrimony.model.impl.CityModelImpl">
+		<attributes>
+			<id name="cityId" />
+			<basic name="regionId" />
+			<basic name="cityName" />
+			<basic name="status" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.matrimony.model.impl.InteractionModelImpl">
 		<attributes>
 			<id name="interactionId" />
@@ -107,7 +128,6 @@
 			<basic name="weight" />
 			<basic name="complexion" />
 			<basic name="motherTongue" />
-			<basic name="languageKnown" />
 			<basic name="maritalStatus" />
 			<basic name="children" />
 			<basic name="country" />
@@ -126,7 +146,6 @@
 				<column name="CURRENCY_" />
 			</basic>
 			<basic name="annualIncome" />
-			<basic name="hobbies" />
 			<basic name="aboutMe" />
 			<basic name="familyValue" />
 			<basic name="familyType" />
@@ -154,6 +173,17 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.matrimony.model.impl.ProfileKeyValueModelImpl">
+		<id-class class="com.matrimony.service.persistence.ProfileKeyValuePK" />
+		<attributes>
+			<id name="profileId" />
+			<id name="keyId" />
+			<id name="valueId" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.matrimony.model.impl.ProfileTempModelImpl">
 		<attributes>
 			<id name="profileTempId" />
@@ -171,6 +201,33 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.matrimony.model.impl.ReligionModelImpl">
+		<attributes>
+			<id name="religionId" />
+			<basic name="name" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.matrimony.model.impl.SubCasteModelImpl">
+		<attributes>
+			<id name="subCasteId" />
+			<basic name="casteId" />
+			<basic name="name" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.matrimony.model.impl.CasteImpl" name="Caste">
+		<table name="matrimony_caste" />
+		<attributes />
+	</entity>
+	<entity class="com.matrimony.model.impl.CityImpl" name="City">
+		<table name="city" />
+		<attributes />
+	</entity>
 	<entity class="com.matrimony.model.impl.InteractionImpl" name="Interaction">
 		<table name="matrimony_profile_interaction" />
 		<attributes />
@@ -189,10 +246,25 @@
 	</entity>
 	<entity class="com.matrimony.model.impl.ProfileImpl" name="Profile">
 		<table name="matrimony_profile" />
+		<attributes>
+			<transient name="hobbies" />
+			<transient name="languageKnown" />
+		</attributes>
+	</entity>
+	<entity class="com.matrimony.model.impl.ProfileKeyValueImpl" name="ProfileKeyValue">
+		<table name="matrimony_profile_key" />
 		<attributes />
 	</entity>
 	<entity class="com.matrimony.model.impl.ProfileTempImpl" name="ProfileTemp">
 		<table name="matrimony_profile_temp" />
+		<attributes />
+	</entity>
+	<entity class="com.matrimony.model.impl.ReligionImpl" name="Religion">
+		<table name="matrimony_religion" />
+		<attributes />
+	</entity>
+	<entity class="com.matrimony.model.impl.SubCasteImpl" name="SubCaste">
+		<table name="matrimony_subcaste" />
 		<attributes />
 	</entity>
 </entity-mappings>

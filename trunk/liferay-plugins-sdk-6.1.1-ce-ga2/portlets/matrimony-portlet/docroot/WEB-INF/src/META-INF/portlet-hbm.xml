@@ -2,12 +2,34 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.matrimony.model.Caste" />
+	<import class="com.matrimony.model.City" />
 	<import class="com.matrimony.model.Interaction" />
 	<import class="com.matrimony.model.Key" />
 	<import class="com.matrimony.model.KeyValue" />
 	<import class="com.matrimony.model.Photo" />
 	<import class="com.matrimony.model.Profile" />
+	<import class="com.matrimony.model.ProfileKeyValue" />
 	<import class="com.matrimony.model.ProfileTemp" />
+	<import class="com.matrimony.model.Religion" />
+	<import class="com.matrimony.model.SubCaste" />
+	<class name="com.matrimony.model.impl.CasteImpl" table="matrimony_caste">
+		<cache usage="read-write" />
+		<id name="casteId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="religionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.matrimony.model.impl.CityImpl" table="city">
+		<cache usage="read-write" />
+		<id name="cityId" type="long">
+			<generator class="identity" />
+		</id>
+		<property name="regionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="cityName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
 	<class name="com.matrimony.model.impl.InteractionImpl" table="matrimony_profile_interaction">
 		<cache usage="read-write" />
 		<id name="interactionId" type="long">
@@ -82,7 +104,6 @@
 		<property name="weight" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="complexion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="motherTongue" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="languageKnown" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="maritalStatus" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="children" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="country" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -97,7 +118,6 @@
 		<property name="profession" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="currency" type="com.liferay.portal.dao.orm.hibernate.StringType" column="currency_" />
 		<property name="annualIncome" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="hobbies" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="aboutMe" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="familyValue" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="familyType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -115,6 +135,14 @@
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
+	<class name="com.matrimony.model.impl.ProfileKeyValueImpl" table="matrimony_profile_key">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="com.matrimony.service.persistence.ProfileKeyValuePK">
+			<key-property name="profileId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="keyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="valueId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+	</class>
 	<class name="com.matrimony.model.impl.ProfileTempImpl" table="matrimony_profile_temp">
 		<cache usage="read-write" />
 		<id name="profileTempId" type="long">
@@ -129,5 +157,20 @@
 		<property name="emailAddress" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="aboutMe" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="scheme" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="com.matrimony.model.impl.ReligionImpl" table="matrimony_religion">
+		<cache usage="read-write" />
+		<id name="religionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.matrimony.model.impl.SubCasteImpl" table="matrimony_subcaste">
+		<cache usage="read-write" />
+		<id name="subCasteId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="casteId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

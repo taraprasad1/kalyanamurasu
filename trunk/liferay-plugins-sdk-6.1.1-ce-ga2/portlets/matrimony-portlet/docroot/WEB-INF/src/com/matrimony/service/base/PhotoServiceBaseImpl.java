@@ -31,6 +31,8 @@ import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.matrimony.model.Photo;
 
+import com.matrimony.service.CasteLocalService;
+import com.matrimony.service.CityLocalService;
 import com.matrimony.service.InteractionLocalService;
 import com.matrimony.service.InteractionService;
 import com.matrimony.service.KeyLocalService;
@@ -39,16 +41,24 @@ import com.matrimony.service.KeyValueLocalService;
 import com.matrimony.service.KeyValueService;
 import com.matrimony.service.PhotoLocalService;
 import com.matrimony.service.PhotoService;
+import com.matrimony.service.ProfileKeyValueLocalService;
 import com.matrimony.service.ProfileLocalService;
 import com.matrimony.service.ProfileService;
 import com.matrimony.service.ProfileTempLocalService;
 import com.matrimony.service.ProfileTempService;
+import com.matrimony.service.ReligionLocalService;
+import com.matrimony.service.SubCasteLocalService;
+import com.matrimony.service.persistence.CastePersistence;
+import com.matrimony.service.persistence.CityPersistence;
 import com.matrimony.service.persistence.InteractionPersistence;
 import com.matrimony.service.persistence.KeyPersistence;
 import com.matrimony.service.persistence.KeyValuePersistence;
 import com.matrimony.service.persistence.PhotoPersistence;
+import com.matrimony.service.persistence.ProfileKeyValuePersistence;
 import com.matrimony.service.persistence.ProfilePersistence;
 import com.matrimony.service.persistence.ProfileTempPersistence;
+import com.matrimony.service.persistence.ReligionPersistence;
+import com.matrimony.service.persistence.SubCastePersistence;
 
 import javax.sql.DataSource;
 
@@ -71,6 +81,78 @@ public abstract class PhotoServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * Never modify or reference this class directly. Always use {@link com.matrimony.service.PhotoServiceUtil} to access the photo remote service.
 	 */
+
+	/**
+	 * Returns the caste local service.
+	 *
+	 * @return the caste local service
+	 */
+	public CasteLocalService getCasteLocalService() {
+		return casteLocalService;
+	}
+
+	/**
+	 * Sets the caste local service.
+	 *
+	 * @param casteLocalService the caste local service
+	 */
+	public void setCasteLocalService(CasteLocalService casteLocalService) {
+		this.casteLocalService = casteLocalService;
+	}
+
+	/**
+	 * Returns the caste persistence.
+	 *
+	 * @return the caste persistence
+	 */
+	public CastePersistence getCastePersistence() {
+		return castePersistence;
+	}
+
+	/**
+	 * Sets the caste persistence.
+	 *
+	 * @param castePersistence the caste persistence
+	 */
+	public void setCastePersistence(CastePersistence castePersistence) {
+		this.castePersistence = castePersistence;
+	}
+
+	/**
+	 * Returns the city local service.
+	 *
+	 * @return the city local service
+	 */
+	public CityLocalService getCityLocalService() {
+		return cityLocalService;
+	}
+
+	/**
+	 * Sets the city local service.
+	 *
+	 * @param cityLocalService the city local service
+	 */
+	public void setCityLocalService(CityLocalService cityLocalService) {
+		this.cityLocalService = cityLocalService;
+	}
+
+	/**
+	 * Returns the city persistence.
+	 *
+	 * @return the city persistence
+	 */
+	public CityPersistence getCityPersistence() {
+		return cityPersistence;
+	}
+
+	/**
+	 * Sets the city persistence.
+	 *
+	 * @param cityPersistence the city persistence
+	 */
+	public void setCityPersistence(CityPersistence cityPersistence) {
+		this.cityPersistence = cityPersistence;
+	}
 
 	/**
 	 * Returns the interaction local service.
@@ -346,6 +428,44 @@ public abstract class PhotoServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
+	 * Returns the profile key value local service.
+	 *
+	 * @return the profile key value local service
+	 */
+	public ProfileKeyValueLocalService getProfileKeyValueLocalService() {
+		return profileKeyValueLocalService;
+	}
+
+	/**
+	 * Sets the profile key value local service.
+	 *
+	 * @param profileKeyValueLocalService the profile key value local service
+	 */
+	public void setProfileKeyValueLocalService(
+		ProfileKeyValueLocalService profileKeyValueLocalService) {
+		this.profileKeyValueLocalService = profileKeyValueLocalService;
+	}
+
+	/**
+	 * Returns the profile key value persistence.
+	 *
+	 * @return the profile key value persistence
+	 */
+	public ProfileKeyValuePersistence getProfileKeyValuePersistence() {
+		return profileKeyValuePersistence;
+	}
+
+	/**
+	 * Sets the profile key value persistence.
+	 *
+	 * @param profileKeyValuePersistence the profile key value persistence
+	 */
+	public void setProfileKeyValuePersistence(
+		ProfileKeyValuePersistence profileKeyValuePersistence) {
+		this.profileKeyValuePersistence = profileKeyValuePersistence;
+	}
+
+	/**
 	 * Returns the profile temp local service.
 	 *
 	 * @return the profile temp local service
@@ -399,6 +519,80 @@ public abstract class PhotoServiceBaseImpl extends BaseServiceImpl
 	public void setProfileTempPersistence(
 		ProfileTempPersistence profileTempPersistence) {
 		this.profileTempPersistence = profileTempPersistence;
+	}
+
+	/**
+	 * Returns the religion local service.
+	 *
+	 * @return the religion local service
+	 */
+	public ReligionLocalService getReligionLocalService() {
+		return religionLocalService;
+	}
+
+	/**
+	 * Sets the religion local service.
+	 *
+	 * @param religionLocalService the religion local service
+	 */
+	public void setReligionLocalService(
+		ReligionLocalService religionLocalService) {
+		this.religionLocalService = religionLocalService;
+	}
+
+	/**
+	 * Returns the religion persistence.
+	 *
+	 * @return the religion persistence
+	 */
+	public ReligionPersistence getReligionPersistence() {
+		return religionPersistence;
+	}
+
+	/**
+	 * Sets the religion persistence.
+	 *
+	 * @param religionPersistence the religion persistence
+	 */
+	public void setReligionPersistence(ReligionPersistence religionPersistence) {
+		this.religionPersistence = religionPersistence;
+	}
+
+	/**
+	 * Returns the sub caste local service.
+	 *
+	 * @return the sub caste local service
+	 */
+	public SubCasteLocalService getSubCasteLocalService() {
+		return subCasteLocalService;
+	}
+
+	/**
+	 * Sets the sub caste local service.
+	 *
+	 * @param subCasteLocalService the sub caste local service
+	 */
+	public void setSubCasteLocalService(
+		SubCasteLocalService subCasteLocalService) {
+		this.subCasteLocalService = subCasteLocalService;
+	}
+
+	/**
+	 * Returns the sub caste persistence.
+	 *
+	 * @return the sub caste persistence
+	 */
+	public SubCastePersistence getSubCastePersistence() {
+		return subCastePersistence;
+	}
+
+	/**
+	 * Sets the sub caste persistence.
+	 *
+	 * @param subCastePersistence the sub caste persistence
+	 */
+	public void setSubCastePersistence(SubCastePersistence subCastePersistence) {
+		this.subCastePersistence = subCastePersistence;
 	}
 
 	/**
@@ -584,6 +778,14 @@ public abstract class PhotoServiceBaseImpl extends BaseServiceImpl
 		}
 	}
 
+	@BeanReference(type = CasteLocalService.class)
+	protected CasteLocalService casteLocalService;
+	@BeanReference(type = CastePersistence.class)
+	protected CastePersistence castePersistence;
+	@BeanReference(type = CityLocalService.class)
+	protected CityLocalService cityLocalService;
+	@BeanReference(type = CityPersistence.class)
+	protected CityPersistence cityPersistence;
 	@BeanReference(type = InteractionLocalService.class)
 	protected InteractionLocalService interactionLocalService;
 	@BeanReference(type = InteractionService.class)
@@ -614,12 +816,24 @@ public abstract class PhotoServiceBaseImpl extends BaseServiceImpl
 	protected ProfileService profileService;
 	@BeanReference(type = ProfilePersistence.class)
 	protected ProfilePersistence profilePersistence;
+	@BeanReference(type = ProfileKeyValueLocalService.class)
+	protected ProfileKeyValueLocalService profileKeyValueLocalService;
+	@BeanReference(type = ProfileKeyValuePersistence.class)
+	protected ProfileKeyValuePersistence profileKeyValuePersistence;
 	@BeanReference(type = ProfileTempLocalService.class)
 	protected ProfileTempLocalService profileTempLocalService;
 	@BeanReference(type = ProfileTempService.class)
 	protected ProfileTempService profileTempService;
 	@BeanReference(type = ProfileTempPersistence.class)
 	protected ProfileTempPersistence profileTempPersistence;
+	@BeanReference(type = ReligionLocalService.class)
+	protected ReligionLocalService religionLocalService;
+	@BeanReference(type = ReligionPersistence.class)
+	protected ReligionPersistence religionPersistence;
+	@BeanReference(type = SubCasteLocalService.class)
+	protected SubCasteLocalService subCasteLocalService;
+	@BeanReference(type = SubCastePersistence.class)
+	protected SubCastePersistence subCastePersistence;
 	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)

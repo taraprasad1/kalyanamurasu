@@ -397,7 +397,6 @@ public class ProfilePersistenceImpl extends BasePersistenceImpl<Profile>
 		profileImpl.setWeight(profile.getWeight());
 		profileImpl.setComplexion(profile.getComplexion());
 		profileImpl.setMotherTongue(profile.getMotherTongue());
-		profileImpl.setLanguageKnown(profile.getLanguageKnown());
 		profileImpl.setMaritalStatus(profile.getMaritalStatus());
 		profileImpl.setChildren(profile.getChildren());
 		profileImpl.setCountry(profile.getCountry());
@@ -412,7 +411,6 @@ public class ProfilePersistenceImpl extends BasePersistenceImpl<Profile>
 		profileImpl.setProfession(profile.getProfession());
 		profileImpl.setCurrency(profile.getCurrency());
 		profileImpl.setAnnualIncome(profile.getAnnualIncome());
-		profileImpl.setHobbies(profile.getHobbies());
 		profileImpl.setAboutMe(profile.getAboutMe());
 		profileImpl.setFamilyValue(profile.getFamilyValue());
 		profileImpl.setFamilyType(profile.getFamilyType());
@@ -1608,6 +1606,10 @@ public class ProfilePersistenceImpl extends BasePersistenceImpl<Profile>
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@BeanReference(type = CastePersistence.class)
+	protected CastePersistence castePersistence;
+	@BeanReference(type = CityPersistence.class)
+	protected CityPersistence cityPersistence;
 	@BeanReference(type = InteractionPersistence.class)
 	protected InteractionPersistence interactionPersistence;
 	@BeanReference(type = KeyPersistence.class)
@@ -1618,8 +1620,14 @@ public class ProfilePersistenceImpl extends BasePersistenceImpl<Profile>
 	protected PhotoPersistence photoPersistence;
 	@BeanReference(type = ProfilePersistence.class)
 	protected ProfilePersistence profilePersistence;
+	@BeanReference(type = ProfileKeyValuePersistence.class)
+	protected ProfileKeyValuePersistence profileKeyValuePersistence;
 	@BeanReference(type = ProfileTempPersistence.class)
 	protected ProfileTempPersistence profileTempPersistence;
+	@BeanReference(type = ReligionPersistence.class)
+	protected ReligionPersistence religionPersistence;
+	@BeanReference(type = SubCastePersistence.class)
+	protected SubCastePersistence subCastePersistence;
 	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
