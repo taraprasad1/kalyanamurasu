@@ -1,3 +1,16 @@
+create table city (
+	cityId LONG not null primary key IDENTITY,
+	regionId LONG,
+	cityName VARCHAR(75) null,
+	status BOOLEAN
+);
+
+create table matrimony_caste (
+	casteId LONG not null primary key,
+	religionId LONG,
+	name VARCHAR(75) null
+);
+
 create table matrimony_key (
 	keyId LONG not null primary key IDENTITY,
 	name VARCHAR(75) null
@@ -35,7 +48,6 @@ create table matrimony_profile (
 	weight VARCHAR(75) null,
 	complexion VARCHAR(75) null,
 	motherTongue VARCHAR(75) null,
-	languageKnown VARCHAR(75) null,
 	maritalStatus VARCHAR(75) null,
 	children INTEGER,
 	country VARCHAR(75) null,
@@ -50,7 +62,6 @@ create table matrimony_profile (
 	profession VARCHAR(75) null,
 	currency_ VARCHAR(75) null,
 	annualIncome VARCHAR(75) null,
-	hobbies VARCHAR(75) null,
 	aboutMe VARCHAR(75) null,
 	familyValue VARCHAR(75) null,
 	familyType VARCHAR(75) null,
@@ -95,6 +106,13 @@ create table matrimony_profile_interaction (
 	capturedInFemaleReport INTEGER
 );
 
+create table matrimony_profile_key (
+	profileId LONG not null,
+	keyId LONG not null,
+	valueId LONG not null,
+	primary key (profileId, keyId, valueId)
+);
+
 create table matrimony_profile_temp (
 	profileTempId LONG not null primary key IDENTITY,
 	profileId LONG,
@@ -106,4 +124,15 @@ create table matrimony_profile_temp (
 	emailAddress VARCHAR(75) null,
 	aboutMe VARCHAR(75) null,
 	scheme INTEGER
+);
+
+create table matrimony_religion (
+	religionId LONG not null primary key,
+	name VARCHAR(75) null
+);
+
+create table matrimony_subcaste (
+	subCasteId LONG not null primary key,
+	casteId LONG,
+	name VARCHAR(75) null
 );
