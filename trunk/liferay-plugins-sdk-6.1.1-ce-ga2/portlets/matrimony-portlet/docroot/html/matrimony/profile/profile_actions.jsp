@@ -7,7 +7,7 @@
 	<liferay-ui:icon image="view" message="View Profile" url="<%= viewURL %>"/>
 	
 	<portlet:renderURL var="editURL">
-		<portlet:param name="jspPage" value="/html/matrimony/profile/edit_profile.jsp" />
+		<portlet:param name="<%= KeyValueConstants.ACTION %>" value="<%= ProfileConstants.PROFILE_VIEW_EDIT_PAGE %>"/>
 		<portlet:param name="profileId" value="<%= String.valueOf(aProfile.getProfileId()) %>" />
 	</portlet:renderURL>
 	<liferay-ui:icon image="edit" message="Edit Profile" url="<%= editURL %>" />

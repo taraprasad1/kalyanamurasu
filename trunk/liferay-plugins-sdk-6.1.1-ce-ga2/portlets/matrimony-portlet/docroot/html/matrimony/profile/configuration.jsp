@@ -1,5 +1,15 @@
 <%@ include file="/html/matrimony/profile/init.jsp" %>
 
+<%
+	PortletPreferences preferences = renderRequest.getPreferences();
+	String portletResource = ParamUtil.getString(request, "portletResource");
+	
+	if(Validator.isNotNull(portletResource)) {
+		preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+	}
+	String listView = preferences.getValue("listView", "table");
+%>
+
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" ></liferay-portlet:actionURL>
 <aui:form name="configurationForm" method="post" action="<%= configurationURL %>"> 
 	List View

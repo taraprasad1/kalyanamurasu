@@ -1,17 +1,19 @@
 <%@include file="/html/matrimony/profile/init.jsp" %>
+<script type="text/javascript" src="/matrimony-portlet/js/jquery.min.js"></script>
 <%
 	long profileId = ParamUtil.getLong(request, "profileId");
 	Profile profile = new ProfileImpl();
-	PortletURL updateAccountURL = renderResponse.createActionURL();
-	updateAccountURL.setParameter(ActionRequest.ACTION_NAME, "updateAccount");
 	
 	if(Validator.isNotNull(profileId)) {
 		profile = ProfileLocalServiceUtil.getProfile(profileId);
-	}	
+	}
 %>
+<portlet:actionURL var="updateAccountURL" >
+	<portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="updateAccount" />
+</portlet:actionURL>
 <portlet:renderURL var="cancelURL"/>
 <div id="profilePortlet">
-	<aui:form name="fm" method="post" action="<%= updateAccountURL.toString() %>">
+	<aui:form name="fm" method="post" action="<%= updateAccountURL %>">
 		<aui:model-context bean="<%= profile %>" model="<%= Profile.class %>" />
 		<aui:input type="hidden" name="profileId" label="name"/>
 		<liferay-ui:panel-container id="panel-container-1" extended="true" accordion="true" >
@@ -43,7 +45,7 @@
 	#profilePortlet .selectBoxStyle {
 	    float: none;
 	    width: 164px;
-	    height: 23px;
+	    height: auto;
 	}
 	
 	#profilePortlet .radioButtonStyle {

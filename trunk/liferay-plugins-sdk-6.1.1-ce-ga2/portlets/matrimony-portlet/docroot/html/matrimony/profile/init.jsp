@@ -1,7 +1,5 @@
+<%@page import="com.matrimony.constant.ProfileConstants"%>
 <%@include file="/html/matrimony/init.jsp" %>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
 <%@page import="javax.portlet.PortletPreferences"%>
 <%@ page import="javax.portlet.ActionRequest" %>
@@ -25,13 +23,4 @@
 <%@page import="com.matrimony.InvalidImageTypeException"%>
 <%@page import="com.matrimony.service.PhotoLocalServiceUtil"%>
 <%@page import="com.matrimony.model.Photo"%>
-
-<%
-	PortletPreferences preferences = renderRequest.getPreferences();
-	String portletResource = ParamUtil.getString(request, "portletResource");
-	
-	if(Validator.isNotNull(portletResource)) {
-		preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
-	}
-	String listView = preferences.getValue("listView", "table");
-%>
+<%@page import="com.liferay.portal.kernel.util.StringPool"%>
