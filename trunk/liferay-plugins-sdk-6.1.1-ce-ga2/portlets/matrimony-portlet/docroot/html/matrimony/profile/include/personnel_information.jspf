@@ -1,4 +1,6 @@
-<% List<Religion> religionList = ReligionLocalServiceUtil.getReligions(-1, -1);%>
+<% 
+	List<Religion> religionList = ReligionLocalServiceUtil.getReligions(-1, -1);
+%>
 <portlet:resourceURL var="religionChangeURL">
 	<portlet:param name="action" value="populateCaste" />
 </portlet:resourceURL>

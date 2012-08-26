@@ -17,6 +17,7 @@ import com.liferay.portal.kernel.image.ImageBag;
 import com.liferay.portal.kernel.image.ImageToolUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
@@ -81,8 +82,10 @@ public class ProfilePortlet extends MatrimonyController {
 		profile.setModifiedDate(new Date());
 		profile = getAssetFromForm(profile, actionRequest);
 		if(Validator.isNotNull(profileId)){
-			 try {
-				ProfileLocalServiceUtil.updateProfile(profile);
+			try {
+				ProfileLocalServiceUtil.updateProfileObj(profile);
+			} catch (SearchException e) {
+				e.printStackTrace();
 			} catch (SystemException e) {
 				e.printStackTrace();
 			}

@@ -4,6 +4,7 @@ public interface ProfileConstants {
 	String PROFILE_ID = "profileId";
 	String PROFILE_CODE = "profileCode";
 	String PROFILE_RASI = "rasi";
+	String PROFILE_STATUS = "status";
 	String PROFILE_DOSAM = "dosam";
 	String PROFILE_STAR = "star";
 	String PROFILE_CREATED_FOR_MY = "createdForMy";
@@ -24,4 +25,10 @@ public interface ProfileConstants {
 	String PROFILE_VIEW_EDIT_PAGE = "viewEditPage";
 	String PROFILE_EDIT_PAGE_URL = "/html/matrimony/profile/edit_profile.jsp";
 	String PROFILE_LIST_PAGE_URL = "/html/matrimony/profile/list_profile.jsp";
+	String PROFILE_COUNTRY = "country";
+	String PROFILE_STATE = "state";
+	String PROFILE_CITY = "city";
+	String PROFILE_RELIGION = "religion";
+	String PROFILE_CASTE = "caste";
+	String PROFILE_SUB_CASTE = "subCaste";
 }

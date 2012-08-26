@@ -109,6 +109,28 @@ public class ProfileLocalServiceClp implements ProfileLocalService {
 		_methodName19 = "createProfileObj";
 
 		_methodParameterTypes19 = new String[] {  };
+
+		_methodName20 = "addProfileObj";
+
+		_methodParameterTypes20 = new String[] { "com.matrimony.model.Profile" };
+
+		_methodName21 = "updateProfileObj";
+
+		_methodParameterTypes21 = new String[] { "com.matrimony.model.Profile" };
+
+		_methodName22 = "deleteProfileObj";
+
+		_methodParameterTypes22 = new String[] { "com.matrimony.model.Profile" };
+
+		_methodName23 = "getProfileListByIndexer";
+
+		_methodParameterTypes23 = new String[] { "long", "long" };
+
+		_methodName24 = "convertHitsToProfile";
+
+		_methodParameterTypes24 = new String[] {
+				"com.liferay.portal.kernel.search.Hits"
+			};
 	}
 
 	public com.matrimony.model.Profile addProfile(
@@ -654,6 +676,155 @@ public class ProfileLocalServiceClp implements ProfileLocalService {
 		return (com.matrimony.model.Profile)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.matrimony.model.Profile addProfileObj(
+		com.matrimony.model.Profile profile)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.SearchException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
+					new Object[] { ClpSerializer.translateInput(profile) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.search.SearchException) {
+				throw (com.liferay.portal.kernel.search.SearchException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.matrimony.model.Profile)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.matrimony.model.Profile updateProfileObj(
+		com.matrimony.model.Profile profile)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.SearchException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
+					new Object[] { ClpSerializer.translateInput(profile) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.search.SearchException) {
+				throw (com.liferay.portal.kernel.search.SearchException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.matrimony.model.Profile)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.lang.Boolean deleteProfileObj(
+		com.matrimony.model.Profile profile)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
+					new Object[] { ClpSerializer.translateInput(profile) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.Boolean)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<com.matrimony.model.Profile> getProfileListByIndexer(
+		long companyId, long groupId) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23, new Object[] { companyId, groupId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.matrimony.model.Profile>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<com.matrimony.model.Profile> convertHitsToProfile(
+		com.liferay.portal.kernel.search.Hits hits) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
+					new Object[] { ClpSerializer.translateInput(hits) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.matrimony.model.Profile>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -693,4 +864,14 @@ public class ProfileLocalServiceClp implements ProfileLocalService {
 	private String[] _methodParameterTypes17;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
+	private String _methodName20;
+	private String[] _methodParameterTypes20;
+	private String _methodName21;
+	private String[] _methodParameterTypes21;
+	private String _methodName22;
+	private String[] _methodParameterTypes22;
+	private String _methodName23;
+	private String[] _methodParameterTypes23;
+	private String _methodName24;
+	private String[] _methodParameterTypes24;
 }

@@ -5,4 +5,5 @@ public interface MatrimonyPropsKeys {
 	String IMAGE_SIZE = "matrimony.image.max.size";
 	String IMAGE_HEIGHT= "matrimony.image.max.height";
 	String IMAGE_WIDTH = "matrimony.image.max.width";
+	String PROFILE_PORTLET_ID = "matrimony.profile.portlet.id";
 }
