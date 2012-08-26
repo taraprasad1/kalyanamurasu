@@ -117,6 +117,10 @@ public class KeyValueLocalServiceClp implements KeyValueLocalService {
 		_methodName21 = "addValue";
 
 		_methodParameterTypes21 = new String[] { "java.lang.String", "long" };
+
+		_methodName22 = "getKeyValueList";
+
+		_methodParameterTypes22 = new String[] { "java.lang.String" };
 	}
 
 	public com.matrimony.model.KeyValue addKeyValue(
@@ -716,6 +720,30 @@ public class KeyValueLocalServiceClp implements KeyValueLocalService {
 		return (com.matrimony.model.KeyValue)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.util.List<java.lang.String> getKeyValueList(
+		java.lang.String keyName) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
+					new Object[] { ClpSerializer.translateInput(keyName) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<java.lang.String>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -759,4 +787,6 @@ public class KeyValueLocalServiceClp implements KeyValueLocalService {
 	private String[] _methodParameterTypes20;
 	private String _methodName21;
 	private String[] _methodParameterTypes21;
+	private String _methodName22;
+	private String[] _methodParameterTypes22;
 }

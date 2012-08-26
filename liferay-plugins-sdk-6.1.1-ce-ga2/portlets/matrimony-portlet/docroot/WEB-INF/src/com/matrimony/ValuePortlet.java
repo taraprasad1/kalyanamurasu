@@ -82,12 +82,13 @@ public class ValuePortlet extends MatrimonyController {
 					Key key = null;
 					try {
 						key = KeyLocalServiceUtil.getKey(keyId);
-						if(Validator.isNotNull(key)){
-							keyValue = KeyValueLocalServiceUtil.valueNameSearch(
-								name, keyId);
+						if (Validator.isNotNull(key)) {
+							keyValue = KeyValueLocalServiceUtil
+									.valueNameSearch(name, keyId);
 						}
 					} catch (Exception e) {
-						jsonObject.put(KeyValueConstants.VALID_KEY_VALUE, false);
+						jsonObject
+								.put(KeyValueConstants.VALID_KEY_VALUE, false);
 						LOGGER.error(KeyValueConstants.ERROR_FETCHING_KEY_VALUE
 								+ e.getMessage());
 					}

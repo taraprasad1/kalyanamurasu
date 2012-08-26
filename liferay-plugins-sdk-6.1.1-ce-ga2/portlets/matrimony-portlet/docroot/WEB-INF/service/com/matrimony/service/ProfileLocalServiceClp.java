@@ -126,11 +126,9 @@ public class ProfileLocalServiceClp implements ProfileLocalService {
 
 		_methodParameterTypes23 = new String[] { "long", "long" };
 
-		_methodName24 = "convertHitsToProfile";
+		_methodName24 = "createProfileCode";
 
-		_methodParameterTypes24 = new String[] {
-				"com.liferay.portal.kernel.search.Hits"
-			};
+		_methodParameterTypes24 = new String[] { "com.matrimony.model.Profile" };
 	}
 
 	public com.matrimony.model.Profile addProfile(
@@ -801,14 +799,14 @@ public class ProfileLocalServiceClp implements ProfileLocalService {
 		return (java.util.List<com.matrimony.model.Profile>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.matrimony.model.Profile> convertHitsToProfile(
-		com.liferay.portal.kernel.search.Hits hits) {
+	public java.lang.String createProfileCode(
+		com.matrimony.model.Profile profile) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName24,
 					_methodParameterTypes24,
-					new Object[] { ClpSerializer.translateInput(hits) });
+					new Object[] { ClpSerializer.translateInput(profile) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -822,7 +820,7 @@ public class ProfileLocalServiceClp implements ProfileLocalService {
 			}
 		}
 
-		return (java.util.List<com.matrimony.model.Profile>)ClpSerializer.translateOutput(returnObj);
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	private InvokableLocalService _invokableLocalService;

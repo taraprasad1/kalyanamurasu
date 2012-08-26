@@ -263,6 +263,6 @@ public interface ProfileLocalService extends BaseLocalService,
 	public java.util.List<com.matrimony.model.Profile> getProfileListByIndexer(
 		long companyId, long groupId);
 
-	public java.util.List<com.matrimony.model.Profile> convertHitsToProfile(
-		com.liferay.portal.kernel.search.Hits hits);
+	public java.lang.String createProfileCode(
+		com.matrimony.model.Profile profile);
 }

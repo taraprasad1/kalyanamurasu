@@ -15,16 +15,15 @@
 package com.matrimony.service.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-import javax.portlet.RenderRequest;
-
+import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
-import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.ParseException;
@@ -32,16 +31,13 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.matrimony.constant.ProfileConstants;
 import com.matrimony.model.Profile;
 import com.matrimony.model.impl.ProfileImpl;
 import com.matrimony.service.base.ProfileLocalServiceBaseImpl;
 import com.matrimony.util.MatrimonyPropsValues;
 import com.matrimony.util.ProfileIndexer;
+import com.matrimony.util.ProfileUtil;
 
 /**
  * The implementation of the profile local service.
@@ -63,11 +59,16 @@ import com.matrimony.util.ProfileIndexer;
  */
 public class ProfileLocalServiceImpl extends ProfileLocalServiceBaseImpl {
 
+	private static final String FEMALE = "F";
+	private static final String MALE = "M";
+	private static final String MA = "MA";
+
 	public Profile createProfileObj(){
 		return new ProfileImpl();
 	}
 	
 	public Profile addProfileObj(Profile profile) throws SystemException, SearchException{
+		profile.setProfileCode(createProfileCode(profile));
 		profile = profileLocalService.addProfile(profile);
 		ProfileIndexer profileIndexer = new ProfileIndexer();
 		profileIndexer.addProfile(profile);
@@ -105,7 +106,7 @@ public class ProfileLocalServiceImpl extends ProfileLocalServiceBaseImpl {
 			Sort sort = new Sort(Field.MODIFIED_DATE, true);
 			searchContext.setSorts(new Sort[] { sort });
 			Hits hits = SearchEngineUtil.search(searchContext, fullQuery);
-			profileList = convertHitsToProfile(hits);
+			profileList = ProfileUtil.convertHitsToProfile(hits);
 		} catch (SearchException e) {
 			
 		} catch (ParseException e) {
@@ -114,30 +115,36 @@ public class ProfileLocalServiceImpl extends ProfileLocalServiceBaseImpl {
 		return profileList;
 	}
 	
-	public List<Profile> convertHitsToProfile(Hits hits) {
-		List<Profile> profileList = new ArrayList<Profile>();
-		if (hits != null && hits.getLength() > 0) {
-			for (Document document : hits.getDocs()) {
-				Profile profile = new ProfileImpl();
-				if(Validator.isNotNull(document.get(Field.COMPANY_ID))) {
-					profile.setCompanyId(Long.parseLong(document.get(Field.COMPANY_ID)));
-				}
-				if(Validator.isNotNull(document.get(Field.GROUP_ID))) {
-					profile.setGroupId(Long.parseLong(document.get(Field.GROUP_ID)));
-				}
-				if(Validator.isNotNull(document.get(Field.TITLE))) {
-					profile.setProfileCode(document.get(Field.TITLE));
-				}
-				if(Validator.isNotNull(document.get(Field.CLASS_PK))) {
-					profile.setProfileId(Long.parseLong(document.get(Field.CLASS_PK)));
-				}
-				profile.setCountry(document.get(ProfileConstants.PROFILE_COUNTRY));
-				profile.setState(ProfileConstants.PROFILE_STATE);
-				profile.setCity(ProfileConstants.PROFILE_CITY);
-				profile.setReligion(ProfileConstants.PROFILE_RELIGION);
-				profileList.add(profile);
-			}
+	public String createProfileCode(Profile profile) {
+		String idCode = MA;
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH) + 1;
+		int date = cal.get(Calendar.DATE);
+		boolean male = profile.getGender();
+		StringBuilder profileCode = new StringBuilder();	
+		if(male){
+			profileCode.append(MALE);
+		} else {
+			profileCode.append(FEMALE);
 		}
-		return profileList;
+		long autoId = 0l;
+		try {
+			autoId = CounterLocalServiceUtil.increment(Profile.class.getName());
+		} catch (SystemException e) {
+			e.printStackTrace();
+		}
+		
+		profileCode.append(autoId);
+		profileCode.append(idCode);
+		String profileName = profile.getName();
+		if (Validator.isNotNull(profileName) && profileName.length() >= 2) {
+			profileName = profileName.substring(0, 2).toUpperCase();
+		}
+		profileCode.append(year);
+		profileCode.append(month);
+		profileCode.append(date);
+		profileCode.append(profileName);
+		return profileCode.toString();
 	}
 }

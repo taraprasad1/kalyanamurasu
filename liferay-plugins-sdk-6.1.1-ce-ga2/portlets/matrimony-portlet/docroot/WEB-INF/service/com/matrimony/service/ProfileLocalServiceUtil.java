@@ -299,9 +299,9 @@ public class ProfileLocalServiceUtil {
 		return getService().getProfileListByIndexer(companyId, groupId);
 	}
 
-	public static java.util.List<com.matrimony.model.Profile> convertHitsToProfile(
-		com.liferay.portal.kernel.search.Hits hits) {
-		return getService().convertHitsToProfile(hits);
+	public static java.lang.String createProfileCode(
+		com.matrimony.model.Profile profile) {
+		return getService().createProfileCode(profile);
 	}
 
 	public static void clearService() {

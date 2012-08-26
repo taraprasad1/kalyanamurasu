@@ -117,6 +117,10 @@ public class KeyValueLocalServiceClpInvoker {
 		_methodName96 = "addValue";
 
 		_methodParameterTypes96 = new String[] { "java.lang.String", "long" };
+
+		_methodName97 = "getKeyValueList";
+
+		_methodParameterTypes97 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -235,6 +239,11 @@ public class KeyValueLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue());
 		}
 
+		if (_methodName97.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes97, parameterTypes)) {
+			return KeyValueLocalServiceUtil.getKeyValueList((java.lang.String)arguments[0]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -280,4 +289,6 @@ public class KeyValueLocalServiceClpInvoker {
 	private String[] _methodParameterTypes95;
 	private String _methodName96;
 	private String[] _methodParameterTypes96;
+	private String _methodName97;
+	private String[] _methodParameterTypes97;
 }

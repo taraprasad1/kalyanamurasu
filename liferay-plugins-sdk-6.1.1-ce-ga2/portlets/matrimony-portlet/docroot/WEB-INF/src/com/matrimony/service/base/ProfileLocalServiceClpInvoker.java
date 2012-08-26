@@ -126,11 +126,9 @@ public class ProfileLocalServiceClpInvoker {
 
 		_methodParameterTypes98 = new String[] { "long", "long" };
 
-		_methodName99 = "convertHitsToProfile";
+		_methodName99 = "createProfileCode";
 
-		_methodParameterTypes99 = new String[] {
-				"com.liferay.portal.kernel.search.Hits"
-			};
+		_methodParameterTypes99 = new String[] { "com.matrimony.model.Profile" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -260,7 +258,7 @@ public class ProfileLocalServiceClpInvoker {
 
 		if (_methodName99.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes99, parameterTypes)) {
-			return ProfileLocalServiceUtil.convertHitsToProfile((com.liferay.portal.kernel.search.Hits)arguments[0]);
+			return ProfileLocalServiceUtil.createProfileCode((com.matrimony.model.Profile)arguments[0]);
 		}
 
 		throw new UnsupportedOperationException();

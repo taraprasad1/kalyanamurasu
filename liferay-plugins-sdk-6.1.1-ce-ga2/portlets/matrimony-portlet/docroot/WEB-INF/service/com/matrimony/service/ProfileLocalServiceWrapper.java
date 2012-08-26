@@ -291,9 +291,9 @@ public class ProfileLocalServiceWrapper implements ProfileLocalService,
 		return _profileLocalService.getProfileListByIndexer(companyId, groupId);
 	}
 
-	public java.util.List<com.matrimony.model.Profile> convertHitsToProfile(
-		com.liferay.portal.kernel.search.Hits hits) {
-		return _profileLocalService.convertHitsToProfile(hits);
+	public java.lang.String createProfileCode(
+		com.matrimony.model.Profile profile) {
+		return _profileLocalService.createProfileCode(profile);
 	}
 
 	/**
