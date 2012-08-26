@@ -265,6 +265,37 @@ public class ProfileLocalServiceWrapper implements ProfileLocalService,
 		return _profileLocalService.createProfileObj();
 	}
 
+	public com.matrimony.model.Profile addProfileObj(
+		com.matrimony.model.Profile profile)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.SearchException {
+		return _profileLocalService.addProfileObj(profile);
+	}
+
+	public com.matrimony.model.Profile updateProfileObj(
+		com.matrimony.model.Profile profile)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.SearchException {
+		return _profileLocalService.updateProfileObj(profile);
+	}
+
+	public java.lang.Boolean deleteProfileObj(
+		com.matrimony.model.Profile profile)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _profileLocalService.deleteProfileObj(profile);
+	}
+
+	public java.util.List<com.matrimony.model.Profile> getProfileListByIndexer(
+		long companyId, long groupId) {
+		return _profileLocalService.getProfileListByIndexer(companyId, groupId);
+	}
+
+	public java.util.List<com.matrimony.model.Profile> convertHitsToProfile(
+		com.liferay.portal.kernel.search.Hits hits) {
+		return _profileLocalService.convertHitsToProfile(hits);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

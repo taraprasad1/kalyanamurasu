@@ -25,3 +25,4 @@
 
 <portlet:defineObjects />
 <theme:defineObjects />
+

@@ -273,6 +273,37 @@ public class ProfileLocalServiceUtil {
 		return getService().createProfileObj();
 	}
 
+	public static com.matrimony.model.Profile addProfileObj(
+		com.matrimony.model.Profile profile)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.SearchException {
+		return getService().addProfileObj(profile);
+	}
+
+	public static com.matrimony.model.Profile updateProfileObj(
+		com.matrimony.model.Profile profile)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.SearchException {
+		return getService().updateProfileObj(profile);
+	}
+
+	public static java.lang.Boolean deleteProfileObj(
+		com.matrimony.model.Profile profile)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().deleteProfileObj(profile);
+	}
+
+	public static java.util.List<com.matrimony.model.Profile> getProfileListByIndexer(
+		long companyId, long groupId) {
+		return getService().getProfileListByIndexer(companyId, groupId);
+	}
+
+	public static java.util.List<com.matrimony.model.Profile> convertHitsToProfile(
+		com.liferay.portal.kernel.search.Hits hits) {
+		return getService().convertHitsToProfile(hits);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

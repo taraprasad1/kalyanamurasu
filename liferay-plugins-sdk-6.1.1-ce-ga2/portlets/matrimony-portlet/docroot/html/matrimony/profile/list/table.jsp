@@ -1,11 +1,10 @@
 <liferay-util:include page="/html/matrimony/profile/toolbar.jsp" servletContext="<%= getServletContext() %>">
 	<liferay-util:param name="toolbarItem" value="view-all" />
 </liferay-util:include>
-
 <liferay-ui:search-container>
 	<liferay-ui:search-container-results
-		results="<%= com.matrimony.service.ProfileLocalServiceUtil.getProfiles(searchContainer.getStart(), searchContainer.getEnd()) %>"
-		total="<%= ProfileLocalServiceUtil.getProfilesCount() %>"
+		results="<%= profileList %>"
+		total="<%= profileList.size() %>"
 	/>
 
 	<liferay-ui:search-container-row

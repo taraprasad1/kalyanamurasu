@@ -8,4 +8,5 @@ public class MatrimonyPropsValues {
 	public static int IMAGE_SIZE = Integer.parseInt(PortletProps.get(MatrimonyPropsKeys.IMAGE_SIZE));
 	public static int IMAGE_HEIGHT = Integer.parseInt(PortletProps.get(MatrimonyPropsKeys.IMAGE_HEIGHT));
 	public static int IMAGE_WIDTH = Integer.parseInt(PortletProps.get(MatrimonyPropsKeys.IMAGE_WIDTH));
+	public static String PROFILE_PORTLET_ID = PortletProps.get(MatrimonyPropsKeys.PROFILE_PORTLET_ID);
 }

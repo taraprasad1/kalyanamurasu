@@ -109,6 +109,28 @@ public class ProfileLocalServiceClpInvoker {
 		_methodName94 = "createProfileObj";
 
 		_methodParameterTypes94 = new String[] {  };
+
+		_methodName95 = "addProfileObj";
+
+		_methodParameterTypes95 = new String[] { "com.matrimony.model.Profile" };
+
+		_methodName96 = "updateProfileObj";
+
+		_methodParameterTypes96 = new String[] { "com.matrimony.model.Profile" };
+
+		_methodName97 = "deleteProfileObj";
+
+		_methodParameterTypes97 = new String[] { "com.matrimony.model.Profile" };
+
+		_methodName98 = "getProfileListByIndexer";
+
+		_methodParameterTypes98 = new String[] { "long", "long" };
+
+		_methodName99 = "convertHitsToProfile";
+
+		_methodParameterTypes99 = new String[] {
+				"com.liferay.portal.kernel.search.Hits"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -215,6 +237,32 @@ public class ProfileLocalServiceClpInvoker {
 			return ProfileLocalServiceUtil.createProfileObj();
 		}
 
+		if (_methodName95.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes95, parameterTypes)) {
+			return ProfileLocalServiceUtil.addProfileObj((com.matrimony.model.Profile)arguments[0]);
+		}
+
+		if (_methodName96.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes96, parameterTypes)) {
+			return ProfileLocalServiceUtil.updateProfileObj((com.matrimony.model.Profile)arguments[0]);
+		}
+
+		if (_methodName97.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes97, parameterTypes)) {
+			return ProfileLocalServiceUtil.deleteProfileObj((com.matrimony.model.Profile)arguments[0]);
+		}
+
+		if (_methodName98.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes98, parameterTypes)) {
+			return ProfileLocalServiceUtil.getProfileListByIndexer(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName99.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes99, parameterTypes)) {
+			return ProfileLocalServiceUtil.convertHitsToProfile((com.liferay.portal.kernel.search.Hits)arguments[0]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -256,4 +304,14 @@ public class ProfileLocalServiceClpInvoker {
 	private String[] _methodParameterTypes89;
 	private String _methodName94;
 	private String[] _methodParameterTypes94;
+	private String _methodName95;
+	private String[] _methodParameterTypes95;
+	private String _methodName96;
+	private String[] _methodParameterTypes96;
+	private String _methodName97;
+	private String[] _methodParameterTypes97;
+	private String _methodName98;
+	private String[] _methodParameterTypes98;
+	private String _methodName99;
+	private String[] _methodParameterTypes99;
 }

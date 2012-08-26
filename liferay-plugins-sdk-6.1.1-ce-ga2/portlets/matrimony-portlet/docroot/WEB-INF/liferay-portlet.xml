@@ -10,13 +10,15 @@
 	</portlet>
 	<portlet>
 		<portlet-name>profile</portlet-name>
-		<icon>/icon.png</icon>		
+		<icon>/icon.png</icon>
 		<configuration-action-class>com.matrimony.ConfigurationImpl</configuration-action-class>
+		<indexer-class>com.matrimony.util.ProfileIndexer</indexer-class>
 		<action-url-redirect>true</action-url-redirect>
 		<instanceable>false</instanceable>		
 		<header-portlet-css>/css/main.css</header-portlet-css>		
 		<footer-portlet-javascript>/js/jquery.min.js</footer-portlet-javascript>
 		<css-class-wrapper>profile-portlet</css-class-wrapper>
+		
 	</portlet>
 	<portlet>
 		<portlet-name>key</portlet-name>
