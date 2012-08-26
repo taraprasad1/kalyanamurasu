@@ -279,6 +279,11 @@ public class KeyValueLocalServiceWrapper implements KeyValueLocalService,
 		return _keyValueLocalService.addValue(keyValue, keyId);
 	}
 
+	public java.util.List<java.lang.String> getKeyValueList(
+		java.lang.String keyName) {
+		return _keyValueLocalService.getKeyValueList(keyName);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

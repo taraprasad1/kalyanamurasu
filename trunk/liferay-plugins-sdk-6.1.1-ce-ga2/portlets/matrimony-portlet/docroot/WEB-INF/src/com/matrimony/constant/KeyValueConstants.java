@@ -2,7 +2,6 @@ package com.matrimony.constant;
 
 public interface KeyValueConstants {
 	String KEY_ID = "keyId";
-	
 	String KEY_VALUE_LIST = "KEY_VALUE_LIST";
 	String ACTION = "action";
 	String ERROR_FETCHING_KEY_VALUE = "Error While fetching KeyValue: ";

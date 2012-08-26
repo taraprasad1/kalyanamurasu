@@ -251,4 +251,8 @@ public interface KeyValueLocalService extends BaseLocalService,
 
 	public com.matrimony.model.KeyValue addValue(java.lang.String keyValue,
 		long keyId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<java.lang.String> getKeyValueList(
+		java.lang.String keyName);
 }

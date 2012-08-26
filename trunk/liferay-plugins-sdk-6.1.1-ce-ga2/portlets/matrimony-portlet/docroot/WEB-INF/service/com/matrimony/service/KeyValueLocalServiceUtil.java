@@ -284,6 +284,11 @@ public class KeyValueLocalServiceUtil {
 		return getService().addValue(keyValue, keyId);
 	}
 
+	public static java.util.List<java.lang.String> getKeyValueList(
+		java.lang.String keyName) {
+		return getService().getKeyValueList(keyName);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

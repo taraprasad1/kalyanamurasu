@@ -26,10 +26,9 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.Country;
 import com.liferay.portal.model.Region;
-import com.liferay.portal.service.CountryServiceUtil;
 import com.liferay.portal.service.RegionServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -42,70 +41,100 @@ import com.matrimony.model.Profile;
 import com.matrimony.model.SubCaste;
 import com.matrimony.service.CasteLocalServiceUtil;
 import com.matrimony.service.CityLocalServiceUtil;
+import com.matrimony.service.KeyValueLocalServiceUtil;
 import com.matrimony.service.PhotoLocalServiceUtil;
-import com.matrimony.service.ReligionLocalServiceUtil;
 import com.matrimony.service.SubCasteLocalServiceUtil;
 import com.matrimony.util.MatrimonyPropsValues;
-import com.matrimony.util.ProfileUtil;
 
 public class MatrimonyController extends MVCPortlet {
+
+	private static final String RELIGION_ID_EMPTY = "ReligionId Empty: ";
+
+	private static final String REGION_ID_EMPTY = "RegionId Empty: ";
+	private static final String COMPANY_ID_EMPTY = "CompanyId Empty: ";
+	private static final String ERROE_FETCHING_REGION_LIST = "Error While Fetching RegionList Using CountryId: ";
+	private static final String ERROE_FETCHING_CITY_LIST = "Error While Fetching CityList Using RegionId: ";
+	private static final String ERROE_FETCHING_CASTE_LIST = "Error While Fetching CasteList Using ReligionId: ";
+	private static final String ERROE_FETCHING_SUBCASTE_LIST = "Error While Fetching SubCasteList Using CasteId: ";
+	private static final String INSIDE_SERVE_RESOURCE_METHOD = "Inside ServeResource Method: ";
+	private static final String ERROR_PROCESSING_IMAGE = "Error while Processing Image For ImageId: ";
+
 	private static final Log LOGGER = LogFactoryUtil
 			.getLog(MatrimonyController.class);
 
 	public Profile getAssetFromForm(Profile profile, ActionRequest actionRequest) {
+
 		profile.setCreatedForMy(ParamUtil.getString(actionRequest,
-				"createdForMy"));
-		profile.setName(ParamUtil.getString(actionRequest, "name"));
-		String gender = ParamUtil.getString(actionRequest, "gender");
-		if (gender.equalsIgnoreCase("male")) {
-			profile.setGender(true);
+				ProfileConstants.PROFILE_CREATED_FOR_MY));
+		profile.setName(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_NAME));
+		String gender = ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_GENDER);
+		if (gender.equalsIgnoreCase(ProfileConstants.PROFILE_MALE)) {
+			profile.setGender(Boolean.TRUE);
 		} else {
-			profile.setGender(false);
+			profile.setGender(Boolean.FALSE);
 		}
-		profile.setRasi(ParamUtil.getString(actionRequest, "rasi"));
-		profile.setStar(ParamUtil.getString(actionRequest, "star"));
-		profile.setDosam(ParamUtil.getString(actionRequest, "dosam"));
-		profile.setReligion(ParamUtil.getString(actionRequest, "religion"));
-		profile.setCaste(ParamUtil.getString(actionRequest, "caste"));
-		profile.setSubCaste(ParamUtil.getString(actionRequest, "subCaste"));
-		profile.setHeight(ParamUtil.getString(actionRequest, "height"));
-		profile.setWeight(ParamUtil.getString(actionRequest, "weight"));
-		profile.setComplexion(ParamUtil.getString(actionRequest, "complexion"));
+		profile.setRasi(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_RASI));
+		profile.setStar(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_STAR));
+		profile.setDosam(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_DOSAM));
+		profile.setReligion(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_RELIGION));
+		profile.setCaste(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_CASTE));
+		profile.setSubCaste(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_SUB_CASTE));
+		profile.setHeight(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_HEIGHT));
+		profile.setWeight(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_WEIGHT));
+		profile.setComplexion(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_COMPLEXION));
 		profile.setMotherTongue(ParamUtil.getString(actionRequest,
-				"motherTongue"));
+				ProfileConstants.PROFILE_MOTHER_TONGUE));
 		profile.setLanguageKnown(ParamUtil.getString(actionRequest,
-				"languageKnown"));
+				ProfileConstants.PROFILE_LANGUAGE_KNOWN));
 		profile.setMaritalStatus(ParamUtil.getString(actionRequest,
-				"maritalStatus"));
-		profile.setChildren(ParamUtil.getInteger(actionRequest, "children"));
-		profile.setCountry(ParamUtil.getString(actionRequest, "country"));
-		profile.setState(ParamUtil.getString(actionRequest, "state"));
-		profile.setCity(ParamUtil.getString(actionRequest, "city"));
-		profile.setAddress(ParamUtil.getString(actionRequest, "address"));
-		profile.setPinCode(ParamUtil.getString(actionRequest, "pinCode"));
-		profile.setPhone(ParamUtil.getString(actionRequest, "phone"));
-		profile.setMobile(ParamUtil.getString(actionRequest, "mobile"));
+				ProfileConstants.PROFILE_MARITAL_STATUS));
+		profile.setChildren(ParamUtil.getInteger(actionRequest,
+				ProfileConstants.PROFILE_CHILDREN));
+		profile.setCountry(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_COUNTRY));
+		profile.setState(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_STATE));
+		profile.setCity(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_CITY));
+		profile.setAddress(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_ADDRESS));
+		profile.setPinCode(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_PIN_CODE));
+		profile.setPhone(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_PHONE));
+		profile.setMobile(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_MOBILE));
 		profile.setEmailAddress(ParamUtil.getString(actionRequest,
-				"emailAddress"));
-		profile.setEducation(ParamUtil.getString(actionRequest, "education"));
-		profile.setProfession(ParamUtil.getString(actionRequest, "profession"));
-		profile.setCurrency(ParamUtil.getString(actionRequest, "currency"));
+				ProfileConstants.PROFILE_EMAIL_ADDRESS));
+		profile.setEducation(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_EDUCATION));
+		profile.setProfession(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_PROFESSION));
+		profile.setCurrency(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_CURRENCY));
 		profile.setAnnualIncome(ParamUtil.getString(actionRequest,
-				"annualIncome"));
-		profile.setHobbies(ParamUtil.getString(actionRequest, "hobbies"));
-		profile.setAboutMe(ParamUtil.getString(actionRequest, "aboutMe"));
-		profile.setFamilyValue(ParamUtil
-				.getString(actionRequest, "familyValue"));
-		profile.setFamilyType(ParamUtil.getString(actionRequest, "familyType"));
+				ProfileConstants.PROFILE_ANNUAL_INCOME));
+		profile.setHobbies(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_HOBBIES));
+		profile.setAboutMe(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_ABOUT_ME));
+		profile.setFamilyValue(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_FAMILY_VALUE));
+		profile.setFamilyType(ParamUtil.getString(actionRequest,
+				ProfileConstants.PROFILE_FAMILY_TYPE));
 		profile.setFamilyStatus(ParamUtil.getString(actionRequest,
-				"familyStatus"));
-		profile.setSecurityCode(ParamUtil.getString(actionRequest,
-				"securityCode"));
-		profile.setPhotoSecurityCode(ParamUtil.getString(actionRequest,
-				"photoSecurityCode"));
-		profile.setStatus(ParamUtil.getInteger(actionRequest, "setStatus"));
-		profile.setScheme(ParamUtil.getInteger(actionRequest, "scheme"));
-		profile.setHoroscope(ParamUtil.getBoolean(actionRequest, "horoscope"));
+				ProfileConstants.PROFILE_FAMILY_STATUS));
 		profile.setBirthDateWithTime(getBirthDate(actionRequest));
 
 		return profile;
@@ -114,108 +143,155 @@ public class MatrimonyController extends MVCPortlet {
 	public void serveResource(ResourceRequest resourceRequest,
 			ResourceResponse resourceResponse) throws IOException,
 			PortletException {
-		System.out.println("Inside Serve Resource Method:");
-		String action = resourceRequest.getParameter("action");
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.debug(INSIDE_SERVE_RESOURCE_METHOD
+					+ MatrimonyController.class.getName());
+		}
+		String action = resourceRequest.getParameter(KeyValueConstants.ACTION);
 		if (Validator.isNotNull(action)) {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-			JSONArray values = JSONFactoryUtil.getJSONFactory().createJSONArray();
+			JSONArray values = JSONFactoryUtil.getJSONFactory()
+					.createJSONArray();
 			boolean isValid = Boolean.FALSE;
-			if(action.equalsIgnoreCase("populateState")){
-				long countryId = ParamUtil.getLong(resourceRequest, "countryId");
-				if(Validator.isNotNull(countryId)){
+			if (action.equalsIgnoreCase(ProfileConstants.ACTION_POPULATE_STATE)) {
+				long countryId = ParamUtil.getLong(resourceRequest,
+						ProfileConstants.PROFILE_COUNTRY_ID);
+				if (Validator.isNotNull(countryId)) {
 					try {
-						List<Region> regions = RegionServiceUtil.getRegions(countryId);
-						if(Validator.isNotNull(regions)){
-							for(Region region: regions){
-								values.put(region.getName() + ":" + region.getRegionId());
+						List<Region> regions = RegionServiceUtil
+								.getRegions(countryId);
+						if (Validator.isNotNull(regions)) {
+							for (Region region : regions) {
+								values.put(region.getName() + StringPool.COLON
+										+ region.getRegionId());
 							}
 						}
 					} catch (SystemException e) {
-						System.out.println("Error fetching RegionList Using CountryId" + countryId);
+						LOGGER.error(ERROE_FETCHING_REGION_LIST + countryId
+								+ StringPool.COMMA_AND_SPACE + e.getMessage(),
+								e);
 					}
 				} else {
-					System.out.println("CountryId is Empty");
+					if (LOGGER.isDebugEnabled()) {
+						LOGGER.debug(INSIDE_SERVE_RESOURCE_METHOD
+								+ COMPANY_ID_EMPTY
+								+ MatrimonyController.class.getName());
+					}
 				}
-			} else if(action.equalsIgnoreCase("populateCity")){
-				long regionId = ParamUtil.getLong(resourceRequest, "regionId");
-				if(Validator.isNotNull(regionId)){
+			} else if (action
+					.equalsIgnoreCase(ProfileConstants.ACTION_POPULATE_CITY)) {
+				long regionId = ParamUtil.getLong(resourceRequest,
+						ProfileConstants.PROFILE_REGION_ID);
+				if (Validator.isNotNull(regionId)) {
 					try {
-						List<City> cities = CityLocalServiceUtil.getRegion_Cities(regionId);
-						if(Validator.isNotNull(cities)){
-							for(City city: cities){
+						List<City> cities = CityLocalServiceUtil
+								.getRegion_Cities(regionId);
+						if (Validator.isNotNull(cities)) {
+							for (City city : cities) {
 								values.put(city.getCityName());
 							}
 						}
 					} catch (SystemException e) {
-						System.out.println("Error fetching CityList Using RegionId" + regionId);
+						LOGGER.error(ERROE_FETCHING_CITY_LIST + regionId
+								+ StringPool.COMMA_AND_SPACE + e.getMessage(),
+								e);
 					}
 				} else {
-					System.out.println("RegionId is Empty");
+					if (LOGGER.isDebugEnabled()) {
+						LOGGER.debug(INSIDE_SERVE_RESOURCE_METHOD
+								+ REGION_ID_EMPTY
+								+ MatrimonyController.class.getName());
+					}
 				}
-			} else if(action.equalsIgnoreCase("populateCaste")){
-				long religionId = ParamUtil.getLong(resourceRequest, "religionId");
-				if(Validator.isNotNull(religionId)){
+			} else if (action
+					.equalsIgnoreCase(ProfileConstants.ACTION_POPULATE_CASTE)) {
+				long religionId = ParamUtil.getLong(resourceRequest,
+						ProfileConstants.PROFILE_RELIGION_ID);
+				if (Validator.isNotNull(religionId)) {
 					try {
-						List<Caste> casteList = CasteLocalServiceUtil.getCasteListByReligionId(religionId);
-						if(Validator.isNotNull(casteList)){
-							for(Caste caste: casteList){
-								values.put(caste.getName() + ":" + caste.getCasteId());
+						List<Caste> casteList = CasteLocalServiceUtil
+								.getCasteListByReligionId(religionId);
+						if (Validator.isNotNull(casteList)) {
+							for (Caste caste : casteList) {
+								values.put(caste.getName() + StringPool.COLON
+										+ caste.getCasteId());
 							}
 						}
-						System.out.println("casteList===========>>" + casteList.size());
 					} catch (SystemException e) {
-						System.out.println("Error fetching CasteList Using ReligionId" + religionId);
+						LOGGER.error(ERROE_FETCHING_CASTE_LIST + religionId
+								+ StringPool.COMMA_AND_SPACE + e.getMessage(),
+								e);
 					}
 				} else {
-					System.out.println("ReligionId is Empty");
+					if (LOGGER.isDebugEnabled()) {
+						LOGGER.debug(INSIDE_SERVE_RESOURCE_METHOD
+								+ RELIGION_ID_EMPTY
+								+ MatrimonyController.class.getName());
+					}
 				}
-			} else if(action.equalsIgnoreCase("populateSubCaste")){
-				long casteId = ParamUtil.getLong(resourceRequest, "casteId");
-				if(Validator.isNotNull(casteId)){
+			} else if (action
+					.equalsIgnoreCase(ProfileConstants.ACTION_POPULATE_SUB_CASTE)) {
+				long casteId = ParamUtil.getLong(resourceRequest,
+						ProfileConstants.PROFILE_CASTE_ID);
+				if (Validator.isNotNull(casteId)) {
 					try {
-						List<SubCaste> subCasteList = SubCasteLocalServiceUtil.getSubCasteListByCasteId(casteId);
-						if(Validator.isNotNull(subCasteList)){
-							for(SubCaste subCaste: subCasteList){
+						List<SubCaste> subCasteList = SubCasteLocalServiceUtil
+								.getSubCasteListByCasteId(casteId);
+						if (Validator.isNotNull(subCasteList)) {
+							for (SubCaste subCaste : subCasteList) {
 								values.put(subCaste.getName());
 							}
 						}
-						System.out.println("subCasteList===========>>" + subCasteList.size());
 					} catch (SystemException e) {
-						System.out.println("Error fetching SubCasteList Using CasteId" + casteId);
+						LOGGER.error(ERROE_FETCHING_SUBCASTE_LIST + casteId
+								+ StringPool.COMMA_AND_SPACE + e.getMessage(),
+								e);
 					}
 				} else {
-					System.out.println("CasteId is Empty");
+					if (LOGGER.isDebugEnabled()) {
+						LOGGER.debug(INSIDE_SERVE_RESOURCE_METHOD
+								+ "CasteId Empty: "
+								+ MatrimonyController.class.getName());
+					}
 				}
 			}
-			if(Validator.isNotNull(values)){
-				if(values.length() > 0){
-					jsonObject.put("arrayList", values);
+			if (Validator.isNotNull(values)) {
+				if (values.length() > 0) {
+					jsonObject.put(ProfileConstants.OTHER_ARRAY_LIST, values);
 					isValid = Boolean.TRUE;
-				} else if(action.equalsIgnoreCase("populateSubCaste") || action.equalsIgnoreCase("populateCaste")) {
-					jsonObject.put("arrayList", values);
+				} else if (action
+						.equalsIgnoreCase(ProfileConstants.ACTION_POPULATE_SUB_CASTE)
+						|| action
+								.equalsIgnoreCase(ProfileConstants.ACTION_POPULATE_CASTE)) {
+					jsonObject.put(ProfileConstants.OTHER_ARRAY_LIST, values);
 					isValid = Boolean.TRUE;
 				}
-			} else if(action.equalsIgnoreCase("populateSubCaste") || action.equalsIgnoreCase("populateCaste")) {
-				jsonObject.put("arrayList", values);
+			} else if (action
+					.equalsIgnoreCase(ProfileConstants.ACTION_POPULATE_SUB_CASTE)
+					|| action
+							.equalsIgnoreCase(ProfileConstants.ACTION_POPULATE_CASTE)) {
+				jsonObject.put(ProfileConstants.OTHER_ARRAY_LIST, values);
 				isValid = Boolean.TRUE;
 			}
-			jsonObject.put("isValid", isValid);
+			jsonObject.put(ProfileConstants.OTHER_IS_VALID, isValid);
 			resourceResponse.setContentType(KeyValueConstants.APPLICATION_JSON);
 			resourceResponse.setCharacterEncoding(KeyValueConstants.UTF_8);
 			resourceResponse.getWriter().write(jsonObject.toString());
 		} else {
-			System.out.println("Inside norma server");
 			HttpServletRequest servletRequest = PortalUtil
 					.getHttpServletRequest(resourceRequest);
 			HttpServletResponse servletResponse = PortalUtil
 					.getHttpServletResponse(resourceResponse);
-			long imageId = ParamUtil.getLong(resourceRequest, "imageId");
+			long imageId = ParamUtil.getLong(resourceRequest,
+					ProfileConstants.IMAGE_ID);
 			boolean thumbnail = ParamUtil.getBoolean(resourceRequest,
-					"thumbnail");
-			int width = ParamUtil.getInteger(resourceRequest, "width");
-			int height = ParamUtil.getInteger(resourceRequest, "height");
-			boolean download = ParamUtil
-					.getBoolean(resourceRequest, "download");
+					ProfileConstants.IMAGE_THUMBNAIL);
+			int width = ParamUtil.getInteger(resourceRequest,
+					ProfileConstants.IMAGE_WIDTH);
+			int height = ParamUtil.getInteger(resourceRequest,
+					ProfileConstants.IMAGE_HEIGHT);
+			boolean download = ParamUtil.getBoolean(resourceRequest,
+					ProfileConstants.IMAGE_DOWNLOAD);
 
 			if (Validator.isNull(thumbnail)) {
 				thumbnail = false;
@@ -245,7 +321,11 @@ public class MatrimonyController extends MVCPortlet {
 						ServletResponseUtil.write(servletResponse, bytes);
 					}
 				} catch (PortalException e) {
+					LOGGER.error(ERROR_PROCESSING_IMAGE + imageId
+							+ StringPool.COMMA_AND_SPACE + e.getMessage(), e);
 				} catch (SystemException e) {
+					LOGGER.error(ERROR_PROCESSING_IMAGE + imageId
+							+ StringPool.COMMA_AND_SPACE + e.getMessage(), e);
 				}
 			}
 		}
@@ -254,14 +334,16 @@ public class MatrimonyController extends MVCPortlet {
 
 	public Date getBirthDate(ActionRequest actionRequest) {
 		Calendar birthCal = Calendar.getInstance();
-		int year = ParamUtil.getInteger(actionRequest, "birthDateWithTimeYear");
+		int year = ParamUtil.getInteger(actionRequest,
+				ProfileConstants.PROFILE_DATE_YEAR);
 		int month = ParamUtil.getInteger(actionRequest,
-				"birthDateWithTimeMonth");
-		int date = ParamUtil.getInteger(actionRequest, "birthDateWithTimeDay");
+				ProfileConstants.PROFILE_DATE_MONTH);
+		int date = ParamUtil.getInteger(actionRequest,
+				ProfileConstants.PROFILE_DATE_DAY);
 		int minute = ParamUtil.getInteger(actionRequest,
-				"birthDateWithTimeMinute");
+				ProfileConstants.PROFILE_DATE_MINUTE);
 		int hourOfDay = ParamUtil.getInteger(actionRequest,
-				"birthDateWithTimeHour");
+				ProfileConstants.PROFILE_DATE_HOUR);
 		birthCal.set(year, month, date, hourOfDay, minute);
 		return birthCal.getTime();
 	}
@@ -270,57 +352,66 @@ public class MatrimonyController extends MVCPortlet {
 		renderRequest
 				.setAttribute(
 						ProfileConstants.PROFILE_ANNUAL_INCOME,
-						ProfileUtil
+						KeyValueLocalServiceUtil
 								.getKeyValueList(ProfileConstants.PROFILE_ANNUAL_INCOME));
 		renderRequest.setAttribute(ProfileConstants.PROFILE_CHILDREN,
-				ProfileUtil.getKeyValueList(ProfileConstants.PROFILE_CHILDREN));
+				KeyValueLocalServiceUtil
+						.getKeyValueList(ProfileConstants.PROFILE_CHILDREN));
 		renderRequest.setAttribute(ProfileConstants.PROFILE_CURRENCY,
-				ProfileUtil.getKeyValueList(ProfileConstants.PROFILE_CURRENCY));
+				KeyValueLocalServiceUtil
+						.getKeyValueList(ProfileConstants.PROFILE_CURRENCY));
 		renderRequest.setAttribute(ProfileConstants.PROFILE_COMPLEXION,
-				ProfileUtil
+				KeyValueLocalServiceUtil
 						.getKeyValueList(ProfileConstants.PROFILE_COMPLEXION));
 		renderRequest
 				.setAttribute(
 						ProfileConstants.PROFILE_CREATED_FOR_MY,
-						ProfileUtil
+						KeyValueLocalServiceUtil
 								.getKeyValueList(ProfileConstants.PROFILE_CREATED_FOR_MY));
 		renderRequest.setAttribute(ProfileConstants.PROFILE_DOSAM,
-				ProfileUtil.getKeyValueList(ProfileConstants.PROFILE_DOSAM));
-		renderRequest
-				.setAttribute(ProfileConstants.PROFILE_EDUCATION, ProfileUtil
+				KeyValueLocalServiceUtil
+						.getKeyValueList(ProfileConstants.PROFILE_DOSAM));
+		renderRequest.setAttribute(ProfileConstants.PROFILE_EDUCATION,
+				KeyValueLocalServiceUtil
 						.getKeyValueList(ProfileConstants.PROFILE_EDUCATION));
 		renderRequest
 				.setAttribute(
 						ProfileConstants.PROFILE_FAMILY_STATUS,
-						ProfileUtil
+						KeyValueLocalServiceUtil
 								.getKeyValueList(ProfileConstants.PROFILE_FAMILY_STATUS));
 		renderRequest.setAttribute(ProfileConstants.PROFILE_FAMILY_TYPE,
-				ProfileUtil
+				KeyValueLocalServiceUtil
 						.getKeyValueList(ProfileConstants.PROFILE_FAMILY_TYPE));
 		renderRequest
 				.setAttribute(
 						ProfileConstants.PROFILE_FAMILY_VALUE,
-						ProfileUtil
+						KeyValueLocalServiceUtil
 								.getKeyValueList(ProfileConstants.PROFILE_FAMILY_VALUE));
 		renderRequest.setAttribute(ProfileConstants.PROFILE_HEIGHT,
-				ProfileUtil.getKeyValueList(ProfileConstants.PROFILE_HEIGHT));
+				KeyValueLocalServiceUtil
+						.getKeyValueList(ProfileConstants.PROFILE_HEIGHT));
 		renderRequest.setAttribute(ProfileConstants.PROFILE_HOBBIES,
-				ProfileUtil.getKeyValueList(ProfileConstants.PROFILE_HOBBIES));
+				KeyValueLocalServiceUtil
+						.getKeyValueList(ProfileConstants.PROFILE_HOBBIES));
 		renderRequest.setAttribute(ProfileConstants.PROFILE_LANGUAGE,
-				ProfileUtil.getKeyValueList(ProfileConstants.PROFILE_LANGUAGE));
+				KeyValueLocalServiceUtil
+						.getKeyValueList(ProfileConstants.PROFILE_LANGUAGE));
 		renderRequest
 				.setAttribute(
 						ProfileConstants.PROFILE_MARITAL_STATUS,
-						ProfileUtil
+						KeyValueLocalServiceUtil
 								.getKeyValueList(ProfileConstants.PROFILE_MARITAL_STATUS));
 		renderRequest.setAttribute(ProfileConstants.PROFILE_PROFESSION,
-				ProfileUtil
+				KeyValueLocalServiceUtil
 						.getKeyValueList(ProfileConstants.PROFILE_PROFESSION));
 		renderRequest.setAttribute(ProfileConstants.PROFILE_RASI,
-				ProfileUtil.getKeyValueList(ProfileConstants.PROFILE_RASI));
+				KeyValueLocalServiceUtil
+						.getKeyValueList(ProfileConstants.PROFILE_RASI));
 		renderRequest.setAttribute(ProfileConstants.PROFILE_STAR,
-				ProfileUtil.getKeyValueList(ProfileConstants.PROFILE_STAR));
+				KeyValueLocalServiceUtil
+						.getKeyValueList(ProfileConstants.PROFILE_STAR));
 		renderRequest.setAttribute(ProfileConstants.PROFILE_WEIGHT,
-				ProfileUtil.getKeyValueList(ProfileConstants.PROFILE_WEIGHT));
+				KeyValueLocalServiceUtil
+						.getKeyValueList(ProfileConstants.PROFILE_WEIGHT));
 	}
 }

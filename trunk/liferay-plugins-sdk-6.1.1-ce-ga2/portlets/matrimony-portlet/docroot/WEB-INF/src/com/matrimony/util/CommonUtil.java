@@ -13,35 +13,37 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.matrimony.ImageSizeExceedsLimitException;
 import com.matrimony.InvalidImageException;
 import com.matrimony.InvalidImageTypeException;
-
+import com.matrimony.constant.ProfileConstants;
 
 public class CommonUtil {
 	public static boolean inAcceptedImageTypes(String type) {
-		 String imageTypeString = MatrimonyPropsValues.IMAGE_TYPES;
-		 String[] imageType = imageTypeString.split(StringPool.COMMA);
-		 for (int i=0; i<imageType.length; i++) {
-			 if (type.equalsIgnoreCase(imageType[i])) {
+		String imageTypeString = MatrimonyPropsValues.IMAGE_TYPES;
+		String[] imageType = imageTypeString.split(StringPool.COMMA);
+		for (int i = 0; i < imageType.length; i++) {
+			if (type.equalsIgnoreCase(imageType[i])) {
 				return true;
-			 }
-		 }
-		 return false;
-	 }
-	public static boolean validatePhoto(UploadPortletRequest uploadRequest) throws SystemException, PortalException {
+			}
+		}
+		return false;
+	}
+
+	public static boolean validatePhoto(UploadPortletRequest uploadRequest)
+			throws SystemException, PortalException {
 		int size = 0;
 		String type = StringPool.BLANK;
-		
-		if (uploadRequest.getFileName("profilePhoto") == StringPool.BLANK){
+
+		if (uploadRequest.getFileName(ProfileConstants.IMAGE_PROFILE_PHOTO) == StringPool.BLANK) {
 			throw new InvalidImageException();
 		}
-		
+
 		try {
-			File file = uploadRequest.getFile("profilePhoto");
+			File file = uploadRequest
+					.getFile(ProfileConstants.IMAGE_PROFILE_PHOTO);
 			byte[] bytes = FileUtil.getBytes(file);
 			ImageBag imageBag = ImageToolUtil.read(bytes);
 			type = imageBag.getType();
 			size = bytes.length;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 		}
 		if (!CommonUtil.inAcceptedImageTypes(type)) {
 			throw new InvalidImageTypeException();

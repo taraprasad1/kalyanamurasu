@@ -17,7 +17,6 @@ public class ConfigurationImpl extends DefaultConfigurationAction {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 			throws Exception {
 		String listView = ParamUtil.getString(actionRequest, "listView");
-		System.out.println("view======>"+ listView);
 		String portletResource = ParamUtil.getString(actionRequest, "portletResource");
 		
 		PortletPreferences preferences = PortletPreferencesFactoryUtil.getPortletSetup(actionRequest, portletResource);

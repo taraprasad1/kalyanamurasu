@@ -36,18 +36,31 @@ import com.matrimony.model.impl.PhotoImpl;
 import com.matrimony.service.PhotoLocalServiceUtil;
 import com.matrimony.service.ProfileLocalServiceUtil;
 import com.matrimony.util.CommonUtil;
-import com.matrimony.util.ProfileUtil;
 
 /**
  * Portlet implementation class Profile
  */
 public class ProfilePortlet extends MatrimonyController {
-	private static final Log LOGGER = LogFactoryUtil.getLog(ProfilePortlet.class);
+
+	private static final String IMAGE_UPDATED_SUCCESSFULLY = "image-updated-successfully";
+	private static final String IMAGE_ADDED_SUCCESSFULLY = "image-updated-successfully";
+	private static final String INSIDE_DELETE_PROFILE_METHOD = "Inside Delete Profile Method: ";
+	private static final String INSIDE_UPDATE_PROFILE_METHOD = "Inside Update Profile Method: ";
+	private static final String INSIDE_UPDATE_PHOTO_METHOD = "Inside Update Photo Method: ";
+	private static final String INSIDE_DO_VIEW = "Inside doView Method: : ";
+
+	private static final Log LOGGER = LogFactoryUtil
+			.getLog(ProfilePortlet.class);
+
 	public void deleteAccount(ActionRequest actionRequest,
 			ActionResponse actionResponse) throws IOException, PortletException {
-		System.out.println("Inside Delete Account==========>>");
-		long profileId  = ParamUtil.getLong(actionRequest, ProfileConstants.PROFILE_ID);
-		if(Validator.isNotNull(profileId)) {			
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.debug(INSIDE_DELETE_PROFILE_METHOD
+					+ ProfilePortlet.class.getName());
+		}
+		long profileId = ParamUtil.getLong(actionRequest,
+				ProfileConstants.PROFILE_ID);
+		if (Validator.isNotNull(profileId)) {
 			try {
 				ProfileLocalServiceUtil.deleteProfile(profileId);
 			} catch (PortalException e) {
@@ -60,11 +73,16 @@ public class ProfilePortlet extends MatrimonyController {
 
 	public void updateAccount(ActionRequest actionRequest,
 			ActionResponse actionResponse) throws IOException, PortletException {
-		System.out.println("Inside Update Account==========>>");
-		long profileId = ParamUtil.getLong(actionRequest, "profileId");
-		ThemeDisplay themeDisplay = (ThemeDisplay) actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.debug(INSIDE_UPDATE_PROFILE_METHOD
+					+ ProfilePortlet.class.getName());
+		}
+		long profileId = ParamUtil.getLong(actionRequest,
+				ProfileConstants.PROFILE_ID);
+		ThemeDisplay themeDisplay = (ThemeDisplay) actionRequest
+				.getAttribute(WebKeys.THEME_DISPLAY);
 		Profile profile = ProfileLocalServiceUtil.createProfileObj();
-		if(Validator.isNotNull(profileId)){
+		if (Validator.isNotNull(profileId)) {
 			try {
 				profile = ProfileLocalServiceUtil.getProfile(profileId);
 			} catch (PortalException e) {
@@ -81,7 +99,7 @@ public class ProfilePortlet extends MatrimonyController {
 		profile.setModifiedBy(themeDisplay.getUserId());
 		profile.setModifiedDate(new Date());
 		profile = getAssetFromForm(profile, actionRequest);
-		if(Validator.isNotNull(profileId)){
+		if (Validator.isNotNull(profileId)) {
 			try {
 				ProfileLocalServiceUtil.updateProfileObj(profile);
 			} catch (SearchException e) {
@@ -91,23 +109,29 @@ public class ProfilePortlet extends MatrimonyController {
 			}
 		} else {
 			try {
-				profile.setProfileCode(ProfileUtil.getProfileCode(profile));
 				ProfileLocalServiceUtil.addProfile(profile);
 			} catch (SystemException e) {
 				e.printStackTrace();
 			}
 		}
 	}
+
 	@Override
 	public void doView(RenderRequest renderRequest,
 			RenderResponse renderResponse) throws IOException, PortletException {
-		System.out.println("Inside View ==========>>");
-		String viewAction = ParamUtil.getString(renderRequest, KeyValueConstants.ACTION);
-		if(Validator.isNotNull(viewAction)) {
-			if(viewAction.equalsIgnoreCase(ProfileConstants.PROFILE_VIEW_EDIT_PAGE)){
-				String profileId = ParamUtil.getString(renderRequest, ProfileConstants.PROFILE_ID);
-				if(Validator.isNotNull(profileId)){
-					renderRequest.setAttribute(ProfileConstants.PROFILE_ID, profileId);
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.debug(INSIDE_DO_VIEW + ProfilePortlet.class.getName());
+		}
+		String viewAction = ParamUtil.getString(renderRequest,
+				KeyValueConstants.ACTION);
+		if (Validator.isNotNull(viewAction)) {
+			if (viewAction
+					.equalsIgnoreCase(ProfileConstants.PROFILE_VIEW_EDIT_PAGE)) {
+				String profileId = ParamUtil.getString(renderRequest,
+						ProfileConstants.PROFILE_ID);
+				if (Validator.isNotNull(profileId)) {
+					renderRequest.setAttribute(ProfileConstants.PROFILE_ID,
+							profileId);
 				}
 				setDropDownValues(renderRequest);
 				viewTemplate = ProfileConstants.PROFILE_EDIT_PAGE_URL;
@@ -122,27 +146,38 @@ public class ProfilePortlet extends MatrimonyController {
 
 	public void updatePhoto(ActionRequest actionRequest,
 			ActionResponse actionResponse) throws IOException, PortletException {
-		UploadPortletRequest uploadPortletRequest =
-			PortalUtil.getUploadPortletRequest(actionRequest);
-		HttpServletRequest servletRequest = PortalUtil.getHttpServletRequest(actionRequest);
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.debug(INSIDE_UPDATE_PHOTO_METHOD
+					+ ProfilePortlet.class.getName());
+		}
+		UploadPortletRequest uploadPortletRequest = PortalUtil
+				.getUploadPortletRequest(actionRequest);
+		HttpServletRequest servletRequest = PortalUtil
+				.getHttpServletRequest(actionRequest);
 		try {
-			boolean validate =  CommonUtil.validatePhoto(uploadPortletRequest);
+			boolean validate = CommonUtil.validatePhoto(uploadPortletRequest);
 			if (validate) {
 				Photo photo = null;
-				File file = uploadPortletRequest.getFile("profilePhoto");
-				long profileId = ParamUtil.getLong(actionRequest, "profileId");
-				long imageId = ParamUtil.getLong(actionRequest, "imageId");
-				boolean thumbnail = ParamUtil.getBoolean(actionRequest, "thumbnail");
+				File file = uploadPortletRequest
+						.getFile(ProfileConstants.IMAGE_PROFILE_PHOTO);
+				long profileId = ParamUtil.getLong(actionRequest,
+						ProfileConstants.PROFILE_ID);
+				long imageId = ParamUtil.getLong(actionRequest,
+						ProfileConstants.IMAGE_ID);
+				boolean thumbnail = ParamUtil.getBoolean(actionRequest,
+						ProfileConstants.IMAGE_THUMBNAIL);
 				byte[] bytes = FileUtil.getBytes(file);
-				String name = uploadPortletRequest.getFileName("profilePhoto");
+				String name = uploadPortletRequest
+						.getFileName(ProfileConstants.IMAGE_PROFILE_PHOTO);
 				ImageBag imageBag = ImageToolUtil.read(bytes);
-				if (imageId > 0){
-					photo = PhotoLocalServiceUtil.getPhoto(imageId);			
+				if (imageId > 0) {
+					photo = PhotoLocalServiceUtil.getPhoto(imageId);
 					photo.setName(name);
 					photo.setContent(Base64.encode(bytes));
 					photo.setType(imageBag.getType());
 					PhotoLocalServiceUtil.updatePhoto(photo);
-					SessionMessages.add(servletRequest, "image-updated-successfully");
+					SessionMessages.add(servletRequest,
+							IMAGE_UPDATED_SUCCESSFULLY);
 				} else {
 					photo = new PhotoImpl();
 					photo.setName(name);
@@ -151,19 +186,23 @@ public class ProfilePortlet extends MatrimonyController {
 					photo.setThumbnail(thumbnail);
 					photo.setType(imageBag.getType());
 					PhotoLocalServiceUtil.addPhoto(photo);
-					SessionMessages.add(servletRequest, "image-added-successfully");
+					SessionMessages.add(servletRequest,
+							IMAGE_ADDED_SUCCESSFULLY);
 				}
-				actionResponse.setRenderParameter("jspPage", "/html/matrimony/profile/list_profile.jsp");
+				actionResponse.setRenderParameter(
+						ProfileConstants.OTHER_JSP_PAGE,
+						ProfileConstants.PROFILE_LIST_PAGE_URL);
 			}
-			
-		} catch(Exception exception){
-			if (exception instanceof InvalidImageException ||
-					exception instanceof InvalidImageTypeException ||
-					exception instanceof ImageSizeExceedsLimitException) {
-				SessionErrors.add(actionRequest, exception.getClass().getName(), exception);	
+
+		} catch (Exception exception) {
+			if (exception instanceof InvalidImageException
+					|| exception instanceof InvalidImageTypeException
+					|| exception instanceof ImageSizeExceedsLimitException) {
+				SessionErrors.add(actionRequest,
+						exception.getClass().getName(), exception);
 			}
-			actionResponse.setRenderParameter("jspPage",
-					"/html/matrimony/profile/upload_photo.jsp");
+			actionResponse.setRenderParameter(ProfileConstants.OTHER_JSP_PAGE,
+					ProfileConstants.PROFILE_EDIT_PHOTO_URL);
 		}
 	}
 }

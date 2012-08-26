@@ -14,16 +14,21 @@
 
 package com.matrimony.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.matrimony.constant.KeyValueConstants;
 import com.matrimony.model.impl.KeyValueImpl;
 import com.matrimony.service.base.KeyValueLocalServiceBaseImpl;
 import com.matrimony.NoSuchKeyValueException;
+import com.matrimony.model.Key;
 import com.matrimony.model.KeyValue;
+import com.matrimony.service.KeyLocalServiceUtil;
 import com.matrimony.service.KeyValueLocalServiceUtil;
 
 /**
@@ -86,5 +91,30 @@ public class KeyValueLocalServiceImpl extends KeyValueLocalServiceBaseImpl {
 					+ e.getMessage());
 		}
 		return value;
+	}
+	
+	public List<String> getKeyValueList(String keyName)
+	{
+		List<String> valueList = new ArrayList<String>();
+		if(Validator.isNotNull(keyName)) {
+			Key key = null;
+			try {
+				if (Validator.isNotNull(keyLocalService.keySearch(keyName))) {
+					key = keyLocalService.keySearch(keyName);
+					List<KeyValue> keyValueList = new ArrayList<KeyValue>();
+					if (Validator.isNotNull(key)){
+						keyValueList = keyValueLocalService.valueSearch(key.getKeyId());
+					}
+					for (KeyValue value: keyValueList) {
+						if(Validator.isNotNull(value.getName())) {
+							valueList.add(value.getName());
+						}
+					}
+				}
+			} catch (SystemException e) {
+				LOGGER.error("Key Not Found for KeyName: " + keyName + StringPool.COMMA_AND_SPACE + e.getMessage(), e);
+			}
+		}
+		return valueList;
 	}
 }
