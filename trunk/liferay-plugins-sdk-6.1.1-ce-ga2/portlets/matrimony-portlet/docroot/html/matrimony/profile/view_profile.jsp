@@ -69,6 +69,10 @@
 			<td><%= profile.getHobbies() %></td>
 		</tr>
 		<tr>
+			<th>LanguageKnown</th>
+			<td><%= profile.getLanguageKnown() %></td>
+		</tr>
+		<tr>
 			<th>Photo</th>
 			<td>
 				<% for(Photo photo: photoList) {%>

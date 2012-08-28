@@ -264,6 +264,12 @@ public class ReligionLocalServiceWrapper implements ReligionLocalService,
 			arguments);
 	}
 
+	public com.matrimony.model.Religion getReligionByName(java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.matrimony.NoSuchReligionException {
+		return _religionLocalService.getReligionByName(name);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

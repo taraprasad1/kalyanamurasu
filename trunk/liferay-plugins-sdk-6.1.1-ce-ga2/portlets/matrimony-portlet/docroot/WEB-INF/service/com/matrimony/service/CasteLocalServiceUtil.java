@@ -275,6 +275,13 @@ public class CasteLocalServiceUtil {
 		return getService().getCasteListByReligionId(religionId);
 	}
 
+	public static com.matrimony.model.Caste getCasteByReligionIdAndName(
+		long religionId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.matrimony.NoSuchCasteException {
+		return getService().getCasteByReligionIdAndName(religionId, name);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

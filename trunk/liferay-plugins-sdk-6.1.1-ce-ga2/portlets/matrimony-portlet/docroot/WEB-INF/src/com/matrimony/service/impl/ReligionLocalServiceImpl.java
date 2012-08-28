@@ -14,6 +14,9 @@
 
 package com.matrimony.service.impl;
 
+import com.liferay.portal.kernel.exception.SystemException;
+import com.matrimony.NoSuchReligionException;
+import com.matrimony.model.Religion;
 import com.matrimony.service.base.ReligionLocalServiceBaseImpl;
 
 /**
@@ -36,4 +39,7 @@ public class ReligionLocalServiceImpl extends ReligionLocalServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link com.matrimony.service.ReligionLocalServiceUtil} to access the religion local service.
 	 */
+	public Religion getReligionByName(String name) throws SystemException, NoSuchReligionException{
+		return religionPersistence.findByName(name);
+	}
 }

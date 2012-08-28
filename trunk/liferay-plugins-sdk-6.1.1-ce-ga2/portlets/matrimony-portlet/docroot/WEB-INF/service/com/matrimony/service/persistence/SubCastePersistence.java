@@ -214,6 +214,45 @@ public interface SubCastePersistence extends BasePersistence<SubCaste> {
 			com.matrimony.NoSuchSubCasteException;
 
 	/**
+	* Returns the sub caste where casteId = &#63; and name = &#63; or throws a {@link com.matrimony.NoSuchSubCasteException} if it could not be found.
+	*
+	* @param casteId the caste ID
+	* @param name the name
+	* @return the matching sub caste
+	* @throws com.matrimony.NoSuchSubCasteException if a matching sub caste could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.matrimony.model.SubCaste findByCasteIdAndName(long casteId,
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.matrimony.NoSuchSubCasteException;
+
+	/**
+	* Returns the sub caste where casteId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param casteId the caste ID
+	* @param name the name
+	* @return the matching sub caste, or <code>null</code> if a matching sub caste could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.matrimony.model.SubCaste fetchByCasteIdAndName(long casteId,
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the sub caste where casteId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param casteId the caste ID
+	* @param name the name
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching sub caste, or <code>null</code> if a matching sub caste could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.matrimony.model.SubCaste fetchByCasteIdAndName(long casteId,
+		java.lang.String name, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the sub castes.
 	*
 	* @return the sub castes
@@ -265,6 +304,19 @@ public interface SubCastePersistence extends BasePersistence<SubCaste> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes the sub caste where casteId = &#63; and name = &#63; from the database.
+	*
+	* @param casteId the caste ID
+	* @param name the name
+	* @return the sub caste that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.matrimony.model.SubCaste removeByCasteIdAndName(long casteId,
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.matrimony.NoSuchSubCasteException;
+
+	/**
 	* Removes all the sub castes from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -280,6 +332,17 @@ public interface SubCastePersistence extends BasePersistence<SubCaste> {
 	* @throws SystemException if a system exception occurred
 	*/
 	public int countByCasteId(long casteId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of sub castes where casteId = &#63; and name = &#63;.
+	*
+	* @param casteId the caste ID
+	* @param name the name
+	* @return the number of matching sub castes
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByCasteIdAndName(long casteId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

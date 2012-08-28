@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.liferay.portal.kernel.exception.SystemException;
+import com.matrimony.NoSuchCasteException;
 import com.matrimony.model.Caste;
 import com.matrimony.model.CasteSoap;
 import com.matrimony.service.base.CasteLocalServiceBaseImpl;
@@ -44,5 +45,9 @@ public class CasteLocalServiceImpl extends CasteLocalServiceBaseImpl{
 	 */
 	public List<Caste> getCasteListByReligionId(long religionId) throws SystemException{
 		return castePersistence.findByReligionId(religionId);
+	}
+	
+	public Caste getCasteByReligionIdAndName(long religionId, String name) throws SystemException, NoSuchCasteException{
+		return castePersistence.findByReligionIdAndName(religionId, name);
 	}
 }

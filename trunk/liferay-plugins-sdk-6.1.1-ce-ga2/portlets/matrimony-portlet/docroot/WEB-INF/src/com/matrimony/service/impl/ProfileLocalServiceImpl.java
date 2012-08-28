@@ -32,11 +32,15 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Country;
+import com.liferay.portal.service.CountryServiceUtil;
 import com.matrimony.constant.ProfileConstants;
+import com.matrimony.model.Caste;
 import com.matrimony.model.Profile;
+import com.matrimony.model.Religion;
 import com.matrimony.model.impl.ProfileImpl;
-import com.matrimony.service.ProfileKeyValueLocalServiceUtil;
 import com.matrimony.service.base.ProfileLocalServiceBaseImpl;
 import com.matrimony.util.MatrimonyPropsValues;
 import com.matrimony.util.ProfileIndexer;
@@ -74,6 +78,19 @@ public class ProfileLocalServiceImpl extends ProfileLocalServiceBaseImpl {
 		Profile profile = profileLocalService.getProfile(profileId);
 		profile.setHobbies(profileKeyValueLocalService.getValues(profileId, ProfileConstants.PROFILE_HOBBIES));
 		profile.setLanguageKnown(profileKeyValueLocalService.getValues(profileId, ProfileConstants.PROFILE_LANGUAGE));
+		if(Validator.isNotNull(profile.getCountry())) {
+			Country country = CountryServiceUtil.getCountryByName(profile.getCountry());
+			profile.setCountry(country.getCountryId() + StringPool.BLANK);
+		}
+		if(Validator.isNotNull(profile.getReligion())) {
+			Religion religion = religionLocalService.getReligionByName(profile.getReligion());
+			profile.setReligion(religion.getReligionId() + StringPool.BLANK);
+			if(Validator.isNotNull(profile.getCaste())) {
+				Caste caste = casteLocalService.getCasteByReligionIdAndName(religion.getReligionId(), profile.getCaste());
+				profile.setSubCaste(caste.getCasteId() + StringPool.BLANK);
+			}
+		}
+		
 		return profile;
 	}
 	

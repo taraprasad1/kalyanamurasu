@@ -275,6 +275,13 @@ public class SubCasteLocalServiceUtil {
 		return getService().getSubCasteListByCasteId(casteId);
 	}
 
+	public static com.matrimony.model.SubCaste getSubCasteByCasteIdAndName(
+		long casteId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.matrimony.NoSuchSubCasteException {
+		return getService().getSubCasteByCasteIdAndName(casteId, name);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

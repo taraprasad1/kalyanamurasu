@@ -270,6 +270,13 @@ public class SubCasteLocalServiceWrapper implements SubCasteLocalService,
 		return _subCasteLocalService.getSubCasteListByCasteId(casteId);
 	}
 
+	public com.matrimony.model.SubCaste getSubCasteByCasteIdAndName(
+		long casteId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.matrimony.NoSuchSubCasteException {
+		return _subCasteLocalService.getSubCasteByCasteIdAndName(casteId, name);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

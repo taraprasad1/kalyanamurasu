@@ -17,6 +17,7 @@ package com.matrimony.service.impl;
 import java.util.List;
 
 import com.liferay.portal.kernel.exception.SystemException;
+import com.matrimony.NoSuchSubCasteException;
 import com.matrimony.model.SubCaste;
 import com.matrimony.service.base.SubCasteLocalServiceBaseImpl;
 
@@ -43,5 +44,9 @@ public class SubCasteLocalServiceImpl extends SubCasteLocalServiceBaseImpl {
 	
 	public List<SubCaste> getSubCasteListByCasteId(long casteId) throws SystemException{
 		return subCastePersistence.findByCasteId(casteId);
+	}
+	
+	public SubCaste getSubCasteByCasteIdAndName(long casteId, String name) throws SystemException, NoSuchSubCasteException{
+		return subCastePersistence.findByCasteIdAndName(casteId, name);
 	}
 }

@@ -247,4 +247,10 @@ public interface SubCasteLocalService extends BaseLocalService,
 	public java.util.List<com.matrimony.model.SubCaste> getSubCasteListByCasteId(
 		long casteId)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.matrimony.model.SubCaste getSubCasteByCasteIdAndName(
+		long casteId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.matrimony.NoSuchSubCasteException;
 }

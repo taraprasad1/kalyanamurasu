@@ -148,11 +148,18 @@
        	<finder name="ReligionId" return-type="Collection">
             <finder-column name="religionId" />
         </finder>
+        <finder name="ReligionIdAndName" return-type="Caste">
+            <finder-column name="religionId" />
+            <finder-column name="name" />
+        </finder>
     </entity>
     <entity name="Religion" table="matrimony_religion" local-service="true" remote-service="false">
     	<!-- PK fields -->                  
         <column name="religionId" type="long" primary="true" />                  
-       	<column name="name" type="String" />    
+       	<column name="name" type="String" /> 
+       	<finder name="Name" return-type="Religion">
+            <finder-column name="name" />
+        </finder>   
     </entity>
     <entity name="SubCaste" table="matrimony_subcaste" local-service="true" remote-service="false">
     	<!-- PK fields -->                  
@@ -161,6 +168,10 @@
        	<column name="name" type="String" />    
        	<finder name="CasteId" return-type="Collection">
             <finder-column name="casteId" />
+        </finder>
+        <finder name="CasteIdAndName" return-type="SubCaste">
+            <finder-column name="casteId" />
+            <finder-column name="name" />
         </finder>
     </entity>
     <entity name="City" table="city" local-service="true" remote-service="false">  
