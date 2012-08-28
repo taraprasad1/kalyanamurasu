@@ -109,6 +109,10 @@ public class CasteLocalServiceClpInvoker {
 		_methodName94 = "getCasteListByReligionId";
 
 		_methodParameterTypes94 = new String[] { "long" };
+
+		_methodName95 = "getCasteByReligionIdAndName";
+
+		_methodParameterTypes95 = new String[] { "long", "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -215,6 +219,12 @@ public class CasteLocalServiceClpInvoker {
 			return CasteLocalServiceUtil.getCasteListByReligionId(((Long)arguments[0]).longValue());
 		}
 
+		if (_methodName95.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes95, parameterTypes)) {
+			return CasteLocalServiceUtil.getCasteByReligionIdAndName(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -256,4 +266,6 @@ public class CasteLocalServiceClpInvoker {
 	private String[] _methodParameterTypes89;
 	private String _methodName94;
 	private String[] _methodParameterTypes94;
+	private String _methodName95;
+	private String[] _methodParameterTypes95;
 }

@@ -213,6 +213,45 @@ public interface CastePersistence extends BasePersistence<Caste> {
 			com.matrimony.NoSuchCasteException;
 
 	/**
+	* Returns the caste where religionId = &#63; and name = &#63; or throws a {@link com.matrimony.NoSuchCasteException} if it could not be found.
+	*
+	* @param religionId the religion ID
+	* @param name the name
+	* @return the matching caste
+	* @throws com.matrimony.NoSuchCasteException if a matching caste could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.matrimony.model.Caste findByReligionIdAndName(long religionId,
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.matrimony.NoSuchCasteException;
+
+	/**
+	* Returns the caste where religionId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param religionId the religion ID
+	* @param name the name
+	* @return the matching caste, or <code>null</code> if a matching caste could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.matrimony.model.Caste fetchByReligionIdAndName(long religionId,
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the caste where religionId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param religionId the religion ID
+	* @param name the name
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching caste, or <code>null</code> if a matching caste could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.matrimony.model.Caste fetchByReligionIdAndName(long religionId,
+		java.lang.String name, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the castes.
 	*
 	* @return the castes
@@ -264,6 +303,19 @@ public interface CastePersistence extends BasePersistence<Caste> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes the caste where religionId = &#63; and name = &#63; from the database.
+	*
+	* @param religionId the religion ID
+	* @param name the name
+	* @return the caste that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.matrimony.model.Caste removeByReligionIdAndName(
+		long religionId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.matrimony.NoSuchCasteException;
+
+	/**
 	* Removes all the castes from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -279,6 +331,17 @@ public interface CastePersistence extends BasePersistence<Caste> {
 	* @throws SystemException if a system exception occurred
 	*/
 	public int countByReligionId(long religionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of castes where religionId = &#63; and name = &#63;.
+	*
+	* @param religionId the religion ID
+	* @param name the name
+	* @return the number of matching castes
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByReligionIdAndName(long religionId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -72,7 +72,10 @@ public class ReligionModelImpl extends BaseModelImpl<Religion>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.matrimony.model.Religion"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.matrimony.model.Religion"),
+			true);
+	public static long NAME_COLUMN_BITMASK = 1L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.matrimony.model.Religion"));
 
@@ -146,7 +149,21 @@ public class ReligionModelImpl extends BaseModelImpl<Religion>
 	}
 
 	public void setName(String name) {
+		_columnBitmask |= NAME_COLUMN_BITMASK;
+
+		if (_originalName == null) {
+			_originalName = _name;
+		}
+
 		_name = name;
+	}
+
+	public String getOriginalName() {
+		return GetterUtil.getString(_originalName);
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -231,6 +248,11 @@ public class ReligionModelImpl extends BaseModelImpl<Religion>
 
 	@Override
 	public void resetOriginalValues() {
+		ReligionModelImpl religionModelImpl = this;
+
+		religionModelImpl._originalName = religionModelImpl._name;
+
+		religionModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -290,5 +312,7 @@ public class ReligionModelImpl extends BaseModelImpl<Religion>
 		};
 	private long _religionId;
 	private String _name;
+	private String _originalName;
+	private long _columnBitmask;
 	private Religion _escapedModelProxy;
 }

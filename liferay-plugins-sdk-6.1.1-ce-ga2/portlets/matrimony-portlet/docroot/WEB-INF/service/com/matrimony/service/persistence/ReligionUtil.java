@@ -187,6 +187,47 @@ public class ReligionUtil {
 	}
 
 	/**
+	* Returns the religion where name = &#63; or throws a {@link com.matrimony.NoSuchReligionException} if it could not be found.
+	*
+	* @param name the name
+	* @return the matching religion
+	* @throws com.matrimony.NoSuchReligionException if a matching religion could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.matrimony.model.Religion findByName(java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.matrimony.NoSuchReligionException {
+		return getPersistence().findByName(name);
+	}
+
+	/**
+	* Returns the religion where name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param name the name
+	* @return the matching religion, or <code>null</code> if a matching religion could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.matrimony.model.Religion fetchByName(
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByName(name);
+	}
+
+	/**
+	* Returns the religion where name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param name the name
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching religion, or <code>null</code> if a matching religion could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.matrimony.model.Religion fetchByName(
+		java.lang.String name, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByName(name, retrieveFromCache);
+	}
+
+	/**
 	* Returns all the religions.
 	*
 	* @return the religions
@@ -236,6 +277,20 @@ public class ReligionUtil {
 	}
 
 	/**
+	* Removes the religion where name = &#63; from the database.
+	*
+	* @param name the name
+	* @return the religion that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.matrimony.model.Religion removeByName(
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.matrimony.NoSuchReligionException {
+		return getPersistence().removeByName(name);
+	}
+
+	/**
 	* Removes all the religions from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -243,6 +298,18 @@ public class ReligionUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
+	}
+
+	/**
+	* Returns the number of religions where name = &#63;.
+	*
+	* @param name the name
+	* @return the number of matching religions
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByName(java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByName(name);
 	}
 
 	/**

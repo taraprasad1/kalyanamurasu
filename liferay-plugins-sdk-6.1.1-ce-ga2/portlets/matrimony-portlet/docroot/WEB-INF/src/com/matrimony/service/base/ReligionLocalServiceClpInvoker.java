@@ -105,6 +105,10 @@ public class ReligionLocalServiceClpInvoker {
 		_methodName89 = "setBeanIdentifier";
 
 		_methodParameterTypes89 = new String[] { "java.lang.String" };
+
+		_methodName94 = "getReligionByName";
+
+		_methodParameterTypes94 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -206,6 +210,11 @@ public class ReligionLocalServiceClpInvoker {
 			ReligionLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 		}
 
+		if (_methodName94.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes94, parameterTypes)) {
+			return ReligionLocalServiceUtil.getReligionByName((java.lang.String)arguments[0]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -245,4 +254,6 @@ public class ReligionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes88;
 	private String _methodName89;
 	private String[] _methodParameterTypes89;
+	private String _methodName94;
+	private String[] _methodParameterTypes94;
 }

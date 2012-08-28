@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -97,6 +98,16 @@ public class SubCastePersistenceImpl extends BasePersistenceImpl<SubCaste>
 			SubCasteModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCasteId",
 			new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FETCH_BY_CASTEIDANDNAME = new FinderPath(SubCasteModelImpl.ENTITY_CACHE_ENABLED,
+			SubCasteModelImpl.FINDER_CACHE_ENABLED, SubCasteImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByCasteIdAndName",
+			new String[] { Long.class.getName(), String.class.getName() },
+			SubCasteModelImpl.CASTEID_COLUMN_BITMASK |
+			SubCasteModelImpl.NAME_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_CASTEIDANDNAME = new FinderPath(SubCasteModelImpl.ENTITY_CACHE_ENABLED,
+			SubCasteModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCasteIdAndName",
+			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(SubCasteModelImpl.ENTITY_CACHE_ENABLED,
 			SubCasteModelImpl.FINDER_CACHE_ENABLED, SubCasteImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
@@ -115,6 +126,10 @@ public class SubCastePersistenceImpl extends BasePersistenceImpl<SubCaste>
 	public void cacheResult(SubCaste subCaste) {
 		EntityCacheUtil.putResult(SubCasteModelImpl.ENTITY_CACHE_ENABLED,
 			SubCasteImpl.class, subCaste.getPrimaryKey(), subCaste);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_CASTEIDANDNAME,
+			new Object[] { Long.valueOf(subCaste.getCasteId()), subCaste.getName() },
+			subCaste);
 
 		subCaste.resetOriginalValues();
 	}
@@ -171,6 +186,8 @@ public class SubCastePersistenceImpl extends BasePersistenceImpl<SubCaste>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		clearUniqueFindersCache(subCaste);
 	}
 
 	@Override
@@ -181,7 +198,14 @@ public class SubCastePersistenceImpl extends BasePersistenceImpl<SubCaste>
 		for (SubCaste subCaste : subCastes) {
 			EntityCacheUtil.removeResult(SubCasteModelImpl.ENTITY_CACHE_ENABLED,
 				SubCasteImpl.class, subCaste.getPrimaryKey());
+
+			clearUniqueFindersCache(subCaste);
 		}
+	}
+
+	protected void clearUniqueFindersCache(SubCaste subCaste) {
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_CASTEIDANDNAME,
+			new Object[] { Long.valueOf(subCaste.getCasteId()), subCaste.getName() });
 	}
 
 	/**
@@ -328,6 +352,38 @@ public class SubCastePersistenceImpl extends BasePersistenceImpl<SubCaste>
 
 		EntityCacheUtil.putResult(SubCasteModelImpl.ENTITY_CACHE_ENABLED,
 			SubCasteImpl.class, subCaste.getPrimaryKey(), subCaste);
+
+		if (isNew) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_CASTEIDANDNAME,
+				new Object[] {
+					Long.valueOf(subCaste.getCasteId()),
+					
+				subCaste.getName()
+				}, subCaste);
+		}
+		else {
+			if ((subCasteModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_CASTEIDANDNAME.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(subCasteModelImpl.getOriginalCasteId()),
+						
+						subCasteModelImpl.getOriginalName()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CASTEIDANDNAME,
+					args);
+
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_CASTEIDANDNAME,
+					args);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_CASTEIDANDNAME,
+					new Object[] {
+						Long.valueOf(subCaste.getCasteId()),
+						
+					subCaste.getName()
+					}, subCaste);
+			}
+		}
 
 		return subCaste;
 	}
@@ -819,6 +875,167 @@ public class SubCastePersistenceImpl extends BasePersistenceImpl<SubCaste>
 	}
 
 	/**
+	 * Returns the sub caste where casteId = &#63; and name = &#63; or throws a {@link com.matrimony.NoSuchSubCasteException} if it could not be found.
+	 *
+	 * @param casteId the caste ID
+	 * @param name the name
+	 * @return the matching sub caste
+	 * @throws com.matrimony.NoSuchSubCasteException if a matching sub caste could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public SubCaste findByCasteIdAndName(long casteId, String name)
+		throws NoSuchSubCasteException, SystemException {
+		SubCaste subCaste = fetchByCasteIdAndName(casteId, name);
+
+		if (subCaste == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("casteId=");
+			msg.append(casteId);
+
+			msg.append(", name=");
+			msg.append(name);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchSubCasteException(msg.toString());
+		}
+
+		return subCaste;
+	}
+
+	/**
+	 * Returns the sub caste where casteId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param casteId the caste ID
+	 * @param name the name
+	 * @return the matching sub caste, or <code>null</code> if a matching sub caste could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public SubCaste fetchByCasteIdAndName(long casteId, String name)
+		throws SystemException {
+		return fetchByCasteIdAndName(casteId, name, true);
+	}
+
+	/**
+	 * Returns the sub caste where casteId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param casteId the caste ID
+	 * @param name the name
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching sub caste, or <code>null</code> if a matching sub caste could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public SubCaste fetchByCasteIdAndName(long casteId, String name,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { casteId, name };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_CASTEIDANDNAME,
+					finderArgs, this);
+		}
+
+		if (result instanceof SubCaste) {
+			SubCaste subCaste = (SubCaste)result;
+
+			if ((casteId != subCaste.getCasteId()) ||
+					!Validator.equals(name, subCaste.getName())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_SUBCASTE_WHERE);
+
+			query.append(_FINDER_COLUMN_CASTEIDANDNAME_CASTEID_2);
+
+			if (name == null) {
+				query.append(_FINDER_COLUMN_CASTEIDANDNAME_NAME_1);
+			}
+			else {
+				if (name.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_CASTEIDANDNAME_NAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_CASTEIDANDNAME_NAME_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(casteId);
+
+				if (name != null) {
+					qPos.add(name);
+				}
+
+				List<SubCaste> list = q.list();
+
+				result = list;
+
+				SubCaste subCaste = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_CASTEIDANDNAME,
+						finderArgs, list);
+				}
+				else {
+					subCaste = list.get(0);
+
+					cacheResult(subCaste);
+
+					if ((subCaste.getCasteId() != casteId) ||
+							(subCaste.getName() == null) ||
+							!subCaste.getName().equals(name)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_CASTEIDANDNAME,
+							finderArgs, subCaste);
+					}
+				}
+
+				return subCaste;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (result == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_CASTEIDANDNAME,
+						finderArgs);
+				}
+
+				closeSession(session);
+			}
+		}
+		else {
+			if (result instanceof List<?>) {
+				return null;
+			}
+			else {
+				return (SubCaste)result;
+			}
+		}
+	}
+
+	/**
 	 * Returns all the sub castes.
 	 *
 	 * @return the sub castes
@@ -945,6 +1162,21 @@ public class SubCastePersistenceImpl extends BasePersistenceImpl<SubCaste>
 	}
 
 	/**
+	 * Removes the sub caste where casteId = &#63; and name = &#63; from the database.
+	 *
+	 * @param casteId the caste ID
+	 * @param name the name
+	 * @return the sub caste that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public SubCaste removeByCasteIdAndName(long casteId, String name)
+		throws NoSuchSubCasteException, SystemException {
+		SubCaste subCaste = findByCasteIdAndName(casteId, name);
+
+		return remove(subCaste);
+	}
+
+	/**
 	 * Removes all the sub castes from the database.
 	 *
 	 * @throws SystemException if a system exception occurred
@@ -999,6 +1231,77 @@ public class SubCastePersistenceImpl extends BasePersistenceImpl<SubCaste>
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_CASTEID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of sub castes where casteId = &#63; and name = &#63;.
+	 *
+	 * @param casteId the caste ID
+	 * @param name the name
+	 * @return the number of matching sub castes
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByCasteIdAndName(long casteId, String name)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { casteId, name };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_CASTEIDANDNAME,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_SUBCASTE_WHERE);
+
+			query.append(_FINDER_COLUMN_CASTEIDANDNAME_CASTEID_2);
+
+			if (name == null) {
+				query.append(_FINDER_COLUMN_CASTEIDANDNAME_NAME_1);
+			}
+			else {
+				if (name.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_CASTEIDANDNAME_NAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_CASTEIDANDNAME_NAME_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(casteId);
+
+				if (name != null) {
+					qPos.add(name);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_CASTEIDANDNAME,
 					finderArgs, count);
 
 				closeSession(session);
@@ -1108,6 +1411,10 @@ public class SubCastePersistenceImpl extends BasePersistenceImpl<SubCaste>
 	private static final String _SQL_COUNT_SUBCASTE = "SELECT COUNT(subCaste) FROM SubCaste subCaste";
 	private static final String _SQL_COUNT_SUBCASTE_WHERE = "SELECT COUNT(subCaste) FROM SubCaste subCaste WHERE ";
 	private static final String _FINDER_COLUMN_CASTEID_CASTEID_2 = "subCaste.casteId = ?";
+	private static final String _FINDER_COLUMN_CASTEIDANDNAME_CASTEID_2 = "subCaste.casteId = ? AND ";
+	private static final String _FINDER_COLUMN_CASTEIDANDNAME_NAME_1 = "subCaste.name IS NULL";
+	private static final String _FINDER_COLUMN_CASTEIDANDNAME_NAME_2 = "subCaste.name = ?";
+	private static final String _FINDER_COLUMN_CASTEIDANDNAME_NAME_3 = "(subCaste.name IS NULL OR subCaste.name = ?)";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "subCaste.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No SubCaste exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SubCaste exists with the key {";

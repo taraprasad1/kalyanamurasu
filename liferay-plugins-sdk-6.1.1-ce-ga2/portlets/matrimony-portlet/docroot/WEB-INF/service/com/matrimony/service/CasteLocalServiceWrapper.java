@@ -266,6 +266,13 @@ public class CasteLocalServiceWrapper implements CasteLocalService,
 		return _casteLocalService.getCasteListByReligionId(religionId);
 	}
 
+	public com.matrimony.model.Caste getCasteByReligionIdAndName(
+		long religionId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.matrimony.NoSuchCasteException {
+		return _casteLocalService.getCasteByReligionIdAndName(religionId, name);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

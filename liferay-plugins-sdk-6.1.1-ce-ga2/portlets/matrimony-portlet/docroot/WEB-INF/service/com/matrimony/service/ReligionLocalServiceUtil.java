@@ -269,6 +269,13 @@ public class ReligionLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static com.matrimony.model.Religion getReligionByName(
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.matrimony.NoSuchReligionException {
+		return getService().getReligionByName(name);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

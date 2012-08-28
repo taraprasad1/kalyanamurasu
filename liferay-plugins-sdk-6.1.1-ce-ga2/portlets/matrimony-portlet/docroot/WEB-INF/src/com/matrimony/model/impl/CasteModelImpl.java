@@ -75,7 +75,8 @@ public class CasteModelImpl extends BaseModelImpl<Caste> implements CasteModel {
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.matrimony.model.Caste"),
 			true);
-	public static long RELIGIONID_COLUMN_BITMASK = 1L;
+	public static long NAME_COLUMN_BITMASK = 1L;
+	public static long RELIGIONID_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.matrimony.model.Caste"));
 
@@ -176,7 +177,17 @@ public class CasteModelImpl extends BaseModelImpl<Caste> implements CasteModel {
 	}
 
 	public void setName(String name) {
+		_columnBitmask |= NAME_COLUMN_BITMASK;
+
+		if (_originalName == null) {
+			_originalName = _name;
+		}
+
 		_name = name;
+	}
+
+	public String getOriginalName() {
+		return GetterUtil.getString(_originalName);
 	}
 
 	public long getColumnBitmask() {
@@ -272,6 +283,8 @@ public class CasteModelImpl extends BaseModelImpl<Caste> implements CasteModel {
 
 		casteModelImpl._setOriginalReligionId = false;
 
+		casteModelImpl._originalName = casteModelImpl._name;
+
 		casteModelImpl._columnBitmask = 0;
 	}
 
@@ -343,6 +356,7 @@ public class CasteModelImpl extends BaseModelImpl<Caste> implements CasteModel {
 	private long _originalReligionId;
 	private boolean _setOriginalReligionId;
 	private String _name;
+	private String _originalName;
 	private long _columnBitmask;
 	private Caste _escapedModelProxy;
 }

@@ -245,4 +245,10 @@ public interface CasteLocalService extends BaseLocalService,
 	public java.util.List<com.matrimony.model.Caste> getCasteListByReligionId(
 		long religionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.matrimony.model.Caste getCasteByReligionIdAndName(
+		long religionId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.matrimony.NoSuchCasteException;
 }

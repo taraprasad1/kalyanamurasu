@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -98,6 +99,17 @@ public class CastePersistenceImpl extends BasePersistenceImpl<Caste>
 			CasteModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByReligionId",
 			new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FETCH_BY_RELIGIONIDANDNAME = new FinderPath(CasteModelImpl.ENTITY_CACHE_ENABLED,
+			CasteModelImpl.FINDER_CACHE_ENABLED, CasteImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByReligionIdAndName",
+			new String[] { Long.class.getName(), String.class.getName() },
+			CasteModelImpl.RELIGIONID_COLUMN_BITMASK |
+			CasteModelImpl.NAME_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_RELIGIONIDANDNAME = new FinderPath(CasteModelImpl.ENTITY_CACHE_ENABLED,
+			CasteModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countByReligionIdAndName",
+			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(CasteModelImpl.ENTITY_CACHE_ENABLED,
 			CasteModelImpl.FINDER_CACHE_ENABLED, CasteImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
@@ -116,6 +128,10 @@ public class CastePersistenceImpl extends BasePersistenceImpl<Caste>
 	public void cacheResult(Caste caste) {
 		EntityCacheUtil.putResult(CasteModelImpl.ENTITY_CACHE_ENABLED,
 			CasteImpl.class, caste.getPrimaryKey(), caste);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_RELIGIONIDANDNAME,
+			new Object[] { Long.valueOf(caste.getReligionId()), caste.getName() },
+			caste);
 
 		caste.resetOriginalValues();
 	}
@@ -171,6 +187,8 @@ public class CastePersistenceImpl extends BasePersistenceImpl<Caste>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		clearUniqueFindersCache(caste);
 	}
 
 	@Override
@@ -181,7 +199,14 @@ public class CastePersistenceImpl extends BasePersistenceImpl<Caste>
 		for (Caste caste : castes) {
 			EntityCacheUtil.removeResult(CasteModelImpl.ENTITY_CACHE_ENABLED,
 				CasteImpl.class, caste.getPrimaryKey());
+
+			clearUniqueFindersCache(caste);
 		}
+	}
+
+	protected void clearUniqueFindersCache(Caste caste) {
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_RELIGIONIDANDNAME,
+			new Object[] { Long.valueOf(caste.getReligionId()), caste.getName() });
 	}
 
 	/**
@@ -329,6 +354,38 @@ public class CastePersistenceImpl extends BasePersistenceImpl<Caste>
 
 		EntityCacheUtil.putResult(CasteModelImpl.ENTITY_CACHE_ENABLED,
 			CasteImpl.class, caste.getPrimaryKey(), caste);
+
+		if (isNew) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_RELIGIONIDANDNAME,
+				new Object[] {
+					Long.valueOf(caste.getReligionId()),
+					
+				caste.getName()
+				}, caste);
+		}
+		else {
+			if ((casteModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_RELIGIONIDANDNAME.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						Long.valueOf(casteModelImpl.getOriginalReligionId()),
+						
+						casteModelImpl.getOriginalName()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_RELIGIONIDANDNAME,
+					args);
+
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_RELIGIONIDANDNAME,
+					args);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_RELIGIONIDANDNAME,
+					new Object[] {
+						Long.valueOf(caste.getReligionId()),
+						
+					caste.getName()
+					}, caste);
+			}
+		}
 
 		return caste;
 	}
@@ -819,6 +876,167 @@ public class CastePersistenceImpl extends BasePersistenceImpl<Caste>
 	}
 
 	/**
+	 * Returns the caste where religionId = &#63; and name = &#63; or throws a {@link com.matrimony.NoSuchCasteException} if it could not be found.
+	 *
+	 * @param religionId the religion ID
+	 * @param name the name
+	 * @return the matching caste
+	 * @throws com.matrimony.NoSuchCasteException if a matching caste could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Caste findByReligionIdAndName(long religionId, String name)
+		throws NoSuchCasteException, SystemException {
+		Caste caste = fetchByReligionIdAndName(religionId, name);
+
+		if (caste == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("religionId=");
+			msg.append(religionId);
+
+			msg.append(", name=");
+			msg.append(name);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchCasteException(msg.toString());
+		}
+
+		return caste;
+	}
+
+	/**
+	 * Returns the caste where religionId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param religionId the religion ID
+	 * @param name the name
+	 * @return the matching caste, or <code>null</code> if a matching caste could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Caste fetchByReligionIdAndName(long religionId, String name)
+		throws SystemException {
+		return fetchByReligionIdAndName(religionId, name, true);
+	}
+
+	/**
+	 * Returns the caste where religionId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param religionId the religion ID
+	 * @param name the name
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching caste, or <code>null</code> if a matching caste could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Caste fetchByReligionIdAndName(long religionId, String name,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { religionId, name };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_RELIGIONIDANDNAME,
+					finderArgs, this);
+		}
+
+		if (result instanceof Caste) {
+			Caste caste = (Caste)result;
+
+			if ((religionId != caste.getReligionId()) ||
+					!Validator.equals(name, caste.getName())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_CASTE_WHERE);
+
+			query.append(_FINDER_COLUMN_RELIGIONIDANDNAME_RELIGIONID_2);
+
+			if (name == null) {
+				query.append(_FINDER_COLUMN_RELIGIONIDANDNAME_NAME_1);
+			}
+			else {
+				if (name.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_RELIGIONIDANDNAME_NAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_RELIGIONIDANDNAME_NAME_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(religionId);
+
+				if (name != null) {
+					qPos.add(name);
+				}
+
+				List<Caste> list = q.list();
+
+				result = list;
+
+				Caste caste = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_RELIGIONIDANDNAME,
+						finderArgs, list);
+				}
+				else {
+					caste = list.get(0);
+
+					cacheResult(caste);
+
+					if ((caste.getReligionId() != religionId) ||
+							(caste.getName() == null) ||
+							!caste.getName().equals(name)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_RELIGIONIDANDNAME,
+							finderArgs, caste);
+					}
+				}
+
+				return caste;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (result == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_RELIGIONIDANDNAME,
+						finderArgs);
+				}
+
+				closeSession(session);
+			}
+		}
+		else {
+			if (result instanceof List<?>) {
+				return null;
+			}
+			else {
+				return (Caste)result;
+			}
+		}
+	}
+
+	/**
 	 * Returns all the castes.
 	 *
 	 * @return the castes
@@ -945,6 +1163,21 @@ public class CastePersistenceImpl extends BasePersistenceImpl<Caste>
 	}
 
 	/**
+	 * Removes the caste where religionId = &#63; and name = &#63; from the database.
+	 *
+	 * @param religionId the religion ID
+	 * @param name the name
+	 * @return the caste that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Caste removeByReligionIdAndName(long religionId, String name)
+		throws NoSuchCasteException, SystemException {
+		Caste caste = findByReligionIdAndName(religionId, name);
+
+		return remove(caste);
+	}
+
+	/**
 	 * Removes all the castes from the database.
 	 *
 	 * @throws SystemException if a system exception occurred
@@ -999,6 +1232,77 @@ public class CastePersistenceImpl extends BasePersistenceImpl<Caste>
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_RELIGIONID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of castes where religionId = &#63; and name = &#63;.
+	 *
+	 * @param religionId the religion ID
+	 * @param name the name
+	 * @return the number of matching castes
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByReligionIdAndName(long religionId, String name)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { religionId, name };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_RELIGIONIDANDNAME,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_CASTE_WHERE);
+
+			query.append(_FINDER_COLUMN_RELIGIONIDANDNAME_RELIGIONID_2);
+
+			if (name == null) {
+				query.append(_FINDER_COLUMN_RELIGIONIDANDNAME_NAME_1);
+			}
+			else {
+				if (name.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_RELIGIONIDANDNAME_NAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_RELIGIONIDANDNAME_NAME_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(religionId);
+
+				if (name != null) {
+					qPos.add(name);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_RELIGIONIDANDNAME,
 					finderArgs, count);
 
 				closeSession(session);
@@ -1108,6 +1412,10 @@ public class CastePersistenceImpl extends BasePersistenceImpl<Caste>
 	private static final String _SQL_COUNT_CASTE = "SELECT COUNT(caste) FROM Caste caste";
 	private static final String _SQL_COUNT_CASTE_WHERE = "SELECT COUNT(caste) FROM Caste caste WHERE ";
 	private static final String _FINDER_COLUMN_RELIGIONID_RELIGIONID_2 = "caste.religionId = ?";
+	private static final String _FINDER_COLUMN_RELIGIONIDANDNAME_RELIGIONID_2 = "caste.religionId = ? AND ";
+	private static final String _FINDER_COLUMN_RELIGIONIDANDNAME_NAME_1 = "caste.name IS NULL";
+	private static final String _FINDER_COLUMN_RELIGIONIDANDNAME_NAME_2 = "caste.name = ?";
+	private static final String _FINDER_COLUMN_RELIGIONIDANDNAME_NAME_3 = "(caste.name IS NULL OR caste.name = ?)";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "caste.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Caste exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Caste exists with the key {";
