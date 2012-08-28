@@ -22,14 +22,13 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.matrimony.constant.KeyValueConstants;
-import com.matrimony.model.impl.KeyValueImpl;
-import com.matrimony.service.base.KeyValueLocalServiceBaseImpl;
 import com.matrimony.NoSuchKeyValueException;
+import com.matrimony.constant.KeyValueConstants;
 import com.matrimony.model.Key;
 import com.matrimony.model.KeyValue;
-import com.matrimony.service.KeyLocalServiceUtil;
+import com.matrimony.model.impl.KeyValueImpl;
 import com.matrimony.service.KeyValueLocalServiceUtil;
+import com.matrimony.service.base.KeyValueLocalServiceBaseImpl;
 
 /**
  * The implementation of the key value local service.

@@ -110,25 +110,29 @@ public class ProfileLocalServiceClpInvoker {
 
 		_methodParameterTypes94 = new String[] {  };
 
-		_methodName95 = "addProfileObj";
+		_methodName95 = "getProfileObj";
 
-		_methodParameterTypes95 = new String[] { "com.matrimony.model.Profile" };
+		_methodParameterTypes95 = new String[] { "long" };
 
-		_methodName96 = "updateProfileObj";
+		_methodName96 = "addProfileObj";
 
 		_methodParameterTypes96 = new String[] { "com.matrimony.model.Profile" };
 
-		_methodName97 = "deleteProfileObj";
+		_methodName97 = "updateProfileObj";
 
 		_methodParameterTypes97 = new String[] { "com.matrimony.model.Profile" };
 
-		_methodName98 = "getProfileListByIndexer";
+		_methodName98 = "deleteProfileObj";
 
-		_methodParameterTypes98 = new String[] { "long", "long" };
+		_methodParameterTypes98 = new String[] { "com.matrimony.model.Profile" };
 
-		_methodName99 = "createProfileCode";
+		_methodName99 = "getProfileListByIndexer";
 
-		_methodParameterTypes99 = new String[] { "com.matrimony.model.Profile" };
+		_methodParameterTypes99 = new String[] { "long", "long" };
+
+		_methodName100 = "createProfileCode";
+
+		_methodParameterTypes100 = new String[] { "com.matrimony.model.Profile" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -237,27 +241,32 @@ public class ProfileLocalServiceClpInvoker {
 
 		if (_methodName95.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes95, parameterTypes)) {
-			return ProfileLocalServiceUtil.addProfileObj((com.matrimony.model.Profile)arguments[0]);
+			return ProfileLocalServiceUtil.getProfileObj(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName96.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes96, parameterTypes)) {
-			return ProfileLocalServiceUtil.updateProfileObj((com.matrimony.model.Profile)arguments[0]);
+			return ProfileLocalServiceUtil.addProfileObj((com.matrimony.model.Profile)arguments[0]);
 		}
 
 		if (_methodName97.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes97, parameterTypes)) {
-			return ProfileLocalServiceUtil.deleteProfileObj((com.matrimony.model.Profile)arguments[0]);
+			return ProfileLocalServiceUtil.updateProfileObj((com.matrimony.model.Profile)arguments[0]);
 		}
 
 		if (_methodName98.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes98, parameterTypes)) {
-			return ProfileLocalServiceUtil.getProfileListByIndexer(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
+			return ProfileLocalServiceUtil.deleteProfileObj((com.matrimony.model.Profile)arguments[0]);
 		}
 
 		if (_methodName99.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes99, parameterTypes)) {
+			return ProfileLocalServiceUtil.getProfileListByIndexer(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName100.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes100, parameterTypes)) {
 			return ProfileLocalServiceUtil.createProfileCode((com.matrimony.model.Profile)arguments[0]);
 		}
 
@@ -312,4 +321,6 @@ public class ProfileLocalServiceClpInvoker {
 	private String[] _methodParameterTypes98;
 	private String _methodName99;
 	private String[] _methodParameterTypes99;
+	private String _methodName100;
+	private String[] _methodParameterTypes100;
 }

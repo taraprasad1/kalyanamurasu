@@ -1,7 +1,9 @@
 package com.matrimony.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -33,18 +35,32 @@ public class ProfileUtil {
 				if (Validator.isNotNull(document.get(Field.TITLE))) {
 					profile.setProfileCode(document.get(Field.TITLE));
 				}
-				if (Validator.isNotNull(document.get(Field.CLASS_PK))) {
+				if (Validator.isNotNull(document.get(Field.ENTRY_CLASS_PK))) {
 					profile.setProfileId(Long.parseLong(document
-							.get(Field.CLASS_PK)));
+							.get(Field.ENTRY_CLASS_PK)));
 				}
 				profile.setCountry(document
 						.get(ProfileConstants.PROFILE_COUNTRY));
-				profile.setState(ProfileConstants.PROFILE_STATE);
-				profile.setCity(ProfileConstants.PROFILE_CITY);
-				profile.setReligion(ProfileConstants.PROFILE_RELIGION);
+				profile.setState(document
+						.get(ProfileConstants.PROFILE_STATE));
+				profile.setCity(document
+						.get(ProfileConstants.PROFILE_CITY));
+				profile.setReligion(document
+						.get(ProfileConstants.PROFILE_RELIGION));
+				profile.setName(document
+						.get(ProfileConstants.PROFILE_NAME));
+				profile.setEmailAddress(document
+						.get(ProfileConstants.PROFILE_EMAIL_ADDRESS));
 				profileList.add(profile);
 			}
 		}
 		return profileList;
+	}
+	
+	public static Map<String, String> getProfileKeyValues(Profile profile){
+		Map<String, String> keyValues = new HashMap<String, String>();
+		keyValues.put(ProfileConstants.PROFILE_HOBBIES, profile.getHobbies());
+		keyValues.put(ProfileConstants.PROFILE_LANGUAGE, profile.getLanguageKnown());
+		return keyValues;
 	}
 }

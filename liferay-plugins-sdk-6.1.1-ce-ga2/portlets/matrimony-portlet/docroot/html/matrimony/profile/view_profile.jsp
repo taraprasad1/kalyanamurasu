@@ -4,7 +4,7 @@
 	long profileId = ParamUtil.getLong(request, "profileId");
 	String backURL = ParamUtil.getString(request, "backURL");
 	if(profileId > 0l) {
-		profile = ProfileLocalServiceUtil.getProfile(profileId);
+		profile = ProfileLocalServiceUtil.getProfileObj(profileId);
 	}
 	List<Photo> photoList = new ArrayList<Photo>();
 	photoList = PhotoLocalServiceUtil.getPhotoList(profileId);
@@ -63,6 +63,10 @@
 		<tr>
 			<th>Dosam</th>
 			<td><%= profile.getDosam() %></td>
+		</tr>
+		<tr>
+			<th>Hobbies</th>
+			<td><%= profile.getHobbies() %></td>
 		</tr>
 		<tr>
 			<th>Photo</th>

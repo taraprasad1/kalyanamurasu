@@ -20,7 +20,7 @@
 </aui:select><br/>
 <aui:select name="hobbies" label="profile-hobbies" inlineField="true" inputCssClass="selectBoxStyle"  multiple="true">
 	<c:forEach items="${hobbies}" var="hobbiesValue">
-		<aui:option value="${hobbiesValue}" label="${hobbiesValue}" selected="${selectedHobbiesValuee == hobbiesValue}"/>
+		<aui:option value="${hobbiesValue}" label="${hobbiesValue}" selected="${selectedHobbiesValue == hobbiesValue}"/>
 	</c:forEach>
 </aui:select><br/>
 <aui:input name="aboutMe" type="textarea" label="profile-about-me" inlineField="true" inputCssClass="textBoxStyle"/><br/>

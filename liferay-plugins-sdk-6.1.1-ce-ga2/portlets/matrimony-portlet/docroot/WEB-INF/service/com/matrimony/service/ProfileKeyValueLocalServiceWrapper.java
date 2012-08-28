@@ -271,6 +271,24 @@ public class ProfileKeyValueLocalServiceWrapper
 			arguments);
 	}
 
+	public void addValues(long profileId,
+		java.util.Map<java.lang.String, java.lang.String> keyValues)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_profileKeyValueLocalService.addValues(profileId, keyValues);
+	}
+
+	public void updateValues(long profileId,
+		java.util.Map<java.lang.String, java.lang.String> keyValues)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_profileKeyValueLocalService.updateValues(profileId, keyValues);
+	}
+
+	public java.lang.String getValues(long profileId, java.lang.String keyName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _profileKeyValueLocalService.getValues(profileId, keyName);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

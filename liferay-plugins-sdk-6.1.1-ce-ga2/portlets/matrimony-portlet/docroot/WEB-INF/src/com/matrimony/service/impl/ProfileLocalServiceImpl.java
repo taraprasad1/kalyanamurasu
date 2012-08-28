@@ -17,6 +17,7 @@ package com.matrimony.service.impl;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -32,8 +33,10 @@ import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.util.Validator;
+import com.matrimony.constant.ProfileConstants;
 import com.matrimony.model.Profile;
 import com.matrimony.model.impl.ProfileImpl;
+import com.matrimony.service.ProfileKeyValueLocalServiceUtil;
 import com.matrimony.service.base.ProfileLocalServiceBaseImpl;
 import com.matrimony.util.MatrimonyPropsValues;
 import com.matrimony.util.ProfileIndexer;
@@ -67,11 +70,20 @@ public class ProfileLocalServiceImpl extends ProfileLocalServiceBaseImpl {
 		return new ProfileImpl();
 	}
 	
+	public Profile getProfileObj(long profileId) throws PortalException, SystemException{
+		Profile profile = profileLocalService.getProfile(profileId);
+		profile.setHobbies(profileKeyValueLocalService.getValues(profileId, ProfileConstants.PROFILE_HOBBIES));
+		profile.setLanguageKnown(profileKeyValueLocalService.getValues(profileId, ProfileConstants.PROFILE_LANGUAGE));
+		return profile;
+	}
+	
 	public Profile addProfileObj(Profile profile) throws SystemException, SearchException{
 		profile.setProfileCode(createProfileCode(profile));
 		profile = profileLocalService.addProfile(profile);
 		ProfileIndexer profileIndexer = new ProfileIndexer();
 		profileIndexer.addProfile(profile);
+		Map<String, String> keyValues = ProfileUtil.getProfileKeyValues(profile);
+		profileKeyValueLocalService.addValues(profile.getProfileId(), keyValues);
 		return profile;
 	}
 	
@@ -79,6 +91,8 @@ public class ProfileLocalServiceImpl extends ProfileLocalServiceBaseImpl {
 		profileLocalService.updateProfile(profile);
 		ProfileIndexer profileIndexer = new ProfileIndexer();
 		profileIndexer.updateProfile(profile);
+		Map<String, String> keyValues = ProfileUtil.getProfileKeyValues(profile);
+		profileKeyValueLocalService.updateValues(profile.getProfileId(), keyValues);
 		return profile;
 	}
 	

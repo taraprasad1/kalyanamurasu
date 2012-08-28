@@ -273,6 +273,25 @@ public class ProfileKeyValueLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static void addValues(long profileId,
+		java.util.Map<java.lang.String, java.lang.String> keyValues)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().addValues(profileId, keyValues);
+	}
+
+	public static void updateValues(long profileId,
+		java.util.Map<java.lang.String, java.lang.String> keyValues)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().updateValues(profileId, keyValues);
+	}
+
+	public static java.lang.String getValues(long profileId,
+		java.lang.String keyName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getValues(profileId, keyName);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}
