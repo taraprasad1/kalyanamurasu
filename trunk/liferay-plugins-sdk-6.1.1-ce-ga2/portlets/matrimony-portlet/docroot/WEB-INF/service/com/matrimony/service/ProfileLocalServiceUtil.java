@@ -273,6 +273,12 @@ public class ProfileLocalServiceUtil {
 		return getService().createProfileObj();
 	}
 
+	public static com.matrimony.model.Profile getProfileObj(long profileId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getProfileObj(profileId);
+	}
+
 	public static com.matrimony.model.Profile addProfileObj(
 		com.matrimony.model.Profile profile)
 		throws com.liferay.portal.kernel.exception.SystemException,

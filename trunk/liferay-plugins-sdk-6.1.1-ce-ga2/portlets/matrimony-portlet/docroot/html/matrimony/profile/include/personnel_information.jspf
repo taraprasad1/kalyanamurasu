@@ -68,7 +68,7 @@
 </aui:select><br/>
 <aui:select name="languageKnown" label="profile-language-known" inlineField="true" inputCssClass="selectBoxStyle"  multiple="true">
 	<c:forEach items="${language}" var="languageKnownValue">
-		<aui:option value="${languageKnownValue}" label="${languageKnownValue}" selected="${selectedLanguageKnownValue == languageKnownValue}"/>
+		<option value="${languageKnownValue}" label="${languageKnownValue}" selected="${selectedLanguageKnownValue == languageKnownValue}"/>
 	</c:forEach>
 </aui:select><br/>
 <aui:select name="maritalStatus" label="profile-marital-status" inlineField="true" inputCssClass="selectBoxStyle">

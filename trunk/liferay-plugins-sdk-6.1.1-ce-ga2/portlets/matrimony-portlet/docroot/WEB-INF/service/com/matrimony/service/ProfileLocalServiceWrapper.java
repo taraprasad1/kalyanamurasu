@@ -265,6 +265,12 @@ public class ProfileLocalServiceWrapper implements ProfileLocalService,
 		return _profileLocalService.createProfileObj();
 	}
 
+	public com.matrimony.model.Profile getProfileObj(long profileId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _profileLocalService.getProfileObj(profileId);
+	}
+
 	public com.matrimony.model.Profile addProfileObj(
 		com.matrimony.model.Profile profile)
 		throws com.liferay.portal.kernel.exception.SystemException,

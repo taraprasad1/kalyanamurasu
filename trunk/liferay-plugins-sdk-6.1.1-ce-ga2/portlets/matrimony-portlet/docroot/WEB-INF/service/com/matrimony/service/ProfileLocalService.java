@@ -244,6 +244,11 @@ public interface ProfileLocalService extends BaseLocalService,
 
 	public com.matrimony.model.Profile createProfileObj();
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.matrimony.model.Profile getProfileObj(long profileId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public com.matrimony.model.Profile addProfileObj(
 		com.matrimony.model.Profile profile)
 		throws com.liferay.portal.kernel.exception.SystemException,

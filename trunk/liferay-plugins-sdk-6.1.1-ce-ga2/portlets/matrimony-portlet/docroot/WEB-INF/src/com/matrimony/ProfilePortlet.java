@@ -109,7 +109,9 @@ public class ProfilePortlet extends MatrimonyController {
 			}
 		} else {
 			try {
-				ProfileLocalServiceUtil.addProfile(profile);
+				ProfileLocalServiceUtil.addProfileObj(profile);
+			} catch (SearchException e) {
+				e.printStackTrace();
 			} catch (SystemException e) {
 				e.printStackTrace();
 			}

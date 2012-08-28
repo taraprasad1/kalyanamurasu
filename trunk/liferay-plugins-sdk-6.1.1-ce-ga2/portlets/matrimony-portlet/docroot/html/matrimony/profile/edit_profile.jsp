@@ -5,7 +5,7 @@
 	Profile profile = new ProfileImpl();
 	
 	if(Validator.isNotNull(profileId)) {
-		profile = ProfileLocalServiceUtil.getProfile(profileId);
+		profile = ProfileLocalServiceUtil.getProfileObj(profileId);
 	}
 %>
 <portlet:actionURL var="updateAccountURL" >

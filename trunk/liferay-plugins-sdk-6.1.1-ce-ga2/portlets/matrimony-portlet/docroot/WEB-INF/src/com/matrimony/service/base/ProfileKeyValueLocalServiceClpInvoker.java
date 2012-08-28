@@ -119,6 +119,18 @@ public class ProfileKeyValueLocalServiceClpInvoker {
 		_methodName89 = "setBeanIdentifier";
 
 		_methodParameterTypes89 = new String[] { "java.lang.String" };
+
+		_methodName94 = "addValues";
+
+		_methodParameterTypes94 = new String[] { "long", "java.util.Map" };
+
+		_methodName95 = "updateValues";
+
+		_methodParameterTypes95 = new String[] { "long", "java.util.Map" };
+
+		_methodName96 = "getValues";
+
+		_methodParameterTypes96 = new String[] { "long", "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -220,6 +232,24 @@ public class ProfileKeyValueLocalServiceClpInvoker {
 			ProfileKeyValueLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 		}
 
+		if (_methodName94.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes94, parameterTypes)) {
+			ProfileKeyValueLocalServiceUtil.addValues(((Long)arguments[0]).longValue(),
+				(java.util.Map<java.lang.String, java.lang.String>)arguments[1]);
+		}
+
+		if (_methodName95.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes95, parameterTypes)) {
+			ProfileKeyValueLocalServiceUtil.updateValues(((Long)arguments[0]).longValue(),
+				(java.util.Map<java.lang.String, java.lang.String>)arguments[1]);
+		}
+
+		if (_methodName96.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes96, parameterTypes)) {
+			return ProfileKeyValueLocalServiceUtil.getValues(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -259,4 +289,10 @@ public class ProfileKeyValueLocalServiceClpInvoker {
 	private String[] _methodParameterTypes88;
 	private String _methodName89;
 	private String[] _methodParameterTypes89;
+	private String _methodName94;
+	private String[] _methodParameterTypes94;
+	private String _methodName95;
+	private String[] _methodParameterTypes95;
+	private String _methodName96;
+	private String[] _methodParameterTypes96;
 }

@@ -110,25 +110,29 @@ public class ProfileLocalServiceClp implements ProfileLocalService {
 
 		_methodParameterTypes19 = new String[] {  };
 
-		_methodName20 = "addProfileObj";
+		_methodName20 = "getProfileObj";
 
-		_methodParameterTypes20 = new String[] { "com.matrimony.model.Profile" };
+		_methodParameterTypes20 = new String[] { "long" };
 
-		_methodName21 = "updateProfileObj";
+		_methodName21 = "addProfileObj";
 
 		_methodParameterTypes21 = new String[] { "com.matrimony.model.Profile" };
 
-		_methodName22 = "deleteProfileObj";
+		_methodName22 = "updateProfileObj";
 
 		_methodParameterTypes22 = new String[] { "com.matrimony.model.Profile" };
 
-		_methodName23 = "getProfileListByIndexer";
+		_methodName23 = "deleteProfileObj";
 
-		_methodParameterTypes23 = new String[] { "long", "long" };
+		_methodParameterTypes23 = new String[] { "com.matrimony.model.Profile" };
 
-		_methodName24 = "createProfileCode";
+		_methodName24 = "getProfileListByIndexer";
 
-		_methodParameterTypes24 = new String[] { "com.matrimony.model.Profile" };
+		_methodParameterTypes24 = new String[] { "long", "long" };
+
+		_methodName25 = "createProfileCode";
+
+		_methodParameterTypes25 = new String[] { "com.matrimony.model.Profile" };
 	}
 
 	public com.matrimony.model.Profile addProfile(
@@ -674,26 +678,24 @@ public class ProfileLocalServiceClp implements ProfileLocalService {
 		return (com.matrimony.model.Profile)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.matrimony.model.Profile addProfileObj(
-		com.matrimony.model.Profile profile)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.kernel.search.SearchException {
+	public com.matrimony.model.Profile getProfileObj(long profileId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20,
-					new Object[] { ClpSerializer.translateInput(profile) });
+					_methodParameterTypes20, new Object[] { profileId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.search.SearchException) {
-				throw (com.liferay.portal.kernel.search.SearchException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -708,7 +710,7 @@ public class ProfileLocalServiceClp implements ProfileLocalService {
 		return (com.matrimony.model.Profile)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.matrimony.model.Profile updateProfileObj(
+	public com.matrimony.model.Profile addProfileObj(
 		com.matrimony.model.Profile profile)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.kernel.search.SearchException {
@@ -742,6 +744,40 @@ public class ProfileLocalServiceClp implements ProfileLocalService {
 		return (com.matrimony.model.Profile)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.matrimony.model.Profile updateProfileObj(
+		com.matrimony.model.Profile profile)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.SearchException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
+					new Object[] { ClpSerializer.translateInput(profile) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.search.SearchException) {
+				throw (com.liferay.portal.kernel.search.SearchException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.matrimony.model.Profile)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.lang.Boolean deleteProfileObj(
 		com.matrimony.model.Profile profile)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -749,8 +785,8 @@ public class ProfileLocalServiceClp implements ProfileLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] { ClpSerializer.translateInput(profile) });
 		}
 		catch (Throwable t) {
@@ -781,8 +817,8 @@ public class ProfileLocalServiceClp implements ProfileLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23, new Object[] { companyId, groupId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24, new Object[] { companyId, groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -804,8 +840,8 @@ public class ProfileLocalServiceClp implements ProfileLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] { ClpSerializer.translateInput(profile) });
 		}
 		catch (Throwable t) {
@@ -872,4 +908,6 @@ public class ProfileLocalServiceClp implements ProfileLocalService {
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
 }
