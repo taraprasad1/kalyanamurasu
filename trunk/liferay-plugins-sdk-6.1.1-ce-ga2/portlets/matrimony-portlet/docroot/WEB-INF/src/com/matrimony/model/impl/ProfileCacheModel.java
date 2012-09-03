@@ -189,26 +189,9 @@ public class ProfileCacheModel implements CacheModel<Profile>, Serializable {
 			profileImpl.setDosam(dosam);
 		}
 
-		if (religion == null) {
-			profileImpl.setReligion(StringPool.BLANK);
-		}
-		else {
-			profileImpl.setReligion(religion);
-		}
-
-		if (caste == null) {
-			profileImpl.setCaste(StringPool.BLANK);
-		}
-		else {
-			profileImpl.setCaste(caste);
-		}
-
-		if (subCaste == null) {
-			profileImpl.setSubCaste(StringPool.BLANK);
-		}
-		else {
-			profileImpl.setSubCaste(subCaste);
-		}
+		profileImpl.setReligion(religion);
+		profileImpl.setCaste(caste);
+		profileImpl.setSubCaste(subCaste);
 
 		if (height == null) {
 			profileImpl.setHeight(StringPool.BLANK);
@@ -246,27 +229,9 @@ public class ProfileCacheModel implements CacheModel<Profile>, Serializable {
 		}
 
 		profileImpl.setChildren(children);
-
-		if (country == null) {
-			profileImpl.setCountry(StringPool.BLANK);
-		}
-		else {
-			profileImpl.setCountry(country);
-		}
-
-		if (state == null) {
-			profileImpl.setState(StringPool.BLANK);
-		}
-		else {
-			profileImpl.setState(state);
-		}
-
-		if (city == null) {
-			profileImpl.setCity(StringPool.BLANK);
-		}
-		else {
-			profileImpl.setCity(city);
-		}
+		profileImpl.setCountry(country);
+		profileImpl.setState(state);
+		profileImpl.setCity(city);
 
 		if (address == null) {
 			profileImpl.setAddress(StringPool.BLANK);
@@ -417,18 +382,18 @@ public class ProfileCacheModel implements CacheModel<Profile>, Serializable {
 	public String rasi;
 	public String star;
 	public String dosam;
-	public String religion;
-	public String caste;
-	public String subCaste;
+	public long religion;
+	public long caste;
+	public long subCaste;
 	public String height;
 	public String weight;
 	public String complexion;
 	public String motherTongue;
 	public String maritalStatus;
 	public int children;
-	public String country;
-	public String state;
-	public String city;
+	public long country;
+	public long state;
+	public long city;
 	public String address;
 	public String pinCode;
 	public String phone;

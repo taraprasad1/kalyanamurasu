@@ -1,3 +1,6 @@
+<%
+	List<String> hobbiesList = CommonUtil.getValueList(profile.getHobbies());
+%>
 <aui:select  name="education" label="profile-education" inlineField="true" inputCssClass="selectBoxStyle">
 	<c:forEach items="${education}" var="educationValue">
 		<aui:option value="${educationValue}" label="${educationValue}" selected="${selectedEducationValue == educationValue}"/>
@@ -20,7 +23,14 @@
 </aui:select><br/>
 <aui:select name="hobbies" label="profile-hobbies" inlineField="true" inputCssClass="selectBoxStyle"  multiple="true">
 	<c:forEach items="${hobbies}" var="hobbiesValue">
-		<aui:option value="${hobbiesValue}" label="${hobbiesValue}" selected="${selectedHobbiesValue == hobbiesValue}"/>
+		<c:set var="hobbiesVal" scope="page" value="${hobbiesValue}"/>
+		<% if(Validator.isNotNull(hobbiesList) && hobbiesList.contains(pageContext.getAttribute("hobbiesVal"))){ %>
+			<option selected="selected" value="${hobbiesValue}">
+		<% } else { %>
+			<option value="${hobbiesValue}">
+		<% } %>
+			${hobbiesValue}
+		</option>
 	</c:forEach>
 </aui:select><br/>
 <aui:input name="aboutMe" type="textarea" label="profile-about-me" inlineField="true" inputCssClass="textBoxStyle"/><br/>

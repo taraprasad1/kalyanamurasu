@@ -1,3 +1,6 @@
+<%
+	List<Profile> profileList = ProfileLocalServiceUtil.getProfileListByIndexer(themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId());
+%>
 <liferay-util:include page="/html/matrimony/profile/toolbar.jsp" servletContext="<%= getServletContext() %>">
 	<liferay-util:param name="toolbarItem" value="view-all" />
 </liferay-util:include>

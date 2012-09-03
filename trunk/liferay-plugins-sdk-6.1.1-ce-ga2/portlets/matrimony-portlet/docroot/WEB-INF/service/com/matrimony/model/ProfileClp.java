@@ -172,19 +172,19 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 			setDosam(dosam);
 		}
 
-		String religion = (String)attributes.get("religion");
+		Long religion = (Long)attributes.get("religion");
 
 		if (religion != null) {
 			setReligion(religion);
 		}
 
-		String caste = (String)attributes.get("caste");
+		Long caste = (Long)attributes.get("caste");
 
 		if (caste != null) {
 			setCaste(caste);
 		}
 
-		String subCaste = (String)attributes.get("subCaste");
+		Long subCaste = (Long)attributes.get("subCaste");
 
 		if (subCaste != null) {
 			setSubCaste(subCaste);
@@ -226,19 +226,19 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 			setChildren(children);
 		}
 
-		String country = (String)attributes.get("country");
+		Long country = (Long)attributes.get("country");
 
 		if (country != null) {
 			setCountry(country);
 		}
 
-		String state = (String)attributes.get("state");
+		Long state = (Long)attributes.get("state");
 
 		if (state != null) {
 			setState(state);
 		}
 
-		String city = (String)attributes.get("city");
+		Long city = (Long)attributes.get("city");
 
 		if (city != null) {
 			setCity(city);
@@ -471,27 +471,27 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 		_dosam = dosam;
 	}
 
-	public String getReligion() {
+	public long getReligion() {
 		return _religion;
 	}
 
-	public void setReligion(String religion) {
+	public void setReligion(long religion) {
 		_religion = religion;
 	}
 
-	public String getCaste() {
+	public long getCaste() {
 		return _caste;
 	}
 
-	public void setCaste(String caste) {
+	public void setCaste(long caste) {
 		_caste = caste;
 	}
 
-	public String getSubCaste() {
+	public long getSubCaste() {
 		return _subCaste;
 	}
 
-	public void setSubCaste(String subCaste) {
+	public void setSubCaste(long subCaste) {
 		_subCaste = subCaste;
 	}
 
@@ -543,27 +543,27 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 		_children = children;
 	}
 
-	public String getCountry() {
+	public long getCountry() {
 		return _country;
 	}
 
-	public void setCountry(String country) {
+	public void setCountry(long country) {
 		_country = country;
 	}
 
-	public String getState() {
+	public long getState() {
 		return _state;
 	}
 
-	public void setState(String state) {
+	public void setState(long state) {
 		_state = state;
 	}
 
-	public String getCity() {
+	public long getCity() {
 		return _city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(long city) {
 		_city = city;
 	}
 
@@ -1215,18 +1215,18 @@ public class ProfileClp extends BaseModelImpl<Profile> implements Profile {
 	private String _rasi;
 	private String _star;
 	private String _dosam;
-	private String _religion;
-	private String _caste;
-	private String _subCaste;
+	private long _religion;
+	private long _caste;
+	private long _subCaste;
 	private String _height;
 	private String _weight;
 	private String _complexion;
 	private String _motherTongue;
 	private String _maritalStatus;
 	private int _children;
-	private String _country;
-	private String _state;
-	private String _city;
+	private long _country;
+	private long _state;
+	private long _city;
 	private String _address;
 	private String _pinCode;
 	private String _phone;

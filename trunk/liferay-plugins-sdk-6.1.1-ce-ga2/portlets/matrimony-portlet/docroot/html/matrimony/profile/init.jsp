@@ -24,7 +24,4 @@
 <%@page import="com.matrimony.service.PhotoLocalServiceUtil"%>
 <%@page import="com.matrimony.model.Photo"%>
 <%@page import="com.liferay.portal.kernel.util.StringPool"%>
-
-<%
-	List<Profile> profileList = ProfileLocalServiceUtil.getProfileListByIndexer(themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId());
-%>
+<%@page import="com.matrimony.util.CommonUtil"%>

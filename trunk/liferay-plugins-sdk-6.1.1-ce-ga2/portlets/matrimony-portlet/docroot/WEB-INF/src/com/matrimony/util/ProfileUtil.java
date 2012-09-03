@@ -39,14 +39,21 @@ public class ProfileUtil {
 					profile.setProfileId(Long.parseLong(document
 							.get(Field.ENTRY_CLASS_PK)));
 				}
-				profile.setCountry(document
-						.get(ProfileConstants.PROFILE_COUNTRY));
-				profile.setState(document
-						.get(ProfileConstants.PROFILE_STATE));
-				profile.setCity(document
-						.get(ProfileConstants.PROFILE_CITY));
-				profile.setReligion(document
-						.get(ProfileConstants.PROFILE_RELIGION));
+				if (Validator.isNotNull(document.get(ProfileConstants.PROFILE_COUNTRY))) {
+					profile.setCountry(Long.parseLong(document.get(ProfileConstants.PROFILE_COUNTRY)));
+				}
+				if (Validator.isNotNull(document.get(ProfileConstants.PROFILE_STATE))) {
+					profile.setState(Long.parseLong(document
+						.get(ProfileConstants.PROFILE_STATE)));
+				}
+				if (Validator.isNotNull(document.get(ProfileConstants.PROFILE_CITY))) {
+					profile.setCity(Long.parseLong(document
+						.get(ProfileConstants.PROFILE_CITY)));
+				}
+				if (Validator.isNotNull(document.get(ProfileConstants.PROFILE_RELIGION))) {
+					profile.setReligion(Long.parseLong(document
+						.get(ProfileConstants.PROFILE_RELIGION)));
+				}
 				profile.setName(document
 						.get(ProfileConstants.PROFILE_NAME));
 				profile.setEmailAddress(document

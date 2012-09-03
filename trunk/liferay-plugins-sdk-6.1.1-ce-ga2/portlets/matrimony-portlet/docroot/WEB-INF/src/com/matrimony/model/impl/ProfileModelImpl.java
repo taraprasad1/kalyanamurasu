@@ -74,18 +74,18 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 			{ "rasi", Types.VARCHAR },
 			{ "star", Types.VARCHAR },
 			{ "dosam", Types.VARCHAR },
-			{ "religion", Types.VARCHAR },
-			{ "caste", Types.VARCHAR },
-			{ "subCaste", Types.VARCHAR },
+			{ "religion", Types.BIGINT },
+			{ "caste", Types.BIGINT },
+			{ "subCaste", Types.BIGINT },
 			{ "height", Types.VARCHAR },
 			{ "weight", Types.VARCHAR },
 			{ "complexion", Types.VARCHAR },
 			{ "motherTongue", Types.VARCHAR },
 			{ "maritalStatus", Types.VARCHAR },
 			{ "children", Types.INTEGER },
-			{ "country", Types.VARCHAR },
-			{ "state_", Types.VARCHAR },
-			{ "city", Types.VARCHAR },
+			{ "country", Types.BIGINT },
+			{ "state_", Types.BIGINT },
+			{ "city", Types.BIGINT },
 			{ "address", Types.VARCHAR },
 			{ "pinCode", Types.VARCHAR },
 			{ "phone", Types.VARCHAR },
@@ -112,7 +112,7 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 			{ "companyId", Types.BIGINT },
 			{ "groupId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table matrimony_profile (profileId LONG not null primary key IDENTITY,profileCode VARCHAR(75) null,createdForMy VARCHAR(75) null,name VARCHAR(75) null,gender BOOLEAN,birthDateWithTime DATE null,rasi VARCHAR(75) null,star VARCHAR(75) null,dosam VARCHAR(75) null,religion VARCHAR(75) null,caste VARCHAR(75) null,subCaste VARCHAR(75) null,height VARCHAR(75) null,weight VARCHAR(75) null,complexion VARCHAR(75) null,motherTongue VARCHAR(75) null,maritalStatus VARCHAR(75) null,children INTEGER,country VARCHAR(75) null,state_ VARCHAR(75) null,city VARCHAR(75) null,address VARCHAR(75) null,pinCode VARCHAR(75) null,phone VARCHAR(75) null,mobile VARCHAR(75) null,emailAddress VARCHAR(75) null,education VARCHAR(75) null,profession VARCHAR(75) null,currency_ VARCHAR(75) null,annualIncome VARCHAR(75) null,aboutMe VARCHAR(75) null,familyValue VARCHAR(75) null,familyType VARCHAR(75) null,familyStatus VARCHAR(75) null,securityCode VARCHAR(75) null,photoSecurityCode VARCHAR(75) null,lastLoggedIn DATE null,status INTEGER,scheme INTEGER,horoscope BOOLEAN,createdBy LONG,modifiedBy LONG,createdDate DATE null,modifiedDate DATE null,companyId LONG,groupId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table matrimony_profile (profileId LONG not null primary key IDENTITY,profileCode VARCHAR(75) null,createdForMy VARCHAR(75) null,name VARCHAR(75) null,gender BOOLEAN,birthDateWithTime DATE null,rasi VARCHAR(75) null,star VARCHAR(75) null,dosam VARCHAR(75) null,religion LONG,caste LONG,subCaste LONG,height VARCHAR(75) null,weight VARCHAR(75) null,complexion VARCHAR(75) null,motherTongue VARCHAR(75) null,maritalStatus VARCHAR(75) null,children INTEGER,country LONG,state_ LONG,city LONG,address VARCHAR(75) null,pinCode VARCHAR(75) null,phone VARCHAR(75) null,mobile VARCHAR(75) null,emailAddress VARCHAR(75) null,education VARCHAR(75) null,profession VARCHAR(75) null,currency_ VARCHAR(75) null,annualIncome VARCHAR(75) null,aboutMe VARCHAR(75) null,familyValue VARCHAR(75) null,familyType VARCHAR(75) null,familyStatus VARCHAR(75) null,securityCode VARCHAR(75) null,photoSecurityCode VARCHAR(75) null,lastLoggedIn DATE null,status INTEGER,scheme INTEGER,horoscope BOOLEAN,createdBy LONG,modifiedBy LONG,createdDate DATE null,modifiedDate DATE null,companyId LONG,groupId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table matrimony_profile";
 	public static final String ORDER_BY_JPQL = " ORDER BY profile.modifiedDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY matrimony_profile.modifiedDate DESC";
@@ -354,19 +354,19 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 			setDosam(dosam);
 		}
 
-		String religion = (String)attributes.get("religion");
+		Long religion = (Long)attributes.get("religion");
 
 		if (religion != null) {
 			setReligion(religion);
 		}
 
-		String caste = (String)attributes.get("caste");
+		Long caste = (Long)attributes.get("caste");
 
 		if (caste != null) {
 			setCaste(caste);
 		}
 
-		String subCaste = (String)attributes.get("subCaste");
+		Long subCaste = (Long)attributes.get("subCaste");
 
 		if (subCaste != null) {
 			setSubCaste(subCaste);
@@ -408,19 +408,19 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 			setChildren(children);
 		}
 
-		String country = (String)attributes.get("country");
+		Long country = (Long)attributes.get("country");
 
 		if (country != null) {
 			setCountry(country);
 		}
 
-		String state = (String)attributes.get("state");
+		Long state = (Long)attributes.get("state");
 
 		if (state != null) {
 			setState(state);
 		}
 
-		String city = (String)attributes.get("city");
+		Long city = (Long)attributes.get("city");
 
 		if (city != null) {
 			setCity(city);
@@ -693,44 +693,29 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 	}
 
 	@JSON
-	public String getReligion() {
-		if (_religion == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _religion;
-		}
+	public long getReligion() {
+		return _religion;
 	}
 
-	public void setReligion(String religion) {
+	public void setReligion(long religion) {
 		_religion = religion;
 	}
 
 	@JSON
-	public String getCaste() {
-		if (_caste == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _caste;
-		}
+	public long getCaste() {
+		return _caste;
 	}
 
-	public void setCaste(String caste) {
+	public void setCaste(long caste) {
 		_caste = caste;
 	}
 
 	@JSON
-	public String getSubCaste() {
-		if (_subCaste == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _subCaste;
-		}
+	public long getSubCaste() {
+		return _subCaste;
 	}
 
-	public void setSubCaste(String subCaste) {
+	public void setSubCaste(long subCaste) {
 		_subCaste = subCaste;
 	}
 
@@ -814,44 +799,29 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 	}
 
 	@JSON
-	public String getCountry() {
-		if (_country == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _country;
-		}
+	public long getCountry() {
+		return _country;
 	}
 
-	public void setCountry(String country) {
+	public void setCountry(long country) {
 		_country = country;
 	}
 
 	@JSON
-	public String getState() {
-		if (_state == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _state;
-		}
+	public long getState() {
+		return _state;
 	}
 
-	public void setState(String state) {
+	public void setState(long state) {
 		_state = state;
 	}
 
 	@JSON
-	public String getCity() {
-		if (_city == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _city;
-		}
+	public long getCity() {
+		return _city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(long city) {
 		_city = city;
 	}
 
@@ -1395,27 +1365,9 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 
 		profileCacheModel.religion = getReligion();
 
-		String religion = profileCacheModel.religion;
-
-		if ((religion != null) && (religion.length() == 0)) {
-			profileCacheModel.religion = null;
-		}
-
 		profileCacheModel.caste = getCaste();
 
-		String caste = profileCacheModel.caste;
-
-		if ((caste != null) && (caste.length() == 0)) {
-			profileCacheModel.caste = null;
-		}
-
 		profileCacheModel.subCaste = getSubCaste();
-
-		String subCaste = profileCacheModel.subCaste;
-
-		if ((subCaste != null) && (subCaste.length() == 0)) {
-			profileCacheModel.subCaste = null;
-		}
 
 		profileCacheModel.height = getHeight();
 
@@ -1461,27 +1413,9 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 
 		profileCacheModel.country = getCountry();
 
-		String country = profileCacheModel.country;
-
-		if ((country != null) && (country.length() == 0)) {
-			profileCacheModel.country = null;
-		}
-
 		profileCacheModel.state = getState();
 
-		String state = profileCacheModel.state;
-
-		if ((state != null) && (state.length() == 0)) {
-			profileCacheModel.state = null;
-		}
-
 		profileCacheModel.city = getCity();
-
-		String city = profileCacheModel.city;
-
-		if ((city != null) && (city.length() == 0)) {
-			profileCacheModel.city = null;
-		}
 
 		profileCacheModel.address = getAddress();
 
@@ -1958,18 +1892,18 @@ public class ProfileModelImpl extends BaseModelImpl<Profile>
 	private String _rasi;
 	private String _star;
 	private String _dosam;
-	private String _religion;
-	private String _caste;
-	private String _subCaste;
+	private long _religion;
+	private long _caste;
+	private long _subCaste;
 	private String _height;
 	private String _weight;
 	private String _complexion;
 	private String _motherTongue;
 	private String _maritalStatus;
 	private int _children;
-	private String _country;
-	private String _state;
-	private String _city;
+	private long _country;
+	private long _state;
+	private long _city;
 	private String _address;
 	private String _pinCode;
 	private String _phone;

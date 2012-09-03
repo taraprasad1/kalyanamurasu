@@ -1,5 +1,6 @@
 <% 
 	List<Religion> religionList = ReligionLocalServiceUtil.getReligions(-1, -1);
+	List<String> languageKnownList = CommonUtil.getValueList(profile.getLanguageKnown());
 %>
 <portlet:resourceURL var="religionChangeURL">
 	<portlet:param name="action" value="populateCaste" />
@@ -9,25 +10,23 @@
 </portlet:resourceURL>
 <aui:field-wrapper>
 	<aui:select name="religion" label="profile-religion" inlineField="true" inputCssClass="selectBoxStyle">
-		<aui:option value="" >--Select--</aui:option>
+		<option value="" >--Select--</option>
 		<%
 		    for (Religion religion : religionList) {
 		%>
-		  <aui:option value="<%=religion.getReligionId() %>" >
-		  	<%= religion.getName()%>
-		  </aui:option>
+		  <option <% if(profile.getReligion() == religion.getReligionId()) { %> selected="selected" <% } %> value="<%= religion.getReligionId() %>" >
+		  	<%= religion.getName() %>
+		  </option>
 		<%
 		  }
 		%>
 	</aui:select><br/>
     <div id="casteDiv">
 		<aui:select name="caste" label="profile-caste" inlineField="true" inputCssClass="selectBoxStyle">
-			<aui:option value="" >--Select--</aui:option>
 		</aui:select><br/>
 	</div>
 	<div id="subCasteDiv">
 		<aui:select name="subCaste" label="profile-sub-caste" inlineField="true" inputCssClass="selectBoxStyle">
-		 	<aui:option value="" >--Select--</aui:option>
 		</aui:select><br/>
 	</div>
 </aui:field-wrapper>
@@ -68,7 +67,14 @@
 </aui:select><br/>
 <aui:select name="languageKnown" label="profile-language-known" inlineField="true" inputCssClass="selectBoxStyle"  multiple="true">
 	<c:forEach items="${language}" var="languageKnownValue">
-		<option value="${languageKnownValue}" label="${languageKnownValue}" selected="${selectedLanguageKnownValue == languageKnownValue}"/>
+		<c:set var="languageVal" scope="page" value="${languageKnownValue}"/>
+		<% if(Validator.isNotNull(languageKnownList) && languageKnownList.contains(pageContext.getAttribute("languageVal"))){ %>
+			<option selected="selected" value="${languageKnownValue}">
+		<% } else { %>
+			<option value="${languageKnownValue}">
+		<% } %>
+			${languageKnownValue}
+		</option>
 	</c:forEach>
 </aui:select><br/>
 <aui:select name="maritalStatus" label="profile-marital-status" inlineField="true" inputCssClass="selectBoxStyle">
@@ -85,57 +91,71 @@
 
 <script type="text/javascript">
 	jQuery(document).ready(function(){
-		if(jQuery("#<portlet:namespace />religion option:selected").val() == '') {
-			jQuery("#casteDiv").hide();
+		var profileReligionId = "<%= profile.getReligion() %>";
+		var profileCasteId = "<%= profile.getCaste() %>";
+		var profileSubCasteId = "<%= profile.getSubCaste() %>";
+		
+		if(profileReligionId > 0) {
+			loadCatse(profileReligionId, profileCasteId);
+			if(profileCasteId > 0) {
+				loadSubCaste(profileCasteId, profileSubCasteId);
+			}
 		}
-		if(jQuery("#<portlet:namespace />caste option:selected").val() == '') {
-			jQuery("#subCasteDiv").hide();
-		}
+		
 		jQuery("#<portlet:namespace />religion").change(function(){
 			var religionId = jQuery("#<portlet:namespace />religion option:selected").val();
 			if(religionId != '') {
-				var url = "<%= religionChangeURL %>";
-				jQuery("#<portlet:namespace />caste option").remove();
-				jQuery("#<portlet:namespace />subCaste option").remove();
-				jQuery("#subCasteDiv").hide();
-				jQuery.getJSON(url + '&religionId='+religionId, function(data) {
-					jQuery("#<portlet:namespace />caste").append("<option value=''>--Select--</option>");
-					if(data.isValid) {
-						var castes = data.arrayList;
-						for(var i=0; i<castes.length; i++){
-							var casteValue = castes[i].split(":");
-							jQuery("#<portlet:namespace />caste").append("<option value="+ casteValue[1] +">" + casteValue[0] + "</option>");
-						}
-						if(castes.length > 0) {
-							jQuery("#casteDiv").show();
-						}
-					}
-				});
+				loadCatse(religionId, 0);
 			} else {
 				jQuery("#<portlet:namespace />caste option").remove();
-				jQuery("#casteDiv").hide();
+				jQuery("#<portlet:namespace />subCaste option").remove();
 			}
 		});
 		jQuery("#<portlet:namespace />caste").change(function(){
 			var casteId = jQuery("#<portlet:namespace />caste option:selected").val();
 			if(casteId != '') {
-				var url = "<%= casteChangeURL %>";
-				jQuery("#<portlet:namespace />subCaste option").remove();
-				jQuery.getJSON(url + '&casteId='+casteId, function(data) {
-					jQuery("#<portlet:namespace />subCaste").append("<option value=''>--Select--</option>");
-					if(data.isValid) {
-						var subCastes = data.arrayList;
-						for(var i=0; i<subCastes.length; i++){
-							jQuery("#<portlet:namespace />subCaste").append("<option value="+ subCastes[i] +">" + subCastes[i] + "</option>");
-						}
-						jQuery("#<portlet:namespace />subCaste").append("<option value='other'>Other</option>");
-						jQuery("#subCasteDiv").show();
-					}
-				});
+				loadSubCaste(casteId, 0);
 			} else {
 				jQuery("#<portlet:namespace />subCaste option").remove();
-				jQuery("#subCasteDiv").hide();
 			}
 		});
 	});
+	
+	function loadCatse(religionId, profileCasteId) {
+		var url = "<%= religionChangeURL %>";
+		jQuery("#<portlet:namespace />caste option").remove();
+		jQuery("#<portlet:namespace />subCaste option").remove();
+		jQuery.getJSON(url + '&religionId='+religionId, function(data) {
+			if(data.isValid) {
+				var castes = data.arrayList;
+				for(var i=0; i<castes.length; i++){
+					var casteValue = castes[i].split(":");
+					if(profileCasteId > 0 && profileCasteId == casteValue[0]) {
+						jQuery("#<portlet:namespace />caste").append("<option value="+ casteValue[0] +" selected='selected'>" + casteValue[1] + "</option>");
+					} else {
+						jQuery("#<portlet:namespace />caste").append("<option value="+ casteValue[0] +">" + casteValue[1] + "</option>");
+					}
+				}
+			}
+		});
+	}
+	
+	function loadSubCaste(casteId, profileSubCasteId) {
+		var url = "<%= casteChangeURL %>";
+		jQuery("#<portlet:namespace />subCaste option").remove();
+		jQuery.getJSON(url + '&casteId='+casteId, function(data) {
+			jQuery("#<portlet:namespace />subCaste").append("<option value='other'>Other</option>");
+			if(data.isValid) {
+				var subCastes = data.arrayList;
+				for(var i=0; i<subCastes.length; i++){
+					var subCasteValue = subCastes[i].split(":");
+					if(profileSubCasteId > 0 && profileSubCasteId == subCasteValue[0]) {
+						jQuery("#<portlet:namespace />subCaste").append("<option value="+ subCasteValue[0] +" selected='selected'>" + subCasteValue[1] + "</option>");
+					} else {
+						jQuery("#<portlet:namespace />subCaste").append("<option value="+ subCasteValue[0] +">" + subCasteValue[1] + "</option>");
+					}
+				}
+			}
+		});
+	}
 </script>

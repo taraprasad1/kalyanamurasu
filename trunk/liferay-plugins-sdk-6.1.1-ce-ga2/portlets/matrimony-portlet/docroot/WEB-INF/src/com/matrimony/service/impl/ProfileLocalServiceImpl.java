@@ -78,19 +78,6 @@ public class ProfileLocalServiceImpl extends ProfileLocalServiceBaseImpl {
 		Profile profile = profileLocalService.getProfile(profileId);
 		profile.setHobbies(profileKeyValueLocalService.getValues(profileId, ProfileConstants.PROFILE_HOBBIES));
 		profile.setLanguageKnown(profileKeyValueLocalService.getValues(profileId, ProfileConstants.PROFILE_LANGUAGE));
-		if(Validator.isNotNull(profile.getCountry())) {
-			Country country = CountryServiceUtil.getCountryByName(profile.getCountry());
-			profile.setCountry(country.getCountryId() + StringPool.BLANK);
-		}
-		if(Validator.isNotNull(profile.getReligion())) {
-			Religion religion = religionLocalService.getReligionByName(profile.getReligion());
-			profile.setReligion(religion.getReligionId() + StringPool.BLANK);
-			if(Validator.isNotNull(profile.getCaste())) {
-				Caste caste = casteLocalService.getCasteByReligionIdAndName(religion.getReligionId(), profile.getCaste());
-				profile.setSubCaste(caste.getCasteId() + StringPool.BLANK);
-			}
-		}
-		
 		return profile;
 	}
 	

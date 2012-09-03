@@ -16,18 +16,18 @@
 		<column name="rasi" type="String" />
 		<column name="star" type="String" />
 		<column name="dosam" type="String" />
-		<column name="religion" type="String" />
-		<column name="caste" type="String" />
-		<column name="subCaste" type="String" />
+		<column name="religion" type="long" />
+		<column name="caste" type="long" />
+		<column name="subCaste" type="long" />
 		<column name="height" type="String" />
 		<column name="weight" type="String" />
 		<column name="complexion" type="String" />
 		<column name="motherTongue" type="String" />
 		<column name="maritalStatus" type="String" />
 		<column name="children" type="int" />
-		<column name="country" type="String" />
-		<column name="state" type="String" />
-		<column name="city" type="String" />
+		<column name="country" type="long" />
+		<column name="state" type="long" />
+		<column name="city" type="long" />
 		<column name="address" type="String" />
 		<column name="pinCode" type="String" />
 		<column name="phone" type="String" />

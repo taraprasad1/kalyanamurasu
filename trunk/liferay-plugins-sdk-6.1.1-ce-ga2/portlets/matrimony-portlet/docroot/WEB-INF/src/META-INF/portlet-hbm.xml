@@ -97,18 +97,18 @@
 		<property name="rasi" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="star" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="dosam" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="religion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="caste" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="subCaste" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="religion" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="caste" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="subCaste" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="height" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="weight" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="complexion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="motherTongue" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="maritalStatus" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="children" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
-		<property name="country" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="state" type="com.liferay.portal.dao.orm.hibernate.StringType" column="state_" />
-		<property name="city" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="country" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="state" type="com.liferay.portal.dao.orm.hibernate.LongType" column="state_" />
+		<property name="city" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="address" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="pinCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="phone" type="com.liferay.portal.dao.orm.hibernate.StringType" />

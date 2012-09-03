@@ -203,45 +203,42 @@ public interface ProfileModel extends BaseModel<Profile> {
 	 *
 	 * @return the religion of this profile
 	 */
-	@AutoEscape
-	public String getReligion();
+	public long getReligion();
 
 	/**
 	 * Sets the religion of this profile.
 	 *
 	 * @param religion the religion of this profile
 	 */
-	public void setReligion(String religion);
+	public void setReligion(long religion);
 
 	/**
 	 * Returns the caste of this profile.
 	 *
 	 * @return the caste of this profile
 	 */
-	@AutoEscape
-	public String getCaste();
+	public long getCaste();
 
 	/**
 	 * Sets the caste of this profile.
 	 *
 	 * @param caste the caste of this profile
 	 */
-	public void setCaste(String caste);
+	public void setCaste(long caste);
 
 	/**
 	 * Returns the sub caste of this profile.
 	 *
 	 * @return the sub caste of this profile
 	 */
-	@AutoEscape
-	public String getSubCaste();
+	public long getSubCaste();
 
 	/**
 	 * Sets the sub caste of this profile.
 	 *
 	 * @param subCaste the sub caste of this profile
 	 */
-	public void setSubCaste(String subCaste);
+	public void setSubCaste(long subCaste);
 
 	/**
 	 * Returns the height of this profile.
@@ -337,45 +334,42 @@ public interface ProfileModel extends BaseModel<Profile> {
 	 *
 	 * @return the country of this profile
 	 */
-	@AutoEscape
-	public String getCountry();
+	public long getCountry();
 
 	/**
 	 * Sets the country of this profile.
 	 *
 	 * @param country the country of this profile
 	 */
-	public void setCountry(String country);
+	public void setCountry(long country);
 
 	/**
 	 * Returns the state of this profile.
 	 *
 	 * @return the state of this profile
 	 */
-	@AutoEscape
-	public String getState();
+	public long getState();
 
 	/**
 	 * Sets the state of this profile.
 	 *
 	 * @param state the state of this profile
 	 */
-	public void setState(String state);
+	public void setState(long state);
 
 	/**
 	 * Returns the city of this profile.
 	 *
 	 * @return the city of this profile
 	 */
-	@AutoEscape
-	public String getCity();
+	public long getCity();
 
 	/**
 	 * Sets the city of this profile.
 	 *
 	 * @param city the city of this profile
 	 */
-	public void setCity(String city);
+	public void setCity(long city);
 
 	/**
 	 * Returns the address of this profile.
