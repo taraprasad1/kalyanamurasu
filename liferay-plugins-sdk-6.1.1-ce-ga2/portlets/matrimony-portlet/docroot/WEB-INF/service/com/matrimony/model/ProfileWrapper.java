@@ -150,19 +150,19 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 			setDosam(dosam);
 		}
 
-		String religion = (String)attributes.get("religion");
+		Long religion = (Long)attributes.get("religion");
 
 		if (religion != null) {
 			setReligion(religion);
 		}
 
-		String caste = (String)attributes.get("caste");
+		Long caste = (Long)attributes.get("caste");
 
 		if (caste != null) {
 			setCaste(caste);
 		}
 
-		String subCaste = (String)attributes.get("subCaste");
+		Long subCaste = (Long)attributes.get("subCaste");
 
 		if (subCaste != null) {
 			setSubCaste(subCaste);
@@ -204,19 +204,19 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 			setChildren(children);
 		}
 
-		String country = (String)attributes.get("country");
+		Long country = (Long)attributes.get("country");
 
 		if (country != null) {
 			setCountry(country);
 		}
 
-		String state = (String)attributes.get("state");
+		Long state = (Long)attributes.get("state");
 
 		if (state != null) {
 			setState(state);
 		}
 
-		String city = (String)attributes.get("city");
+		Long city = (Long)attributes.get("city");
 
 		if (city != null) {
 			setCity(city);
@@ -567,7 +567,7 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 	*
 	* @return the religion of this profile
 	*/
-	public java.lang.String getReligion() {
+	public long getReligion() {
 		return _profile.getReligion();
 	}
 
@@ -576,7 +576,7 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 	*
 	* @param religion the religion of this profile
 	*/
-	public void setReligion(java.lang.String religion) {
+	public void setReligion(long religion) {
 		_profile.setReligion(religion);
 	}
 
@@ -585,7 +585,7 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 	*
 	* @return the caste of this profile
 	*/
-	public java.lang.String getCaste() {
+	public long getCaste() {
 		return _profile.getCaste();
 	}
 
@@ -594,7 +594,7 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 	*
 	* @param caste the caste of this profile
 	*/
-	public void setCaste(java.lang.String caste) {
+	public void setCaste(long caste) {
 		_profile.setCaste(caste);
 	}
 
@@ -603,7 +603,7 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 	*
 	* @return the sub caste of this profile
 	*/
-	public java.lang.String getSubCaste() {
+	public long getSubCaste() {
 		return _profile.getSubCaste();
 	}
 
@@ -612,7 +612,7 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 	*
 	* @param subCaste the sub caste of this profile
 	*/
-	public void setSubCaste(java.lang.String subCaste) {
+	public void setSubCaste(long subCaste) {
 		_profile.setSubCaste(subCaste);
 	}
 
@@ -729,7 +729,7 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 	*
 	* @return the country of this profile
 	*/
-	public java.lang.String getCountry() {
+	public long getCountry() {
 		return _profile.getCountry();
 	}
 
@@ -738,7 +738,7 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 	*
 	* @param country the country of this profile
 	*/
-	public void setCountry(java.lang.String country) {
+	public void setCountry(long country) {
 		_profile.setCountry(country);
 	}
 
@@ -747,7 +747,7 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 	*
 	* @return the state of this profile
 	*/
-	public java.lang.String getState() {
+	public long getState() {
 		return _profile.getState();
 	}
 
@@ -756,7 +756,7 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 	*
 	* @param state the state of this profile
 	*/
-	public void setState(java.lang.String state) {
+	public void setState(long state) {
 		_profile.setState(state);
 	}
 
@@ -765,7 +765,7 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 	*
 	* @return the city of this profile
 	*/
-	public java.lang.String getCity() {
+	public long getCity() {
 		return _profile.getCity();
 	}
 
@@ -774,7 +774,7 @@ public class ProfileWrapper implements Profile, ModelWrapper<Profile> {
 	*
 	* @param city the city of this profile
 	*/
-	public void setCity(java.lang.String city) {
+	public void setCity(long city) {
 		_profile.setCity(city);
 	}
 

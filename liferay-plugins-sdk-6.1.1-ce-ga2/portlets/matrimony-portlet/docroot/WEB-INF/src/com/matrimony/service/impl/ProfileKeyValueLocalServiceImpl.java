@@ -99,7 +99,7 @@ public class ProfileKeyValueLocalServiceImpl
 					List<ProfileKeyValue> profileKeyValList = profileKeyValuePersistence.findByProfileAndKeyId(keyId, profileId);
 					for(ProfileKeyValue profileKeyValue: profileKeyValList){
 						KeyValue keyValue = KeyValueLocalServiceUtil.getKeyValue(profileKeyValue.getValueId());
-						if(Validator.isNotNull(values)) {
+						if(Validator.isNotNull(values.toString())) {
 							values.append(StringPool.COMMA_AND_SPACE);
 							values.append(keyValue.getName());
 						} else {

@@ -7,28 +7,29 @@
 </portlet:resourceURL>
 <aui:field-wrapper>
 	<aui:select name="country" label="profile-country" inlineField="true" inputCssClass="selectBoxStyle">
-		<aui:option value="" >--Select--</aui:option>
+		<option value="" >--Select--</option>
 		<%
 		    for (Country country : countries) {
+		    	if(profile.getCountry() > 0l) {
 		%>
-		  <aui:option value="<%=country.getCountryId() %>" >
-		  	<%= country.getName()%>
-		  </aui:option>
+				  <option <% if(profile.getCountry() == country.getCountryId()) { %> selected="selected" <% } %> value="<%= country.getCountryId() %>" >
+				  	<%= country.getName() %>
+				  </option>
 		<%
-		  }
+		  		} else {
+		%>
+					<option selected="selected" value="<%= country.getCountryId() %>" >
+					  	<%= country.getName() %>
+					</option>
+		<%
+		  		} 
+		    }
 		%>
 	</aui:select><br/>
-    <div id="stateDiv">
-		<aui:select name="state" label="profile-state" inlineField="true" inputCssClass="selectBoxStyle">
-			<aui:option value="" >--Select--</aui:option>
-		</aui:select><br/>
-	</div>
-	
-	<div id="cityDiv">
-		<aui:select name="city" label="profile-city" inlineField="true" inputCssClass="selectBoxStyle">
-		 	<aui:option value="" >--Select--</aui:option>
-		</aui:select><br/>
-	</div>
+	<aui:select name="state" label="profile-state" inlineField="true" inputCssClass="selectBoxStyle">
+	</aui:select><br/>
+	<aui:select name="city" label="profile-city" inlineField="true" inputCssClass="selectBoxStyle">
+	</aui:select><br/>
 </aui:field-wrapper>
 <aui:input type="textarea" name="address" label="profile-address" inlineField="true" inputCssClass="textBoxStyle"/><br/>
 <aui:input type="text" name="pinCode" label="profile-pin-code" inlineField="true" inputCssClass="textBoxStyle"/><br/>
@@ -38,58 +39,71 @@
 
 <script type="text/javascript">
 	jQuery(document).ready(function(){
-		if(jQuery("#<portlet:namespace />country option:selected").val() == '') {
-			jQuery("#stateDiv").hide();
+		var prfoileCountryId = "<%= profile.getCountry() %>";
+		var profileRegionId = "<%= profile.getState() %>";
+		var profileCityId = "<%= profile.getCity() %>";
+		
+		if(prfoileCountryId > 0) {
+			loadRegions(prfoileCountryId, profileRegionId);
+			if(profileRegionId > 0) {
+				loadCity(profileRegionId, profileCityId);
+			}
 		}
-		if(jQuery("#<portlet:namespace />state option:selected").val() == '') {
-			jQuery("#cityDiv").hide();
-		}
+		 
 		jQuery("#<portlet:namespace />country").change(function(){
 			var countryId = jQuery("#<portlet:namespace />country option:selected").val();
 			if(countryId != '') {
-				var url = "<%= countryChangeURL %>";
-				jQuery("#<portlet:namespace />state option").remove();
-				jQuery("#<portlet:namespace />city option").remove();
-				jQuery("#cityDiv").hide();
-				jQuery.getJSON(url + '&countryId='+countryId, function(data) {
-					jQuery("#<portlet:namespace />state").append("<option value=''>--Select--</option>");
-					if(data.isValid) {
-						var states = data.arrayList;
-						for(var i=0; i<states.length; i++){
-							var stateValue = states[i].split(":");
-							jQuery("#<portlet:namespace />state").append("<option value="+ stateValue[1] +">" + stateValue[0] + "</option>");
-						}
-						if(states.length > 0) {
-							jQuery("#stateDiv").show();
-						}
-					}
-				});
+				loadRegions(countryId, 0);
 			} else {
 				jQuery("#<portlet:namespace />state option").remove();
-				jQuery("#stateDiv").hide();
+				jQuery("#<portlet:namespace />city option").remove();
 			}
 		});
 		jQuery("#<portlet:namespace />state").change(function(){
 			var regionId = jQuery("#<portlet:namespace />state option:selected").val();
-			alert(regionId);
 			if(regionId != '') {
-				var url = "<%= stateChangeURL %>";
-				jQuery("#<portlet:namespace />city option").remove();
-				jQuery.getJSON(url + '&regionId='+regionId, function(data) {
-					jQuery("#<portlet:namespace />city").append("<option value=''>--Select--</option>");
-					if(data.isValid) {
-						var cities = data.arrayList;
-						for(var i=0; i<cities.length; i++){
-							jQuery("#<portlet:namespace />city").append("<option value="+ cities[i] +">" + cities[i] + "</option>");
-						}
-						jQuery("#<portlet:namespace />city").append("<option value='other'>Other</option>");
-						jQuery("#cityDiv").show();
-					}
-				});
+				loadCity(regionId, 0);
 			} else {
 				jQuery("#<portlet:namespace />city option").remove();
-				jQuery("#cityDiv").hide();
 			}
 		});
 	});
+	
+	function loadRegions(countryId, profileRegionId) {
+		var url = "<%= countryChangeURL %>";
+		jQuery("#<portlet:namespace />state option").remove();
+		jQuery("#<portlet:namespace />city option").remove();
+		jQuery.getJSON(url + '&countryId='+countryId, function(data) {
+			if(data.isValid) {
+				var states = data.arrayList;
+				for(var i=0; i<states.length; i++){
+					var stateValue = states[i].split(":");
+					if(profileRegionId > 0 && profileRegionId == stateValue[0]) {
+						jQuery("#<portlet:namespace />state").append("<option value="+ stateValue[0] +" selected='selected'>" + stateValue[1] + "</option>");
+					} else {
+						jQuery("#<portlet:namespace />state").append("<option value="+ stateValue[0] +">" + stateValue[1] + "</option>");
+					}
+				}
+			}
+		});
+	}
+	
+	function loadCity(regionId, profileCityId) {
+		var url = "<%= stateChangeURL %>";
+		jQuery("#<portlet:namespace />city option").remove();
+		jQuery.getJSON(url + '&regionId='+regionId, function(data) {
+			jQuery("#<portlet:namespace />city").append("<option value='other'>Other</option>");
+			if (data.isValid) {
+				var cities = data.arrayList;
+				for (var i=0; i<cities.length; i++) {
+					var cityValue = cities[i].split(":");
+					if (profileCityId > 0 && profileCityId == cityValue[0]) {
+						jQuery("#<portlet:namespace />city").append("<option value="+ cityValue[0] +" selected='selected'>" + cityValue[1] + "</option>");
+					} else {
+						jQuery("#<portlet:namespace />city").append("<option value="+ cityValue[0] +">" + cityValue[1] + "</option>");
+					}
+				}
+			}
+		});
+	}
 </script>

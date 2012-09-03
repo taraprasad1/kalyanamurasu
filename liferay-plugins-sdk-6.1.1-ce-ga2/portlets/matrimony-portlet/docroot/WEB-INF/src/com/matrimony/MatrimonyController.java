@@ -1,19 +1,5 @@
 package com.matrimony;
 
-import java.awt.image.RenderedImage;
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
-import javax.portlet.ActionRequest;
-import javax.portlet.PortletException;
-import javax.portlet.RenderRequest;
-import javax.portlet.ResourceRequest;
-import javax.portlet.ResourceResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.image.ImageBag;
@@ -28,9 +14,7 @@ import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.Country;
 import com.liferay.portal.model.Region;
-import com.liferay.portal.service.CountryServiceUtil;
 import com.liferay.portal.service.RegionServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -40,15 +24,27 @@ import com.matrimony.model.Caste;
 import com.matrimony.model.City;
 import com.matrimony.model.Photo;
 import com.matrimony.model.Profile;
-import com.matrimony.model.Religion;
 import com.matrimony.model.SubCaste;
 import com.matrimony.service.CasteLocalServiceUtil;
 import com.matrimony.service.CityLocalServiceUtil;
 import com.matrimony.service.KeyValueLocalServiceUtil;
 import com.matrimony.service.PhotoLocalServiceUtil;
-import com.matrimony.service.ReligionLocalServiceUtil;
 import com.matrimony.service.SubCasteLocalServiceUtil;
 import com.matrimony.util.MatrimonyPropsValues;
+
+import java.awt.image.RenderedImage;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.ResourceRequest;
+import javax.portlet.ResourceResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class MatrimonyController extends MVCPortlet {
 
@@ -129,63 +125,37 @@ public class MatrimonyController extends MVCPortlet {
 		
 		//Logic for setting the hobbies value in profile object for indexing purpose. 
 		String[] hobbiesArray = actionRequest.getParameterValues(ProfileConstants.PROFILE_HOBBIES);
-		System.out.println("hobbiesArray==========>>" + hobbiesArray.length);
-		StringBuilder hobbies = new StringBuilder();
-		for(String hobbiesValue: hobbiesArray){
-			if(hobbies.toString().equalsIgnoreCase(StringPool.BLANK)){
-				hobbies.append(hobbiesValue);
-			} else {
-				hobbies.append(StringPool.COMMA_AND_SPACE);
-				hobbies.append(hobbiesValue);
+		String hobbies = StringPool.BLANK;
+		if(Validator.isNotNull(hobbiesArray)) {
+			for (String hobbiesValue: hobbiesArray) {
+				if(hobbies.equalsIgnoreCase(StringPool.BLANK)){
+					hobbies = hobbiesValue;
+				} else {
+					hobbies = hobbies + StringPool.COMMA_AND_SPACE + hobbiesValue;
+				}
 			}
 		}
-		profile.setHobbies(hobbies.toString());
+		profile.setHobbies(hobbies);
 		
 		//Logic for setting the languageKnown value in profile object for indexing purpose. 
 		String[] languageKnownArray = actionRequest.getParameterValues(ProfileConstants.PROFILE_LANGUAGE_KNOWN);
-		StringBuilder languageKnown = new StringBuilder();
-		for(String languageKnownValue: languageKnownArray){
-			if(languageKnown.toString().equalsIgnoreCase(StringPool.BLANK)){
-				languageKnown.append(languageKnownValue);
-			} else {
-				languageKnown.append(StringPool.COMMA_AND_SPACE);
-				languageKnown.append(languageKnownValue);
-			}
-		}
-		profile.setLanguageKnown(languageKnown.toString());
-		
-		//Logic for setting the country,state,city,religion,caste and sub caste in the profile object;
-		long countryId = ParamUtil.getLong(actionRequest, ProfileConstants.PROFILE_COUNTRY);
-		long regionId = ParamUtil.getLong(actionRequest, ProfileConstants.PROFILE_STATE);
-		String city = ParamUtil.getString(actionRequest, ProfileConstants.PROFILE_CITY);
-		long religionId = ParamUtil.getLong(actionRequest, ProfileConstants.PROFILE_RELIGION);
-		long casteId = ParamUtil.getLong(actionRequest, ProfileConstants.PROFILE_CASTE);
-		String subCaste = ParamUtil.getString(actionRequest, ProfileConstants.PROFILE_SUB_CASTE);
-		
-		try {
-			if(Validator.isNotNull(countryId)){
-				Country company = CountryServiceUtil.getCountry(countryId);
-				profile.setCountry(company.getName());
-				if(Validator.isNotNull(regionId)){
-					Region region = RegionServiceUtil.getRegion(regionId);
-					profile.setName(region.getName());
-					profile.setCity(city);
+		String languageKnown = StringPool.BLANK;
+		if(Validator.isNotNull(languageKnownArray)) {
+			for (String languageKnownValue: languageKnownArray) {
+				if (languageKnown.equalsIgnoreCase(StringPool.BLANK)) {
+					languageKnown = languageKnownValue;
+				} else {
+					languageKnown = languageKnown + StringPool.COMMA_AND_SPACE + languageKnownValue;
 				}
 			}
-			if(Validator.isNotNull(religionId)){
-				Religion religion = ReligionLocalServiceUtil.getReligion(religionId);
-				profile.setReligion(religion.getName());
-				if(Validator.isNotNull(casteId)){
-					Caste caste = CasteLocalServiceUtil.getCaste(casteId);
-					profile.setCaste(caste.getName());
-					profile.setSubCaste(subCaste);
-				}
-			}
-		} catch (PortalException e) {
-			e.printStackTrace();
-		} catch (SystemException e) {
-			e.printStackTrace();
 		}
+		profile.setLanguageKnown(languageKnown);
+		profile.setCountry(ParamUtil.getLong(actionRequest, ProfileConstants.PROFILE_COUNTRY));
+		profile.setState(ParamUtil.getLong(actionRequest, ProfileConstants.PROFILE_STATE));
+		profile.setCity(ParamUtil.getLong(actionRequest, ProfileConstants.PROFILE_CITY));
+		profile.setReligion(ParamUtil.getLong(actionRequest, ProfileConstants.PROFILE_RELIGION));
+		profile.setCaste(ParamUtil.getLong(actionRequest, ProfileConstants.PROFILE_CASTE));
+		profile.setSubCaste(ParamUtil.getLong(actionRequest, ProfileConstants.PROFILE_SUB_CASTE));
 		
 		return profile;
 	}
@@ -212,8 +182,8 @@ public class MatrimonyController extends MVCPortlet {
 								.getRegions(countryId);
 						if (Validator.isNotNull(regions)) {
 							for (Region region : regions) {
-								values.put(region.getName() + StringPool.COLON
-										+ region.getRegionId());
+								values.put(region.getRegionId() + StringPool.COLON
+										+ region.getName());
 							}
 						}
 					} catch (SystemException e) {
@@ -238,7 +208,7 @@ public class MatrimonyController extends MVCPortlet {
 								.getRegion_Cities(regionId);
 						if (Validator.isNotNull(cities)) {
 							for (City city : cities) {
-								values.put(city.getCityName());
+								values.put(city.getCityId() + StringPool.COLON + city.getCityName());
 							}
 						}
 					} catch (SystemException e) {
@@ -263,8 +233,8 @@ public class MatrimonyController extends MVCPortlet {
 								.getCasteListByReligionId(religionId);
 						if (Validator.isNotNull(casteList)) {
 							for (Caste caste : casteList) {
-								values.put(caste.getName() + StringPool.COLON
-										+ caste.getCasteId());
+								values.put(caste.getCasteId() + StringPool.COLON
+										+ caste.getName() );
 							}
 						}
 					} catch (SystemException e) {
@@ -289,7 +259,7 @@ public class MatrimonyController extends MVCPortlet {
 								.getSubCasteListByCasteId(casteId);
 						if (Validator.isNotNull(subCasteList)) {
 							for (SubCaste subCaste : subCasteList) {
-								values.put(subCaste.getName());
+								values.put(subCaste.getSubCasteId() + StringPool.COLON + subCaste.getName());
 							}
 						}
 					} catch (SystemException e) {

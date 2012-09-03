@@ -181,13 +181,13 @@ public final class ProfileIndexer extends BaseIndexer {
 		document.addText(ProfileConstants.PROFILE_RASI, profile.getRasi());
 		document.addText(ProfileConstants.PROFILE_STAR, profile.getStar());
 		document.addText(ProfileConstants.PROFILE_WEIGHT, profile.getWeight());
-		document.addText(ProfileConstants.PROFILE_COUNTRY, profile.getCountry());
-		document.addText(ProfileConstants.PROFILE_STATE, profile.getState());
-		document.addText(ProfileConstants.PROFILE_CITY, profile.getCity());
-		document.addText(ProfileConstants.PROFILE_CASTE, profile.getCaste());
-		document.addText(ProfileConstants.PROFILE_RELIGION,
+		document.addKeyword(ProfileConstants.PROFILE_COUNTRY, profile.getCountry());
+		document.addKeyword(ProfileConstants.PROFILE_STATE, profile.getState());
+		document.addKeyword(ProfileConstants.PROFILE_CITY, profile.getCity());
+		document.addKeyword(ProfileConstants.PROFILE_CASTE, profile.getCaste());
+		document.addKeyword(ProfileConstants.PROFILE_RELIGION,
 				profile.getReligion());
-		document.addText(ProfileConstants.PROFILE_SUB_CASTE,
+		document.addKeyword(ProfileConstants.PROFILE_SUB_CASTE,
 				profile.getSubCaste());
 		return document;
 	}

@@ -68,18 +68,18 @@
 		<field name="rasi" type="String" />
 		<field name="star" type="String" />
 		<field name="dosam" type="String" />
-		<field name="religion" type="String" />
-		<field name="caste" type="String" />
-		<field name="subCaste" type="String" />
+		<field name="religion" type="long" />
+		<field name="caste" type="long" />
+		<field name="subCaste" type="long" />
 		<field name="height" type="String" />
 		<field name="weight" type="String" />
 		<field name="complexion" type="String" />
 		<field name="motherTongue" type="String" />
 		<field name="maritalStatus" type="String" />
 		<field name="children" type="int" />
-		<field name="country" type="String" />
-		<field name="state" type="String" />
-		<field name="city" type="String" />
+		<field name="country" type="long" />
+		<field name="state" type="long" />
+		<field name="city" type="long" />
 		<field name="address" type="String" />
 		<field name="pinCode" type="String" />
 		<field name="phone" type="String" />
