@@ -1,5 +1,5 @@
 <%@include file="/html/matrimony/profile/init.jsp" %>
-<script type="text/javascript" src="/matrimony-portlet/js/jquery.min.js"></script>
+
 <%
 	long profileId = ParamUtil.getLong(request, "profileId");
 	Profile profile = new ProfileImpl();
@@ -16,22 +16,22 @@
 	<aui:form name="fm" method="post" action="<%= updateAccountURL %>">
 		<aui:model-context bean="<%= profile %>" model="<%= Profile.class %>" />
 		<aui:input type="hidden" name="profileId" label="name"/>
-		<liferay-ui:panel-container id="panel-container-1" extended="true" accordion="true" >
-			<liferay-ui:panel id="profile-basic" title="Basic Information" collapsible="false" extended="true" >
-				<%@ include file="/html/matrimony/profile/include/basic_information.jspf" %>
+		<liferay-ui:panel-container id="profile-pannel" cssClass="profilecontainer" extended="true">
+			<liferay-ui:panel id="profile-basic" cssClass="profilepannel" title="Basic Information">
+				<jsp:include page="/html/matrimony/profile/include/basic_information.jsp"></jsp:include>
 			</liferay-ui:panel>
-			<liferay-ui:panel id="profile-personnel" title="Personnel Information" collapsible="false" extended="false" >
-				<%@ include file="/html/matrimony/profile/include/personnel_information.jspf" %>
+			<liferay-ui:panel id="profile-personnel" cssClass="profilepannel" title="Personnel Information">
+				<jsp:include page="/html/matrimony/profile/include/personnel_information.jsp"></jsp:include>
 			</liferay-ui:panel>
-			<liferay-ui:panel id="profile-contact" title="Contact Information" collapsible="false" extended="false" >
-				<%@ include file="/html/matrimony/profile/include/contact_information.jspf" %>
+			<liferay-ui:panel id="profile-contact" cssClass="profilepannel" title="Contact Information">
+				<jsp:include page="/html/matrimony/profile/include/contact_information.jsp"></jsp:include>
 			</liferay-ui:panel>
-			<liferay-ui:panel id="profile-other" title="Other Information" collapsible="false" extended="false" >
-				<%@ include file="/html/matrimony/profile/include/other_information.jspf" %>
+			<liferay-ui:panel id="profile-other" cssClass="profilepannel" title="Other Information">
+				<jsp:include page="/html/matrimony/profile/include/other_information.jsp"></jsp:include>
 			</liferay-ui:panel>
 		</liferay-ui:panel-container>
 		<aui:button-row>
-			<aui:button type="submit" value="createAccount" />
+			<aui:button type="button" value="createAccount" onClick="validateAndSubmitForm()" />
 			<input type="button" value="Cancel" onClick="location.href='<%= cancelURL %>'"/>
 		</aui:button-row>
 	</aui:form>
@@ -60,4 +60,104 @@
 	    font-weight: normal;
 	    vertical-align: middle;
 	}
+	#profilePortlet .profilepannel {
+	    padding: 4px;
+	}
+	#profilePortlet .profilecontainer {
+	   
+	}
+	
+	#profilePortlet .lfr-panel-container {
+	    background-color: transparent;
+	    border: medium none;
+	}
+
+	#profilePortlet .lfr-panel-container .lfr-panel {
+	    margin-bottom: 7px;
+	    margin-top: 7px;
+	}
+	
+	#profilePortlet .lfr-panel-container .lfr-extended.lfr-collapsible .lfr-panel-titlebar {
+	    border: 1px solid #CECECE;
+	}
+	
+	#profilePortlet .lfr-panel.lfr-extended .lfr-panel-titlebar {
+	    background: none repeat scroll 0 0 #CCFFFF;
+	    line-height: 1.6;
+	    padding: 2px;
+	}
+	
+	#profilePortlet {
+	    background: none repeat scroll 0 0 #FFFFFF;
+	    border: 1px solid #CCCCCC;
+	    line-height: 22px;
+	    padding: 4px;
+	}
+	
+	#profilePortlet select {
+	    padding: 2px;
+	}
+	
+	#profilePortlet .aui-datepicker-button-wrapper {
+	    margin: -2px 5px 0 4px;
+	}
+	
+	.invalidfield{
+		font-weight:bold;
+		color:red;
+	}
 </style>
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		
+	});
+	
+	function validateAndSubmitForm() {
+		var validForm = true;
+		jQuery(".invalidfield").remove();
+		var portletNameSpace = "<portlet:namespace />";
+		jQuery(".required").each(function(){
+			var value = this.value;
+			var name = this.name;
+			if (this.type == 'radio') {
+				var radioVal = jQuery("input:radio[name='"+this.name+"']").is(":checked");
+	        	if (!radioVal) {
+	        		var fieldName = jQuery(this).parent().parent().parent().parent().find("label[for='" + name + "']").text();
+	        		jQuery(this).parent().parent().parent().parent().append("<span class='invalidfield'>"+ fieldName +" is Mandatory</span>");
+	        		validForm = false;
+	        	}
+			} else {
+				var fieldName = jQuery(this).parent().parent().find("label[for='" + name + "']").text();
+				if(isEmpty(fieldName)){
+					name = name.replace(portletNameSpace,"");
+					fieldName = jQuery(this).parent().parent().find("label[for='" + name + "']").text();
+				}
+				if(isEmpty(value) && !isEmpty(fieldName)){
+					jQuery(this).parent().parent().append("<span class='invalidfield'>"+ fieldName +" is Mandatory</span>");
+					validForm = false;
+				} else if(isEmpty(value)) {
+					jQuery(this).parent().parent().append("<span class='invalidfield'>Field is Mandatory</span>");
+					validForm = false;
+				}
+			}
+		});
+		if(validForm) {
+			jQuery("#<portlet:namespace />fm").submit();
+		} else {
+			alert("Please Fill The Mandaory Fields And Submit");
+		}
+	}
+	
+	function trim(s) {		
+		s = s.replace(/(^\s*)|(\s*$)/gi,"");		
+		s = s.replace(/\n /,"\n");		
+		return s;
+	}
+	
+	function isEmpty(value)
+	{
+		value = trim(value);
+	    return value == '';
+	}
+</script>
