@@ -31,7 +31,7 @@
 			</liferay-ui:panel>
 		</liferay-ui:panel-container>
 		<aui:button-row>
-			<aui:button type="button" value="createAccount" onClick="validateAndSubmitForm()" />
+			<aui:button type="button" value="Create Account" onClick="validateAndSubmitForm()" />
 			<input type="button" value="Cancel" onClick="location.href='<%= cancelURL %>'"/>
 		</aui:button-row>
 	</aui:form>
