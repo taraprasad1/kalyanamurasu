@@ -1,3 +1,13 @@
+<%@include file="/html/matrimony/profile/init.jsp" %>
+
+<%
+	long profileId = ParamUtil.getLong(request, "profileId");
+	Profile profile = new ProfileImpl();
+	
+	if(Validator.isNotNull(profileId)) {
+		profile = ProfileLocalServiceUtil.getProfileObj(profileId);
+	}
+%>
 <% List<Country> countries = CountryServiceUtil.getCountries(); %>
 <portlet:resourceURL var="countryChangeURL">
 	<portlet:param name="action" value="populateState" />
@@ -5,9 +15,10 @@
 <portlet:resourceURL var="stateChangeURL">
 	<portlet:param name="action" value="populateCity" />
 </portlet:resourceURL>
+<aui:model-context bean="<%= profile %>" model="<%= Profile.class %>" />
 <aui:field-wrapper>
-	<aui:select name="country" label="profile-country" inlineField="true" inputCssClass="selectBoxStyle">
-		<option value="" >--Select--</option>
+	<aui:select name="country" label="profile-country" inlineField="true" inputCssClass="selectBoxStyle required">
+		<option value="" >Select</option>
 		<%
 		    for (Country country : countries) {
 		    	if(profile.getCountry() > 0l) {
@@ -26,16 +37,16 @@
 		    }
 		%>
 	</aui:select><br/>
-	<aui:select name="state" label="profile-state" inlineField="true" inputCssClass="selectBoxStyle">
+	<aui:select name="state" label="profile-state" inlineField="true" inputCssClass="selectBoxStyle required">
 	</aui:select><br/>
-	<aui:select name="city" label="profile-city" inlineField="true" inputCssClass="selectBoxStyle">
+	<aui:select name="city" label="profile-city" inlineField="true" inputCssClass="selectBoxStyle required">
 	</aui:select><br/>
 </aui:field-wrapper>
-<aui:input type="textarea" name="address" label="profile-address" inlineField="true" inputCssClass="textBoxStyle"/><br/>
-<aui:input type="text" name="pinCode" label="profile-pin-code" inlineField="true" inputCssClass="textBoxStyle"/><br/>
-<aui:input type="text" name="phone" label="profile-phone" inlineField="true" inputCssClass="textBoxStyle"/><br/>
-<aui:input name="mobile" type="text" label="profile-mobile" inlineField="true" inputCssClass="textBoxStyle"/><br/>
-<aui:input name="emailAddress" type="text" label="profile-email-address" inlineField="true" inputCssClass="textBoxStyle"/><br/>
+<aui:input type="textarea" name="address" label="profile-address" inlineField="true" inputCssClass="textBoxStyle required"/><br/>
+<aui:input type="text" name="pinCode" label="profile-pin-code" inlineField="true" inputCssClass="textBoxStyle required"/><br/>
+<aui:input type="text" name="phone" label="profile-phone" inlineField="true" inputCssClass="textBoxStyle required"/><br/>
+<aui:input name="mobile" type="text" label="profile-mobile" inlineField="true" inputCssClass="textBoxStyle required"/><br/>
+<aui:input name="emailAddress" type="text" label="profile-email-address" inlineField="true" inputCssClass="textBoxStyle required"/><br/>
 
 <script type="text/javascript">
 	jQuery(document).ready(function(){

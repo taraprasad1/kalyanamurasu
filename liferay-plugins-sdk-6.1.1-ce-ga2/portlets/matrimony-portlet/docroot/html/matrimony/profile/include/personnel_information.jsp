@@ -1,16 +1,27 @@
-<% 
+<%@include file="/html/matrimony/profile/init.jsp" %>
+
+<%
+	long profileId = ParamUtil.getLong(request, "profileId");
+	Profile profile = new ProfileImpl();
+	
+	if(Validator.isNotNull(profileId)) {
+		profile = ProfileLocalServiceUtil.getProfileObj(profileId);
+	}
+
 	List<Religion> religionList = ReligionLocalServiceUtil.getReligions(-1, -1);
 	List<String> languageKnownList = CommonUtil.getValueList(profile.getLanguageKnown());
 %>
+
 <portlet:resourceURL var="religionChangeURL">
 	<portlet:param name="action" value="populateCaste" />
 </portlet:resourceURL>
 <portlet:resourceURL var="casteChangeURL">
 	<portlet:param name="action" value="populateSubCaste" />
 </portlet:resourceURL>
+<aui:model-context bean="<%= profile %>" model="<%= Profile.class %>" />
 <aui:field-wrapper>
-	<aui:select name="religion" label="profile-religion" inlineField="true" inputCssClass="selectBoxStyle">
-		<option value="" >--Select--</option>
+	<aui:select name="religion" label="profile-religion" inlineField="true" inputCssClass="selectBoxStyle required">
+		<option value="" >Select</option>
 		<%
 		    for (Religion religion : religionList) {
 		%>
@@ -22,50 +33,57 @@
 		%>
 	</aui:select><br/>
     <div id="casteDiv">
-		<aui:select name="caste" label="profile-caste" inlineField="true" inputCssClass="selectBoxStyle">
+		<aui:select name="caste" label="profile-caste" inlineField="true" inputCssClass="selectBoxStyle required">
 		</aui:select><br/>
 	</div>
 	<div id="subCasteDiv">
-		<aui:select name="subCaste" label="profile-sub-caste" inlineField="true" inputCssClass="selectBoxStyle">
+		<aui:select name="subCaste" label="profile-sub-caste" inlineField="true" inputCssClass="selectBoxStyle required">
 		</aui:select><br/>
 	</div>
 </aui:field-wrapper>
-<aui:select name="rasi" label="profile-rasi" inlineField="true" inputCssClass="selectBoxStyle">
+<aui:select name="rasi" label="profile-rasi" inlineField="true" inputCssClass="selectBoxStyle required">
+	<aui:option value="" label="select" />
 	<c:forEach items="${rasi}" var="rasiValue">
 		<aui:option value="${rasiValue}" label="${rasiValue}" selected="${selectedRasiValue == rasiValue}"/>
 	</c:forEach>	
 </aui:select><br/>
-<aui:select name="star" label="profile-star" inlineField="true" inputCssClass="selectBoxStyle">
+<aui:select name="star" label="profile-star" inlineField="true" inputCssClass="selectBoxStyle required">
+	<aui:option value="" label="select" />
 	<c:forEach items="${star}" var="starValue">
 		<aui:option value="${starValue}" label="${starValue}" selected="${selectedStarValue == starValue}"/>
 	</c:forEach>
 </aui:select><br/>
-<aui:select name="dosam" label="profile-dosam" inlineField="true" inputCssClass="selectBoxStyle">
+<aui:select name="dosam" label="profile-dosam" inlineField="true" inputCssClass="selectBoxStyle required">
+	<aui:option value="" label="select" />
 	<c:forEach items="${dosam}" var="dosamValue">
 		<aui:option value="${dosamValue}" label="${dosamValue}" selected="${selectedDosamValue == dosamValue}"/>
 	</c:forEach>	
 </aui:select><br/>
-<aui:select name="height" label="profile-height" inlineField="true" inputCssClass="selectBoxStyle">
+<aui:select name="height" label="profile-height" inlineField="true" inputCssClass="selectBoxStyle required">
+	<aui:option value="" label="select" />
 	<c:forEach items="${height}" var="heightValue">
 		<aui:option value="${heightValue}" label="${heightValue}" selected="${selectedHeightValue == heightValue}"/>
 	</c:forEach>
 </aui:select><br/>
-<aui:select name="weight" label="profile-weight" inlineField="true" inputCssClass="selectBoxStyle">
+<aui:select name="weight" label="profile-weight" inlineField="true" inputCssClass="selectBoxStyle required">
+	<aui:option value="" label="select" />
 	<c:forEach items="${weight}" var="weightValue">
 		<aui:option value="${weightValue}" label="${weightValue}" selected="${selectedWeightValue == weightValue}"/>
 	</c:forEach>
 </aui:select><br/>
-<aui:select name="complexion" label="profile-complexion" inlineField="true" inputCssClass="selectBoxStyle">
+<aui:select name="complexion" label="profile-complexion" inlineField="true" inputCssClass="selectBoxStyle required">
+	<aui:option value="" label="select" />
 	<c:forEach items="${complexion}" var="complexionValue">
 		<aui:option value="${complexionValue}" label="${complexionValue}" selected="${selectedComplexionValue == complexionValue}"/>
 	</c:forEach>
 </aui:select><br/>
-<aui:select name="motherTongue" label="profile-mother-tongue" inlineField="true" inputCssClass="selectBoxStyle">
+<aui:select name="motherTongue" label="profile-mother-tongue" inlineField="true" inputCssClass="selectBoxStyle required">
+	<aui:option value="" label="select" />
 	<c:forEach items="${language}" var="motherTongueValue">
 		<aui:option value="${motherTongueValue}" label="${motherTongueValue}" selected="${selectedMotherTongueValue == motherTongueValue}"/>
 	</c:forEach>
 </aui:select><br/>
-<aui:select name="languageKnown" label="profile-language-known" inlineField="true" inputCssClass="selectBoxStyle"  multiple="true">
+<aui:select name="languageKnown" label="profile-language-known" inlineField="true" inputCssClass="selectBoxStyle required"  multiple="true">
 	<c:forEach items="${language}" var="languageKnownValue">
 		<c:set var="languageVal" scope="page" value="${languageKnownValue}"/>
 		<% if(Validator.isNotNull(languageKnownList) && languageKnownList.contains(pageContext.getAttribute("languageVal"))){ %>
@@ -77,12 +95,14 @@
 		</option>
 	</c:forEach>
 </aui:select><br/>
-<aui:select name="maritalStatus" label="profile-marital-status" inlineField="true" inputCssClass="selectBoxStyle">
+<aui:select name="maritalStatus" label="profile-marital-status" inlineField="true" inputCssClass="selectBoxStyle required">
+	<aui:option value="" label="select" />
 	<c:forEach items="${maritalStatus}" var="maritalStatusValue">
 		<aui:option value="${maritalStatusValue}" label="${maritalStatusValue}" selected="${selectedMaritalStatusValue == maritalStatusValue}"/>
 	</c:forEach>
 </aui:select><br/>
-<aui:select  name="children" label="profile-children" inlineField="true" inputCssClass="selectBoxStyle">
+<aui:select name="children" label="profile-children" inlineField="true" inputCssClass="selectBoxStyle required">
+	<aui:option value="" label="select" />
 	<c:forEach items="${children}" var="childrenValue">
 		<aui:option value="${childrenValue}" label="${childrenValue}" selected="${selectedChildrenValue == childrenValue}"/>
 	</c:forEach>
