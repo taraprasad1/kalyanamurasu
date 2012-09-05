@@ -329,8 +329,10 @@ public class MatrimonyController extends MVCPortlet {
 						ImageBag imageBag = ImageToolUtil.read(bytes);
 						RenderedImage thumbnailImage = imageBag
 								.getRenderedImage();
-						thumbnailImage = ImageToolUtil.scale(thumbnailImage,
+						if(thumbnail) {
+							thumbnailImage = ImageToolUtil.scale(thumbnailImage,
 								height, width);
+						}
 						bytes = ImageToolUtil.getBytes(thumbnailImage,
 								imageBag.getType());
 					}
