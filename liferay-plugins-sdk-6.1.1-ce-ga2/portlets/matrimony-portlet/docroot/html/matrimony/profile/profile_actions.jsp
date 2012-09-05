@@ -23,4 +23,15 @@
 		<portlet:param name="profileId" value="<%= String.valueOf(aProfile.getProfileId()) %>" />				
 	</portlet:renderURL>
 	<liferay-ui:icon image="edit" message="Edit Photo" url="<%= editPhotoURL %>" />
+	
+	<portlet:renderURL var="viewPhotoURL">
+		<portlet:param name="jspPage" value="/html/matrimony/profile/view_photo.jsp" />
+		<portlet:param name="profileId" value="<%= String.valueOf(aProfile.getProfileId()) %>" />				
+	</portlet:renderURL>
+	<liferay-ui:icon image="view" message="View Photo" url="<%= viewPhotoURL %>" />
+	<portlet:renderURL var="viewPhotoURL">
+		<portlet:param name="jspPage" value="/html/matrimony/profile/view_photo_2.jsp" />
+		<portlet:param name="profileId" value="<%= String.valueOf(aProfile.getProfileId()) %>" />				
+	</portlet:renderURL>
+	<liferay-ui:icon image="view" message="View Photo2" url="<%= viewPhotoURL %>" />
 </liferay-ui:icon-menu>
